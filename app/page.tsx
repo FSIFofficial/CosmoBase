@@ -16,10 +16,10 @@ interface StatsData {
 
 export default function Home() {
   const [stats, setStats] = useState<StatsData>({
-    events: "12",
-    participants: "300",
-    collaborations: "8",
-    media: "5",
+    events: "0",
+    participants: "24",
+    collaborations: "0",
+    media: "0",
   })
 
   useEffect(() => {
