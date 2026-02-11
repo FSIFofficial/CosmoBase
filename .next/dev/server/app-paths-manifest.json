@@ -1,0 +1,12 @@
+{
+  "/admin/events-manage/page": "app/admin/events-manage/page.js",
+  "/admin/login/page": "app/admin/login/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/stats/page": "app/admin/stats/page.js",
+  "/events/page": "app/events/page.js",
+  "/news/page": "app/news/page.js",
+  "/page": "app/page.js",
+  "/partners/[id]/page": "app/partners/[id]/page.js",
+  "/partners/page": "app/partners/page.js",
+  "/value/page": "app/value/page.js"
+}
