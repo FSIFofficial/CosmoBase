@@ -308,7 +308,7 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <a href="https://discord.gg/TEnAD8Db8g" target="_blank" rel="noopener noreferrer">
+                <a href="https://discord.gg/xVJDjuGyeM" target="_blank" rel="noopener noreferrer">
                   <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium w-full sm:w-auto">
                     今すぐ参加する
                   </Button>
