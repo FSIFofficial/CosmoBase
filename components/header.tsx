@@ -8,7 +8,7 @@ export default function Header() {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-4">
             <Image
-              src="/images/e3-82-b9-e3-82-af-e3-83-aa-e3-83-bc-e3-83-b3-e3-82-b7-e3-83-a7-e3-83-83-e3-83-88-202025-12-31-20000017.png"
+              src="/CosmoBase.png"
               alt="Cosmo Base Logo"
               width={300}
               height={100}
