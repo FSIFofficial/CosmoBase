@@ -12,11 +12,8 @@ export default function Footer() {
             >
               運営
             </a>
-            <a href="#" className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors font-sans text-sm">
-              プライバシーポリシー
-            </a>
-            <a href="#" className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors font-sans text-sm">
-              利用規約
+            <a href="manual" className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors font-sans text-sm">
+              Cosmo Base 対応マニュアル
             </a>
             <a
               href="mailto:fisf.official@gmail.com"
