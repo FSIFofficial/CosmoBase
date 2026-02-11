@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Noto_Serif_JP, Noto_Sans_JP } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
+//import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
 const notoSerif = Noto_Serif_JP({
@@ -50,7 +50,7 @@ export default function RootLayout({
       <body className={`${notoSans.variable} ${notoSerif.variable} font-sans antialiased`}>
         <div id="top" />
         {children}
-        <Analytics />
+        {/*<Analytics />*/}
       </body>
     </html>
   )
