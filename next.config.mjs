@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',  // <--- ★ここが重要！これを足してください
+  output: 'export',
+  basePath: '/CosmoBase', 
+
   typescript: {
     ignoreBuildErrors: true,
   },
