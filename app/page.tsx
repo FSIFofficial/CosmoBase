@@ -63,15 +63,19 @@ export default function Home() {
               Cosmo Baseは、宇宙に興味を持つすべての人が集い、学び、つながるコミュニティです。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium w-full sm:w-auto">
-                コミュニティをのぞいてみる
-              </Button>
-              <Button
-                variant="outline"
-                className="border-[#EEEEFF] text-[#EEEEFF] hover:bg-[#EEEEFF]/10 text-lg px-8 py-6 font-sans bg-transparent w-full sm:w-auto"
-              >
-                Cosmo Baseについて知る
-              </Button>
+              <Link href="/join">
+                <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium w-full sm:w-auto">
+                  コミュニティをのぞいてみる
+                </Button>
+              </Link>
+              <Link href="/value">
+                <Button
+                  variant="outline"
+                  className="border-[#EEEEFF] text-[#EEEEFF] hover:bg-[#EEEEFF]/10 text-lg px-8 py-6 font-sans bg-transparent w-full sm:w-auto"
+                >
+                  Cosmo Baseについて知る
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
