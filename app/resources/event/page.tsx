@@ -23,7 +23,7 @@ const resources: Resource[] = [
     target: "宇宙のきまりを知りたい人",
     time: "10分",
     tag: "職業別",
-    link: "/resources/space-law"
+    link: "https://drive.google.com/file/d/1ZqPH7QzNSHBHhJGI3KNJJMNL2wHYvS9U/view?usp=sharing"
   },
   {
     id: 2,
@@ -32,7 +32,7 @@ const resources: Resource[] = [
     target: "医療や健康に関心がある人",
     time: "15分",
     tag: "職業別",
-    link: "/resources/medical"
+    link: "https://drive.google.com/file/d/12epS2vhb8dFxURsTUQzSL1M_f68w5Skg/view?usp=sharing"
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const resources: Resource[] = [
     target: "実験や研究に興味がある人",
     time: "10分",
     tag: "職業別",
-    link: "/resources/scientist"
+    link: "https://drive.google.com/file/d/1vAFeuRpe-syFCQPon2EI-bZ2aKtAq6Ze/view?usp=sharing"
   },
   {
     id: 4,
@@ -50,7 +50,7 @@ const resources: Resource[] = [
     target: "宇宙開発に興味がある人",
     time: "10分",
     tag: "職業別",
-    link: "/resources/engineer"
+    link: "https://drive.google.com/file/d/1YPPPHVuSwuF6TQHCaNx0kbK2NP6Mmod1/view?usp=sharing"
   },
   {
     id: 5,
@@ -59,7 +59,7 @@ const resources: Resource[] = [
     target: "火星の暮らしを知りたい人",
     time: "10分",
     tag: "初心者向け",
-    link: "/resources/mars-hobby"
+    link: "https://drive.google.com/file/d/1yVp3rRY5hPVEmQ-WHZrxwKKKVoMFCyDN/view?usp=sharing"
   },
   {
     id: 6,
@@ -68,7 +68,7 @@ const resources: Resource[] = [
     target: "月に興味がある人",
     time: "10分",
     tag: "初心者向け",
-    link: "/resources/moon-survey"
+    link: "https://drive.google.com/file/d/14wBuf4PxVHWL0W-lslnZ8eKkwZbJRiYe/view?usp=sharing"
   },
   {
     id: 7,
@@ -77,7 +77,7 @@ const resources: Resource[] = [
     target: "宇宙旅行を夢見る人",
     time: "10分",
     tag: "概要",
-    link: "/resources/iss"
+    link: "https://drive.google.com/file/d/1rp1jsuIv7PMQmPxNZHJwxEGhVmXTxQq7/view?usp=sharing"
   },
   {
     id: 8,
@@ -86,7 +86,7 @@ const resources: Resource[] = [
     target: "宇宙の環境を詳しく知りたい人",
     time: "15分",
     tag: "初心者向け",
-    link: "/resources/basic-ref"
+    link: "https://drive.google.com/file/d/1mfgfAtKo2VAnyWJiqz-C6U8yMCZO9exL/view?usp=sharing"
   },
   {
     id: 9,
@@ -95,7 +95,7 @@ const resources: Resource[] = [
     target: "宇宙の課題を知りたい人",
     time: "5分",
     tag: "入門",
-    link: "/resources/challenges"
+    link: "https://drive.google.com/file/d/1l8M0VGblx0a6dt9HfG1i66X2z9NfaBja/view?usp=sharing"
   },
 ]
 
@@ -188,4 +188,5 @@ export default function EventResourcesPage() {
       <Footer />
     </div>
   )
+
 }
