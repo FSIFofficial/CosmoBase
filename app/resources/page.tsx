@@ -134,7 +134,7 @@ export default function ResourcesPage() {
                         </div>
                         <h3 className="text-xl font-serif text-[#EEEEFF]">宇宙ベンチャー企業一覧</h3>
                       </div>
-                      <span className="text-xs text-[#83CBEB] bg-[#83CBEB]/10 px-2 py-1 rounded font-sans">公開</span>
+                      <span className="text-xs text-[#EEEEBB] bg-[#EEEEBB]/10 px-2 py-1 rounded font-sans">コミュニティー内で公開</span>
                     </div>
                     <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-4">
                       国内外の宇宙ベンチャー企業の事業内容、設立年、資金調達状況などをまとめたデータベース
