@@ -26,60 +26,14 @@ export default function ResourcesPage() {
                 <h2 className="text-2xl md:text-3xl font-serif text-[#EEEEFF]">資料・ナレッジの蓄積</h2>
               </div>
               <p className="text-lg text-[#EEEEFF]/80 font-sans mb-6 leading-relaxed">
-                一から調べる必要はありません。既にまとまった情報がここにあります。
+                宇宙を「自分ごと」にするための、最初の一冊。<br/>
+                イベントや勉強会で使用した資料を、初心者にも分かりやすい形で公開しています。<br/>
+                ※資料は随時追加されます
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6 mb-8">
-              <Link href="/resources/ventures">
-                <Card className="bg-[#000033] border-[#83CBEB]/30 hover:border-[#83CBEB]/50 transition-colors cursor-pointer h-full">
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-[#83CBEB]/20 rounded-lg flex items-center justify-center text-xl">
-                          🚀
-                        </div>
-                        <h3 className="text-xl font-serif text-[#EEEEFF]">宇宙ベンチャー企業一覧</h3>
-                      </div>
-                      <span className="text-xs text-[#83CBEB] bg-[#83CBEB]/10 px-2 py-1 rounded font-sans">公開</span>
-                    </div>
-                    <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-4">
-                      国内外の宇宙ベンチャー企業の事業内容、設立年、資金調達状況などをまとめたデータベース
-                    </p>
-                    <div className="flex items-center gap-2 text-[#EEEEFF]/50 text-xs font-sans">
-                      <span>📊</span>
-                      <span>150社以上のデータを収録</span>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-
-              <Link href="/resources/technology">
-                <Card className="bg-[#000033] border-[#83CBEB]/30 hover:border-[#83CBEB]/50 transition-colors cursor-pointer h-full">
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-[#EEEEBB]/20 rounded-lg flex items-center justify-center text-xl">
-                          🛰️
-                        </div>
-                        <h3 className="text-xl font-serif text-[#EEEEFF]">ロケット・衛星技術比較</h3>
-                      </div>
-                      <span className="text-xs text-[#EEEEBB] bg-[#EEEEBB]/10 px-2 py-1 rounded font-sans">
-                        コミュニティー内で公開
-                      </span>
-                    </div>
-                    <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-4">
-                      各種ロケットの性能比較、衛星技術の種類と用途、打ち上げコスト分析など
-                    </p>
-                    <div className="flex items-center gap-2 text-[#EEEEFF]/50 text-xs font-sans">
-                      <span>🔒</span>
-                      <span>詳細な技術資料と比較表</span>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-
-              <Link href="/resources/market">
+              <Link href="/resources/event">
                 <Card className="bg-[#000033] border-[#83CBEB]/30 hover:border-[#83CBEB]/50 transition-colors cursor-pointer h-full">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
@@ -87,18 +41,17 @@ export default function ResourcesPage() {
                         <div className="w-10 h-10 bg-[#83CBEB]/20 rounded-lg flex items-center justify-center text-xl">
                           📊
                         </div>
-                        <h3 className="text-xl font-serif text-[#EEEEFF]">市場分析レポート</h3>
+                        <h3 className="text-xl font-serif text-[#EEEEFF]">イベント資料</h3>
                       </div>
-                      <span className="text-xs text-[#EEEEBB] bg-[#EEEEBB]/10 px-2 py-1 rounded font-sans">
-                        コミュニティー内で公開
+                      <span className="text-xs text-[#83CBEB] bg-[#83CBEB]/10 px-2 py-1 rounded font-sans">
+                        公開
                       </span>
                     </div>
                     <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-4">
-                      独自調査による宇宙産業の市場規模、成長予測、投資動向などの詳細分析
+                      ワークショップ開催時に使用した資料を公開
                     </p>
                     <div className="flex items-center gap-2 text-[#EEEEFF]/50 text-xs font-sans">
-                      <span>🔒</span>
-                      <span>四半期ごとに更新</span>
+                      <span>イベント開催ごとに更新</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -114,20 +67,19 @@ export default function ResourcesPage() {
                         </div>
                         <h3 className="text-xl font-serif text-[#EEEEFF]">週間ニュースまとめ</h3>
                       </div>
-                      <span className="text-xs text-[#83CBEB] bg-[#83CBEB]/10 px-2 py-1 rounded font-sans">公開</span>
+                      <span className="text-xs text-[#EEEEBB] bg-[#EEEEBB]/10 px-2 py-1 rounded font-sans">コミュニティー内で公開</span>
                     </div>
                     <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-4">
                       国内外の宇宙関連ニュースを厳選してまとめた週次レポート
                     </p>
                     <div className="flex items-center gap-2 text-[#EEEEFF]/50 text-xs font-sans">
-                      <span>📅</span>
-                      <span>毎週月曜日に更新</span>
+                      <span>毎週更新</span>
                     </div>
                   </CardContent>
                 </Card>
               </Link>
 
-              <Link href="/resources/beginners">
+              <Link href="https://fsifofficial.wixsite.com/future-space-industr/library-1">
                 <Card className="bg-[#000033] border-[#83CBEB]/30 hover:border-[#83CBEB]/50 transition-colors cursor-pointer h-full">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
@@ -135,16 +87,15 @@ export default function ResourcesPage() {
                         <div className="w-10 h-10 bg-[#83CBEB]/20 rounded-lg flex items-center justify-center text-xl">
                           🎓
                         </div>
-                        <h3 className="text-xl font-serif text-[#EEEEFF]">入門コンテンツ</h3>
+                        <h3 className="text-xl font-serif text-[#EEEEFF]">イベント報告書</h3>
                       </div>
                       <span className="text-xs text-[#83CBEB] bg-[#83CBEB]/10 px-2 py-1 rounded font-sans">公開</span>
                     </div>
                     <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-4">
-                      宇宙の基礎知識、専門用語解説、よくある質問など、初心者向けのコンテンツ
+                      ​イベントの実施内容・振り返りをまとめています。
                     </p>
                     <div className="flex items-center gap-2 text-[#EEEEFF]/50 text-xs font-sans">
-                      <span>✨</span>
-                      <span>知識ゼロから始められる</span>
+                      <span>イベント開催ごとに更新</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -168,8 +119,51 @@ export default function ResourcesPage() {
                       国内外の宇宙関連イベント、展示会の参加レポートと取材記事
                     </p>
                     <div className="flex items-center gap-2 text-[#EEEEFF]/50 text-xs font-sans">
-                      <span>🔒</span>
                       <span>写真と詳細レポート付き</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link href="/resources/ventures">
+                <Card className="bg-[#000033] border-[#83CBEB]/30 hover:border-[#83CBEB]/50 transition-colors cursor-pointer h-full">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-[#83CBEB]/20 rounded-lg flex items-center justify-center text-xl">
+                          🚀
+                        </div>
+                        <h3 className="text-xl font-serif text-[#EEEEFF]">宇宙ベンチャー企業一覧</h3>
+                      </div>
+                      <span className="text-xs text-[#83CBEB] bg-[#83CBEB]/10 px-2 py-1 rounded font-sans">公開</span>
+                    </div>
+                    <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-4">
+                      国内外の宇宙ベンチャー企業の事業内容、設立年、資金調達状況などをまとめたデータベース
+                    </p>
+                    <div className="flex items-center gap-2 text-[#EEEEFF]/50 text-xs font-sans">
+                      <span>150社以上のデータを収録</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link href="/resources/technology">
+                <Card className="bg-[#000033] border-[#83CBEB]/30 hover:border-[#83CBEB]/50 transition-colors cursor-pointer h-full">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-[#EEEEBB]/20 rounded-lg flex items-center justify-center text-xl">
+                          🛰️
+                        </div>
+                        <h3 className="text-xl font-serif text-[#EEEEFF]">ロケット・衛星技術比較</h3>
+                      </div>
+                      <span className="text-xs text-[#EEEEBB] bg-[#EEEEBB]/10 px-2 py-1 rounded font-sans">
+                        コミュニティー内で公開
+                      </span>
+                    </div>
+                    <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-4">
+                      各種ロケットの性能比較、衛星技術の種類と用途、打ち上げコスト分析など
+                    </p>
+                    <div className="flex items-center gap-2 text-[#EEEEFF]/50 text-xs font-sans">
+                      <span>詳細な技術資料と比較表</span>
                     </div>
                   </CardContent>
                 </Card>
