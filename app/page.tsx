@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#000033]">
       <Header />
-
+      <meta name="google-site-verification" content="KBDRGVtJakpozBGKSE9ELjeawwzt0ySBiN6bhEhOqEk" />
       <section className="relative py-24 md:py-32 lg:py-40 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-2 h-2 bg-[#EEEEFF] rounded-full animate-pulse"></div>
