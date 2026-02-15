@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   description:
     "宇宙を、もっと身近な選択肢に。Cosmo Baseは宇宙に興味がある人・産業をつなぐコミュニティーです。",
   icons: {
-    icon: url: "CosmoBase/icon.png"
-  },
+    icon: "CosmoBase/icon.png"
+  }
 }
 
 export default function RootLayout({
