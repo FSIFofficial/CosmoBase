@@ -116,7 +116,7 @@ export default function PartnerPage() {
                 まずは以下のフォームからお気軽にどうぞ
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdZbmNFTOPf43xWN6JZo7DDqkyeYZUCvQlrdVOhO-3aViUpvQ/viewform?embedded=true" width="640" height="422" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdZbmNFTOPf43xWN6JZo7DDqkyeYZUCvQlrdVOhO-3aViUpvQ/viewform?usp=pp_url&entry.9181603=%E7%AC%AC1%E5%B8%8C%E6%9C%9B%EF%BC%9A%E3%80%87%E6%9C%88%E3%80%87%E6%97%A5+xx:xx%EF%BD%9Eyy:yy%0A%E7%AC%AC2%E5%B8%8C%E6%9C%9B%EF%BC%9A%E3%80%87%E6%9C%88%E3%80%87%E6%97%A5+xx:xx%EF%BD%9Eyy:yy%0A%E7%AC%AC3%E5%B8%8C%E6%9C%9B%EF%BC%9A%E3%80%87%E6%9C%88%E3%80%87%E6%97%A5+xx:xx%EF%BD%9Eyy:yy" width="640" height="422" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
               </div>
             </div>
           </div>
