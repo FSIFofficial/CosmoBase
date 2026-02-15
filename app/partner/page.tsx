@@ -113,18 +113,10 @@ export default function PartnerPage() {
             <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-2xl p-8 md:p-12 text-center">
               <h2 className="text-2xl md:text-3xl font-serif text-[#EEEEFF] mb-4">パートナーとして参加する</h2>
               <p className="text-lg text-[#EEEEFF]/70 font-sans mb-8 leading-relaxed">
-                まずは資料請求またはカジュアル面談からお気軽にどうぞ
+                まずは以下のフォームからお気軽にどうぞ
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
-                  パートナー制度資料請求
-                </Button>
-                <Button
-                  variant="outline"
-                  className="border-[#EEEEFF] text-[#EEEEFF] hover:bg-[#EEEEFF]/10 text-lg px-8 py-6 font-sans bg-transparent"
-                >
-                  カジュアル面談を申し込む
-                </Button>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdZbmNFTOPf43xWN6JZo7DDqkyeYZUCvQlrdVOhO-3aViUpvQ/viewform?embedded=true" width="640" height="422" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
               </div>
             </div>
           </div>
