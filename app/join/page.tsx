@@ -85,7 +85,7 @@ export default function JoinPage() {
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-[#83CBEB] mt-1">•</span>
-                        <span>#質問・相談 で疑問を解決しよう</span>
+                        <span>#質問部屋で疑問を解決しよう</span>
                       </li>
                     </ul>
                   </div>
