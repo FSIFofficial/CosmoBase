@@ -120,7 +120,7 @@ export default function ValuePage() {
                 <div className="bg-[#000033]/60 rounded-lg p-6">
                   <h4 className="text-lg font-serif text-[#EEEEFF] mb-2">🎤 専門家トークセッション</h4>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-3">
-                    宇宙開発の最前線で活躍する専門家を招いたトークイベント。質疑応答で直接疑問を解決できます。
+                    宇宙開発に取り組み、宇宙産業を知る学生とのフリートークイベント。オンラインで入退室自由な場で月に一度宇宙を語ろう。
                   </p>
                   <p className="text-[#83CBEB] font-sans text-xs">開催頻度：月1回程度</p>
                 </div>
@@ -146,7 +146,7 @@ export default function ValuePage() {
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-3">
                     ロケット技術、衛星データ活用など、テーマごとに深く学べる勉強会を定期開催。
                   </p>
-                  <p className="text-[#83CBEB] font-sans text-xs">開催頻度：月2回程度</p>
+                  <p className="text-[#83CBEB] font-sans text-xs">{/*開催頻度：*/}サービス準備中</p>
                 </div>
 
                 <div className="bg-[#000033]/60 rounded-lg p-6">
