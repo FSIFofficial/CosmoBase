@@ -98,15 +98,15 @@ export default function ValuePage() {
                     <ul className="space-y-2 text-[#EEEEFF]/70 font-sans text-sm md:text-base">
                       <li className="flex items-start gap-2">
                         <span className="text-[#83CBEB] mt-1">•</span>
-                        <span>宇宙ベンチャー企業一覧・事業内容まとめ</span>
+                        <span>宇宙産業に関する考察</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-[#83CBEB] mt-1">•</span>
-                        <span>ロケット・衛星技術の比較資料</span>
+                        <span>ワークショップなどで使用した調査資料</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-[#83CBEB] mt-1">•</span>
-                        <span>独自調査データ・市場分析レポート</span>
+                        <span>イベントレポートやニュース記事</span>
                       </li>
                     </ul>
                   </div>
