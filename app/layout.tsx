@@ -17,26 +17,11 @@ const notoSans = Noto_Sans_JP({
 })
 
 export const metadata: Metadata = {
-  title: "Cosmo Base - パートナー制度 | 一番身近な宇宙の専門家",
+  title: "Cosmo Base",
   description:
-    "宇宙を、もっと身近な選択肢に。Cosmo Baseは宇宙に興味がある人・産業をつなぐコミュニティーです。パートナー制度への参画団体を募集しています。",
-  generator: "v0.app",
+    "宇宙を、もっと身近な選択肢に。Cosmo Baseは宇宙に興味がある人・産業をつなぐコミュニティーです。",
   icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
+    icon: url: "CosmoBase/icon.png"
   },
 }
 
