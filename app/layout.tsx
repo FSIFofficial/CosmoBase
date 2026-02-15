@@ -18,10 +18,9 @@ const notoSans = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   title: "Cosmo Base",
-  description:
-    "宇宙を、もっと身近な選択肢に。Cosmo Baseは宇宙に興味がある人・産業をつなぐコミュニティーです。",
+  description:"宇宙を、もっと身近な選択肢に。Cosmo Baseは宇宙に興味がある人・産業をつなぐコミュニティーです。",
   icons: {
-    icon: "CosmoBase/icon.png"
+    icon: "/CosmoBase/icon.png"
   }
 }
 
