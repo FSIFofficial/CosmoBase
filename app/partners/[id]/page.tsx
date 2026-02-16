@@ -5,6 +5,7 @@ import Image from "next/image"
 import Header from "@/components/header" // ← 追加
 import Footer from "@/components/footer" // ← 追加
 import { getPartners, getPartnerById } from "@/lib/partners"
+import type { Metadata } from "next"
 
 // Next.js 16対応: paramsはPromise
 type Props = {
@@ -16,6 +17,34 @@ export async function generateStaticParams() {
   return partners.map((partner) => ({
     id: partner.id,
   }))
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // 1. params を await して ID を取得
+  const { id } = await params
+  // 2. IDを使ってデータを探す
+  const article = getNewsArticleById(Number(id))
+  // 記事が見つからない場合のフォールバック
+  if (!article) {
+    return {
+      title: "記事が見つかりません",
+    }
+  }
+  const title = partner.name 
+  // excerptがない場合は本文の最初を使うなどの工夫も可能です
+  const description = partner.description
+  // 3. メタデータを返す
+  return {
+    title: title, 
+    description: description,
+    
+    // OGP設定
+    openGraph: {
+      title: title,
+      description: description,
+      images: partner.image ? [partner.image] : [],
+    },
+  }
 }
 
 export default async function PartnerDetailPage({ params }: Props) {
