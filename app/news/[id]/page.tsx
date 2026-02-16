@@ -6,6 +6,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { getNewsArticles, getNewsArticleById } from "@/lib/news"
 import { notFound } from "next/navigation"
+import type { Metadata } from "next"
 
 // Next.js 15/16向けの型定義: paramsはPromiseになります
 type Props = {
@@ -17,6 +18,27 @@ export async function generateStaticParams() {
   return articles.map((article) => ({
     id: article.id.toString(),
   }))
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // 1. URLのIDを取得
+  const id = params.id
+
+  // 2. IDを使ってデータを探す（
+  const title = `${article.title}` 
+  const description = `${article.excerpt}`
+
+  // 3. メタデータを返す
+  return {
+    title: title, 
+    description: description,
+    
+    // OGPも個別に設定可能
+    openGraph: {
+      title: title,
+      description: description,
+    },
+  }
 }
 
 export default async function NewsArticlePage({ params }: Props) {
