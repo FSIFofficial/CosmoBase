@@ -1,6 +1,17 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "コミュニティーへの参加方法", 
+  description: "Cosmo Baseへの参加はこちらから",
+    // OGPも個別で上書き
+  openGraph: {
+    title: "コミュニティーへの参加方法 | Cosmo Base",
+    description: "Cosmo Baseへの参加はこちらから",
+  },
+}
 
 export default function JoinPage() {
   return (
