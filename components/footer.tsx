@@ -8,12 +8,12 @@ export default function Footer() {
             <a href="manual" className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors font-sans text-sm">
               Cosmo Base 対応マニュアル
             </a>
-            <a
-              href="CosmoBase/contact"
+            <Link
+              href="/contact"
               className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors font-sans text-sm"
             >
-              お問い合わせ
-            </a>
+              <a>お問い合わせ</a>
+            </Link>
           </div>
         </div>
         <div className="border-t border-[#83CBEB]/10 pt-6 text-center">
