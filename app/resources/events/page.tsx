@@ -4,6 +4,17 @@ import Footer from "@/components/footer"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Lock, Calendar, MapPin, Camera, FileText } from "lucide-react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "イベント・展示会レポート | 資料館", 
+  description: "国内外の宇宙関連イベント、展示会の参加レポートと取材記事。",
+    // OGPも個別で上書き
+  openGraph: {
+    title: "イベント・展示会レポート | 資料館 | Cosmo Base",
+    description: "国内外の宇宙関連イベント、展示会の参加レポートと取材記事。",
+  },
+}
 
 export default function EventReportPage() {
   return (
@@ -116,4 +127,5 @@ export default function EventReportPage() {
       <Footer />
     </div>
   )
+
 }
