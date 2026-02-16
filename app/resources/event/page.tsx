@@ -5,6 +5,17 @@ import Link from "next/link"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ArrowRight, ArrowLeft, Filter } from "lucide-react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "イベント資料 | 資料館", 
+  description: "ワークショップ開催時に使用した資料を公開しています。",
+    // OGPも個別で上書き
+  openGraph: {
+    title: "イベント資料 | 資料館 | Cosmo Base",
+    description: "ワークショップ開催時に使用した資料を公開しています。",
+  },
+}
 
 // 資料データの型定義
 type Resource = {
@@ -260,3 +271,4 @@ export default function EventResourcesPage() {
     </div>
   )
 }
+
