@@ -59,7 +59,7 @@ export default function ContactPageContent() {
                 <iframe
                   src="https://forms.gle/d7SGVtM7LtBviwqR9"
                   width="640"
-                  height="900"
+                  height="1000"
                   frameBorder="0"
                   marginHeight={0}
                   marginWidth={0}
