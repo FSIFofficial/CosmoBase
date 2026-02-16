@@ -117,17 +117,23 @@ export default function PartnerPageContent() {
               <h2 className="text-2xl md:text-3xl font-serif text-[#EEEEFF] mb-4">
                 パートナーとして参加する
               </h2>
-              <p className="text-lg text-[#EEEEFF]/70 font-sans mb-8 leading-relaxed">
-                まずは以下のフォームからお気軽にどうぞ
-              </p>
+              <div className="text-lg text-[#EEEEFF]/70 font-sans mb-8 leading-relaxed">
+                <p>まずは以下のフォームからお気軽にご連絡ください。</p>
+                {/* ▼ ここに案内文を追加しました */}
+                <p className="mt-2 text-sm text-[#83CBEB]">
+                  ※いきなり提携ではなく、まずは話を聞いてみたいという方向けの<br className="hidden md:block" />
+                  「カジュアル面談」も受け付けています。フォーム内で選択してください。
+                </p>
+              </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <iframe
                   src="https://docs.google.com/forms/d/e/1FAIpQLSdZbmNFTOPf43xWN6JZo7DDqkyeYZUCvQlrdVOhO-3aViUpvQ/viewform?usp=pp_url&entry.9181603=%E7%AC%AC1%E5%B8%8C%E6%9C%9B%EF%BC%9A%E3%80%87%E6%9C%88%E3%80%87%E6%97%A5+xx:xx%EF%BD%9Eyy:yy%0A%E7%AC%AC2%E5%B8%8C%E6%9C%9B%EF%BC%9A%E3%80%87%E6%9C%88%E3%80%87%E6%97%A5+xx:xx%EF%BD%9Eyy:yy%0A%E7%AC%AC3%E5%B8%8C%E6%9C%9B%EF%BC%9A%E3%80%87%E6%9C%88%E3%80%87%E6%97%A5+xx:xx%EF%BD%9Eyy:yy"
                   width="640"
-                  height="422"
+                  height="1000" // ▼ フォームが長くなってもいいように少し広げました
                   frameBorder="0"
                   marginHeight={0}
                   marginWidth={0}
+                  className="max-w-full bg-white/5 rounded-lg"
                 >
                   読み込んでいます…
                 </iframe>
@@ -140,4 +146,4 @@ export default function PartnerPageContent() {
       <Footer />
     </div>
   )
-}
+}                 
