@@ -5,6 +5,17 @@ import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import Image from "next/image"
 import { getNewsArticles } from "@/lib/news"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "ニュース", 
+  description: "Cosmo Baseの最新情報やイベントレポートをお届けします。",
+    // OGPも個別で上書き
+  openGraph: {
+    title: "ニュース | Cosmo Base",
+    description: "Cosmo Baseの最新情報やイベントレポートをお届けします。",
+  },
+}
 
 export default function NewsPage() {
   // データを取得
