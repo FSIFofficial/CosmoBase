@@ -35,7 +35,7 @@ export default function ContactPageContent() {
                 <p className="text-[#EEEEFF]/60 text-sm mb-4">
                   お問い合わせの前に、解決できる項目がないかご確認ください。
                 </p>
-                <a href="/faq" className="text-[#83CBEB] text-sm hover:underline font-bold">
+                <a href="faq" className="text-[#83CBEB] text-sm hover:underline font-bold">
                   よくある質問を見る →
                 </a>
               </div>
@@ -48,7 +48,7 @@ export default function ContactPageContent() {
                 <p className="text-[#EEEEFF]/60 text-sm mb-4">
                   提携やカジュアル面談をご希望の方は専用フォームをご利用ください。
                 </p>
-                <a href="/partner" className="text-[#EEEEBB] text-sm hover:underline font-bold">
+                <a href="partner" className="text-[#EEEEBB] text-sm hover:underline font-bold">
                   パートナー申請へ →
                 </a>
               </div>
@@ -59,7 +59,7 @@ export default function ContactPageContent() {
                 <iframe
                   src="https://forms.gle/d7SGVtM7LtBviwqR9"
                   width="640"
-                  height="800"
+                  height="900"
                   frameBorder="0"
                   marginHeight={0}
                   marginWidth={0}
