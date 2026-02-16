@@ -4,6 +4,17 @@ import { useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "パートナー制度", 
+  description: "Cosmo Baseと一緒に、宇宙の未来を創りませんか",
+    // OGPも個別で上書き
+  openGraph: {
+    title: "パートナー制度 | Cosmo Base",
+    description: "Cosmo Baseと一緒に、宇宙の未来を創りませんか",
+  },
+}
 
 export default function PartnerPage() {
   useEffect(() => {
