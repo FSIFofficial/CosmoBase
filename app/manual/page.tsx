@@ -2,6 +2,17 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ShieldAlert, Users, Lock, Scale, AlertTriangle, FileWarning, Gavel, Ban } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Cosmo Base 対応マニュアル", 
+  description: "コミュニティの健全な運営と、メンバーの安心・安全を守るためのガイドライン",
+    // OGPも個別で上書き
+  openGraph: {
+    title: "Cosmo Base 対応マニュアル | Cosmo Base",
+    description: "コミュニティの健全な運営と、メンバーの安心・安全を守るためのガイドライン",
+  },
+}
 
 export default function ManualPage() {
   return (
