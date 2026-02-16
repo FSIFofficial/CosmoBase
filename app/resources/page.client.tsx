@@ -4,19 +4,8 @@ import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { Metadata } from "next"
 
-export const metadata: Metadata = {
-  title: "資料館", 
-  description: "宇宙に関する知識とデータはこちらから",
-    // OGPも個別で上書き
-  openGraph: {
-    title: "資料館 | Cosmo Base",
-    description: "宇宙に関する知識とデータはこちらから",
-  },
-}
-
-export default function ResourcesPage() {
+export default function ResourcesPageContent() {
   return (
     <div className="min-h-screen bg-[#000033]">
       <Header />
