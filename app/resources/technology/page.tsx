@@ -2,6 +2,17 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "ロケット・衛星技術比較| 資料館", 
+  description: "宇宙に関する知識とデータはこちらから",
+    // OGPも個別で上書き
+  openGraph: {
+    title: "ロケット・衛星技術比較 | 資料館 | Cosmo Base",
+    description: "宇宙に関する知識とデータはこちらから",
+  },
+}
 
 export default function TechnologyPage() {
   return (
