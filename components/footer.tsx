@@ -5,13 +5,6 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
           <p className="text-[#EEEEFF]/60 font-sans text-sm">© 2026 Cosmo Base. All rights reserved.</p>
           <div className="flex gap-6">
-            {/* 追加: 運営ボタン */}
-            <a
-              href="/admin/login"
-              className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors font-sans text-sm"
-            >
-              運営
-            </a>
             <a href="manual" className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors font-sans text-sm">
               Cosmo Base 対応マニュアル
             </a>
