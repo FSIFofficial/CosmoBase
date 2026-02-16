@@ -4,6 +4,17 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { getPartners } from "@/lib/partners"
 import PartnerList from "./partner-list" // 作成したクライアントコンポーネント
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "パートナー企業・団体", 
+  description: "Cosmo Baseと共に宇宙の未来を創るパートナー企業・団体をご紹介します。",
+    // OGPも個別で上書き
+  openGraph: {
+    title: "パートナー企業・団体 | Cosmo Base",
+    description: "Cosmo Baseと共に宇宙の未来を創るパートナー企業・団体をご紹介します。",
+  },
+}
 
 export default function PartnersPage() {
   // サーバーサイドでデータを取得
@@ -22,7 +33,7 @@ export default function PartnersPage() {
               パートナー企業・団体
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[#EEEEFF]/80 text-pretty">
-              Cosmo Baseと共に宇宙の未来を創るパートナー企業・団体をご紹介します
+              Cosmo Baseと共に宇宙の未来を創るパートナー企業・団体をご紹介します。
             </p>
           </div>
         </div>
