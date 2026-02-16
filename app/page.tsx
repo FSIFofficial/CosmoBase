@@ -16,10 +16,10 @@ interface StatsData {
 
 export default function Home() {
   const [stats, setStats] = useState<StatsData>({
-    events: "0",
-    participants: "24",
-    collaborations: "0",
-    media: "0",
+    events: "0",         #開催イベント数
+    participants: "24",  #参加者数
+    collaborations: "0", #コラボレーション実績
+    media: "0",          #メディア掲載
   })
 
   useEffect(() => {
@@ -180,22 +180,22 @@ export default function Home() {
 
             <div className="grid md:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="text-5xl md:text-6xl font-serif text-[#83CBEB] mb-3">{stats.events}+</div>
+                <div className="text-5xl md:text-6xl font-serif text-[#83CBEB] mb-3">{stats.events}</div>
                 <p className="text-[#EEEEFF]/80 font-sans">開催イベント数</p>
               </div>
 
               <div className="text-center">
-                <div className="text-5xl md:text-6xl font-serif text-[#83CBEB] mb-3">{stats.participants}+</div>
+                <div className="text-5xl md:text-6xl font-serif text-[#83CBEB] mb-3">{stats.participants}</div>
                 <p className="text-[#EEEEFF]/80 font-sans">参加者数</p>
               </div>
 
               <div className="text-center">
-                <div className="text-5xl md:text-6xl font-serif text-[#83CBEB] mb-3">{stats.collaborations}+</div>
+                <div className="text-5xl md:text-6xl font-serif text-[#83CBEB] mb-3">{stats.collaborations}</div>
                 <p className="text-[#EEEEFF]/80 font-sans">コラボレーション実績</p>
               </div>
 
               <div className="text-center">
-                <div className="text-5xl md:text-6xl font-serif text-[#83CBEB] mb-3">{stats.media}+</div>
+                <div className="text-5xl md:text-6xl font-serif text-[#83CBEB] mb-3">{stats.media}</div>
                 <p className="text-[#EEEEFF]/80 font-sans">メディア掲載</p>
               </div>
             </div>
