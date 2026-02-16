@@ -5,17 +5,6 @@ import Link from "next/link"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Metadata } from "next"
-
-export const metadata: Metadata = {
-  title: "よくある質問", 
-  description: "Cosmo Baseについてよくいただく質問にお答えします",
-    // OGPも個別で上書き
-  openGraph: {
-    title: "よくある質問 | Cosmo Base",
-    description: "Cosmo Baseについてよくいただく質問にお答えします",
-  },
-}
 
 const faqs = [
   {
