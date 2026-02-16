@@ -9,7 +9,7 @@ export default function Footer() {
               Cosmo Base 対応マニュアル
             </a>
             <a
-              href="mailto:fisf.official@gmail.com"
+              href="/contact"
               className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors font-sans text-sm"
             >
               お問い合わせ
