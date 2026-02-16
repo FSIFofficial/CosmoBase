@@ -5,6 +5,17 @@ import Footer from "@/components/footer"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Lock } from "lucide-react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "週刊宇宙ニュースまとめ| 資料館", 
+  description: "その週の宇宙ニュースをスライドにまとめて配信しています。",
+    // OGPも個別で上書き
+  openGraph: {
+    title: "週刊宇宙ニュースまとめ | 資料館 | Cosmo Base",
+    description: "その週の宇宙ニュースをスライドにまとめて配信しています。",
+  },
+}
 
 export default function WeeklyNewsPage() {
   return (
@@ -111,4 +122,5 @@ export default function WeeklyNewsPage() {
       <Footer />
     </div>
   )
+
 }
