@@ -49,13 +49,13 @@ export const metadata: Metadata = {
 
   // ▼ 2. アイコン設定（ここを強化しました）
   icons: {
-    // 一般的なアイコン（Google検索用にはこれを重視させる）
     icon: [
       {
-        url: "https://fsifofficial.github.io/CosmoBase/CosmoBase/icon.png", // ←★ここに高画質画像のフルパスを入れる
+        url: "https://fsifofficial.github.io/CosmoBase/icon.png",
         sizes: "192x192",
         type: "image/png",
       },
+    ],
     // iPhone等のホーム画面用
     apple: [
       {
