@@ -79,7 +79,7 @@ export default function ResourcesPageContent() {
                 </Card>
               </Link>
 
-              <Link href="https://fsifofficial.wixsite.com/future-space-industr/library-1">
+              <Link href="https://fsifofficial.wixsite.com/future-space-industr/library">
                 <Card className="bg-[#000033] border-[#83CBEB]/30 hover:border-[#83CBEB]/50 transition-colors cursor-pointer h-full">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
