@@ -86,7 +86,7 @@ export default async function NewsArticlePage({ params }: Props) {
           )}
 
           <div className="prose prose-invert prose-lg max-w-none">
-            <div className="text-[#EEEEFF]/90 font-sans leading-relaxed whitespace-pre-wrap" style={{lineHeight:"1.8"}} dangerouslySetInnerHTML={{ __html: article.content}} />
+            <div className="text-[#EEEEFF]/90 font-sans leading-relaxed whitespace-pre-wrap　[&>ul]:list-disc [&>ul]:pl-6 [&>ol]:list-decimal [&>ol]:pl-6 space-y-4" style={{lineHeight:"1.8"}} dangerouslySetInnerHTML={{ __html: article.content}} />
           </div>
 
           <div className="mt-12">
