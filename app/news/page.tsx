@@ -43,19 +43,10 @@ export default function NewsPage() {
         {featuredNews && (
           <div className="mb-16">
             <h2 className="text-2xl font-serif text-[#EEEEFF] mb-6">注目の記事</h2>
-            <Link
-              href={`/news/${featuredNews.id}`}
-              className="block bg-[#000033] border border-[#83CBEB]/30 rounded-lg overflow-hidden hover:border-[#83CBEB] transition-colors group"
-            >
+            <Link href={`/news/${featuredNews.id}`} className="block bg-[#000033] border border-[#83CBEB]/30 rounded-lg overflow-hidden hover:border-[#83CBEB] transition-colors group">
               <div className="md:flex">
                 <div className="md:w-1/2">
-                  <Image
-                    src={featuredNews.image || "/placeholder.svg"}
-                    alt={featuredNews.title}
-                    width={600}
-                    height={400}
-                    className="w-full h-64 md:h-full object-cover"
-                  />
+                  <Image src={featuredNews.image || "/placeholder.svg"} alt={featuredNews.title} width={600} height={400} className="w-full h-64 md:h-full object-cover"                  />
                 </div>
                 <div className="md:w-1/2 p-8">
                   <Badge className="bg-[#83CBEB]/30 text-[#EEEEFF] mb-4">{featuredNews.category}</Badge>
@@ -66,7 +57,7 @@ export default function NewsPage() {
                     <Calendar className="h-4 w-4" />
                     <span className="font-sans text-sm">{featuredNews.date}</span>
                   </div>
-                  <p className="text-[#EEEEFF]/80 font-sans leading-relaxed mb-4">{featuredNews.excerpt}</p>
+                  <div className="text-[#EEEEFF]/80 font-sans leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: featuredNews.excerpt }} />
                   <div className="flex items-center gap-2 text-[#83CBEB] font-sans">
                     記事を読む
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -82,19 +73,9 @@ export default function NewsPage() {
           <h2 className="text-2xl font-serif text-[#EEEEFF] mb-6">最新記事</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {regularNews.map((article) => (
-              <Link
-                key={article.id}
-                href={`/news/${article.id}`}
-                className="block bg-[#000033] border border-[#83CBEB]/30 rounded-lg overflow-hidden hover:border-[#83CBEB] transition-colors group"
-              >
+              <Link key={article.id} href={`/news/${article.id}`} className="block bg-[#000033] border border-[#83CBEB]/30 rounded-lg overflow-hidden hover:border-[#83CBEB] transition-colors group">
                 {article.image && (
-                  <Image
-                    src={article.image}
-                    alt={article.title}
-                    width={400}
-                    height={300}
-                    className="w-full h-48 object-cover"
-                  />
+                  <Image src={article.image} alt={article.title} width={400} height={300} className="w-full h-48 object-cover"/>
                 )}
                 <div className="p-6">
                   <Badge className="bg-[#83CBEB]/30 text-[#EEEEFF] mb-3">{article.category}</Badge>
@@ -105,7 +86,7 @@ export default function NewsPage() {
                     <Calendar className="h-4 w-4" />
                     <span className="font-sans text-sm">{article.date}</span>
                   </div>
-                  <p className="text-[#EEEEFF]/80 font-sans text-sm leading-relaxed mb-4">{article.excerpt}</p>
+                  <div className="text-[#EEEEFF]/80 font-sans text-sm leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: article.excerpt }} />
                   <div className="flex items-center gap-2 text-[#83CBEB] font-sans text-sm">
                     続きを読む
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
