@@ -81,20 +81,12 @@ export default async function NewsArticlePage({ params }: Props) {
 
           {article.image && (
             <div className="mb-8 rounded-lg overflow-hidden">
-              <Image
-                src={article.image}
-                alt={article.title}
-                width={800}
-                height={500}
-                className="w-full h-auto object-cover"
-              />
+              <Image src={article.image} alt={article.title} width={800} height={500} className="w-full h-auto object-cover"/>
             </div>
           )}
 
           <div className="prose prose-invert prose-lg max-w-none">
-            <div className="text-[#EEEEFF]/90 font-sans leading-relaxed whitespace-pre-wrap" style={{ lineHeight: "1.8" }}>
-              {article.content}
-            </div>
+            <div className="text-[#EEEEFF]/90 font-sans leading-relaxed whitespace-pre-wrap" style={{lineHeight:"1.8"}} dangerouslySetInnerHTML={{ __html: article.content}} />
           </div>
 
           <div className="mt-12">
@@ -104,11 +96,7 @@ export default async function NewsArticlePage({ params }: Props) {
                 .filter((a) => a.id !== article.id && a.category === article.category)
                 .slice(0, 2)
                 .map((relatedArticle) => (
-                  <Link
-                    key={relatedArticle.id}
-                    href={`/news/${relatedArticle.id}`}
-                    className="block bg-[#000033] border border-[#83CBEB]/30 rounded-lg overflow-hidden hover:border-[#83CBEB] transition-colors group"
-                  >
+                  <Link key={relatedArticle.id} href={`/news/${relatedArticle.id}`} className="block bg-[#000033] border border-[#83CBEB]/30 rounded-lg overflow-hidden hover:border-[#83CBEB] transition-colors group">
                     <div className="p-4">
                       <h4 className="text-lg font-serif text-[#EEEEFF] mb-2 group-hover:text-[#83CBEB] transition-colors">
                         {relatedArticle.title}
