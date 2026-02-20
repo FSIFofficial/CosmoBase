@@ -46,7 +46,7 @@ export default function NewsPage() {
             <Link href={`/news/${featuredNews.id}`} className="block bg-[#000033] border border-[#83CBEB]/30 rounded-lg overflow-hidden hover:border-[#83CBEB] transition-colors group">
               <div className="md:flex">
                 <div className="md:w-1/2">
-                  <Image src={featuredNews.image || "/placeholder.svg"} alt={featuredNews.title} width={600} height={400} className="w-full h-64 md:h-full object-cover"                  />
+                  <Image src={featuredNews.image || "/placeholder.svg"} alt={featuredNews.title} width={600} height={400} className="w-full h-64 md:h-full object-cover"/>
                 </div>
                 <div className="md:w-1/2 p-8">
                   <Badge className="bg-[#83CBEB]/30 text-[#EEEEFF] mb-4">{featuredNews.category}</Badge>
@@ -57,7 +57,7 @@ export default function NewsPage() {
                     <Calendar className="h-4 w-4" />
                     <span className="font-sans text-sm">{featuredNews.date}</span>
                   </div>
-                  <div className="text-[#EEEEFF]/80 font-sans leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: featuredNews.excerpt }} />
+                  <div className="text-[#EEEEFF]/80 font-sans leading-relaxed mb-4　[&>ul]:list-disc [&>ul]:pl-6 [&>ol]:list-decimal [&>ol]:pl-6 space-y-4" dangerouslySetInnerHTML={{ __html: featuredNews.excerpt }} />
                   <div className="flex items-center gap-2 text-[#83CBEB] font-sans">
                     記事を読む
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -86,7 +86,7 @@ export default function NewsPage() {
                     <Calendar className="h-4 w-4" />
                     <span className="font-sans text-sm">{article.date}</span>
                   </div>
-                  <div className="text-[#EEEEFF]/80 font-sans text-sm leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: article.excerpt }} />
+                  <div className="text-[#EEEEFF]/80 font-sans text-sm leading-relaxed mb-4　[&>ul]:list-disc [&>ul]:pl-6 [&>ol]:list-decimal [&>ol]:pl-6 space-y-4" dangerouslySetInnerHTML={{ __html: article.excerpt }} />
                   <div className="flex items-center gap-2 text-[#83CBEB] font-sans text-sm">
                     続きを読む
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
