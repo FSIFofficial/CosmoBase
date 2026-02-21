@@ -172,7 +172,16 @@ export default function ValuePageContent() {
               <p className="text-[#EEEEFF]/70 font-sans mb-6 leading-relaxed">
                 これらのイベントに参加して、宇宙をもっと身近に感じましょう
               </p>
-              <a href="https://discord.gg/xVJDjuGyeM" target="_blank" rel="noopener noreferrer">
+                 {/* ▼ 4/1のオープン以降はこちらを使う（今はコメントアウト） ▼ */}
+                {/* <a href="https://discord.gg/xVJDjuGyeM" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
+                  コミュニティーに参加する
+                </Button>
+              </a>
+              */}
+                    
+              {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
+              <a href="/coming-soon" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
                   コミュニティーに参加する
                 </Button>
