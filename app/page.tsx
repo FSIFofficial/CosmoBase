@@ -320,7 +320,7 @@ export default function Home() {
               */}
                     
                 {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
-                <a href="/coming-soon" target="_blank" rel="noopener noreferrer">
+                <a href="https://fsifofficial.github.io/CosmoBase/coming-soon" rel="noopener noreferrer">
                   <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium w-full sm:w-auto">
                     今すぐ参加する
                   </Button>
@@ -334,8 +334,8 @@ export default function Home() {
 
               <div className="pt-6 border-t border-[#83CBEB]/20">
                 <p className="text-sm text-[#EEEEFF]/60 font-sans mb-3">お問い合わせ</p>
-                <a href="mailto:fisf.official@gmail.com" className="text-[#83CBEB] hover:text-[#83CBEB]/80 font-sans">
-                  fisf.official@gmail.com
+                <a href="mailto:cosmobase.official@gmail.com" className="text-[#83CBEB] hover:text-[#83CBEB]/80 font-sans">
+                  cosmobase.official@gmail.com
                 </a>
               </div>
             </div>
