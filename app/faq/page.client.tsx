@@ -166,7 +166,7 @@ export default function FAQPage() {
                   */}
                 
                 {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
-                <a href="/coming-soon" className="text-[#83CBEB] hover:underline">
+                <a href="https://fsifofficial.github.io/CosmoBase/coming-soon" className="text-[#83CBEB] hover:underline">
                   <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
                     Discordで質問する
                   </Button>
