@@ -310,18 +310,23 @@ export default function Home() {
               <p className="text-lg md:text-xl text-[#EEEEFF]/80 font-sans mb-8 leading-relaxed">
                 Cosmo Baseで、新しい学びとつながりを始めましょう。
               </p>
-
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <a href="https://discord.gg/xVJDjuGyeM" target="_blank" rel="noopener noreferrer">
+              {/* ▼ 4/1のオープン以降はこちらを使う（今はコメントアウト） ▼ */}
+              {/* <a href="https://discord.gg/xVJDjuGyeM" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium w-full sm:w-auto">
+                    今すぐ参加する
+                </Button>
+              </a>
+              */}
+                    
+                {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
+                <a href="/coming-soon" target="_blank" rel="noopener noreferrer">
                   <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium w-full sm:w-auto">
                     今すぐ参加する
                   </Button>
                 </a>
                 <Link href="/events">
-                  <Button
-                    variant="outline"
-                    className="border-[#EEEEFF] text-[#EEEEFF] hover:bg-[#EEEEFF]/10 text-lg px-8 py-6 font-sans bg-transparent w-full sm:w-auto"
-                  >
+                  <Button variant="outline" className="border-[#EEEEFF] text-[#EEEEFF] hover:bg-[#EEEEFF]/10 text-lg px-8 py-6 font-sans bg-transparent w-full sm:w-auto">
                     最新イベントを見る
                   </Button>
                 </Link>
