@@ -74,7 +74,7 @@ export default function JoinPage() {
                       */}
                     
                     {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
-                    <a href="/coming-soon" target="_blank" rel="noopener noreferrer">
+                    <a href="https://fsifofficial.github.io/CosmoBase/coming-soon" rel="noopener noreferrer">
                       <Button className="bg-[#EEEEBB] text-[#000033] hover:bg-[#EEEEBB]/90 text-base px-6 py-5 font-sans font-medium">
                         Discordに参加する
                       </Button>
