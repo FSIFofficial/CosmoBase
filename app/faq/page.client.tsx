@@ -157,7 +157,16 @@ export default function FAQPage() {
                 <p className="text-[#EEEEFF]/70 font-sans mb-6 leading-relaxed">
                   こちらで解決しない質問は、お気軽にお問い合わせください
                 </p>
-                <a href="https://discord.gg/xVJDjuGyeM" target="_blank" rel="noopener noreferrer">
+                {/* ▼ 4/1のオープン以降はこちらを使う（今はコメントアウト） ▼ */}
+                  {/* <a href="https://discord.gg/xVJDjuGyeM" className="text-[#83CBEB] hover:underline">
+                  <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
+                   Discordで質問する
+                  </Button>
+                  </a>
+                  */}
+                
+                {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
+                <a href="/coming-soon" className="text-[#83CBEB] hover:underline">
                   <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
                     Discordで質問する
                   </Button>
