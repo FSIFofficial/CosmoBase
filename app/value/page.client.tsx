@@ -181,7 +181,7 @@ export default function ValuePageContent() {
               */}
                     
               {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
-              <a href="/coming-soon" target="_blank" rel="noopener noreferrer">
+              <a href="https://fsifofficial.github.io/CosmoBase/coming-soon" rel="noopener noreferrer">
                 <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
                   コミュニティーに参加する
                 </Button>
