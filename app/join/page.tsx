@@ -65,7 +65,16 @@ export default function JoinPage() {
                       下のボタンをクリックして、Cosmo
                       BaseのDiscordサーバーに参加してください。簡単な参加ルールに同意するだけで、すぐにコミュニティーに入れます。
                     </p>
-                    <a href="https://discord.gg/xVJDjuGyeM" target="_blank" rel="noopener noreferrer">
+                    {/* ▼ 4/1のオープン以降はこちらを使う（今はコメントアウト） ▼ */}
+                      {/* <a href="https://discord.gg/xVJDjuGyeM" target="_blank" rel="noopener noreferrer">
+                      <Button className="bg-[#EEEEBB] text-[#000033] hover:bg-[#EEEEBB]/90 text-base px-6 py-5 font-sans font-medium"> 
+                        Discordに参加する
+                      </Button>
+                     </a>
+                      */}
+                    
+                    {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
+                    <a href="/coming-soon" target="_blank" rel="noopener noreferrer">
                       <Button className="bg-[#EEEEBB] text-[#000033] hover:bg-[#EEEEBB]/90 text-base px-6 py-5 font-sans font-medium">
                         Discordに参加する
                       </Button>
@@ -144,7 +153,17 @@ export default function JoinPage() {
               <p className="text-[#EEEEFF]/70 font-sans mb-6 leading-relaxed">
                 今すぐDiscordに参加して、宇宙コミュニティーの一員になりましょう
               </p>
-              <a href="https://discord.gg/xVJDjuGyeM" target="_blank" rel="noopener noreferrer">
+              
+              {/* ▼ 4/1のオープン以降はこちらを使う（今はコメントアウト） ▼ */}
+                {/* <a href="https://discord.gg/xVJDjuGyeM" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
+                  Discordコミュニティーに参加する
+                </Button>
+              </a>
+              */}
+                    
+              {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
+              <a href="/coming-soon" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
                   Discordコミュニティーに参加する
                 </Button>
