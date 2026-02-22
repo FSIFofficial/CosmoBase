@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { ArrowRight, Instagram } from "lucide-react"
 
 interface StatsData {
   events: string
@@ -332,6 +333,30 @@ export default function Home() {
                 </Link>
               </div>
 
+              <div className="flex flex-col items-center gap-4 mt-8">
+                <span className="text-[#EEEEFF]/60 text-sm font-sans tracking-wider">
+                  ＼ 最新情報はこちらで発信中！ ／
+                </span>
+                <div className="flex items-center gap-6">
+                  {/* X (Twitter) */}
+                  <a href="https://x.com/CosmoBase" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/80 hover:text-[#83CBEB] transition-transform hover:scale-110">
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+                    </svg>
+                  </a>
+                  
+                  {/* Instagram */}
+                  <a href="https://instagram.com/cosmobase.official" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/80 hover:text-[#83CBEB] transition-transform hover:scale-110">
+                    <Instagram className="w-6 h-6" />
+                  </a>
+    
+                  {/* note */}
+                  <a href="https://note.com/cosmobase" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/80 hover:text-[#83CBEB] transition-transform hover:scale-110 flex items-center justify-center h-6">
+                    <span className="font-bold text-xl tracking-tighter leading-none">note</span>
+                  </a>
+                </div>
+              </div>
+                   
               <div className="pt-6 border-t border-[#83CBEB]/20">
                 <p className="text-sm text-[#EEEEFF]/60 font-sans mb-3">お問い合わせ</p>
                 <a href="mailto:cosmobase.official@gmail.com" className="text-[#83CBEB] hover:text-[#83CBEB]/80 font-sans">
