@@ -332,7 +332,8 @@ export default function Home() {
                   </Button>
                 </Link>
               </div>
-              <div className="flex flex-col items-center gap-5 mt-8 mb-10">
+              
+              <div className="flex flex-col items-center gap-5 mt-8 mb-8">
                 <span className="text-[#EEEEFF]/60 text-sm font-sans tracking-wider">
                   ＼ 最新情報はこちらで発信中！ ／
                 </span>
@@ -351,7 +352,7 @@ export default function Home() {
     
                   {/* note */}
                   <a href="https://note.com/cosmobase" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 transition-all hover:scale-110 flex items-center">
-                    <img src="/CosmoBase/note-logo.svg" alt="note" className="h-7 w-auto" />
+                    <img src="/CosmoBase/note-logo.svg" alt="note" className="h-8 w-auto" />
                   </a>
                 </div>
               </div>
