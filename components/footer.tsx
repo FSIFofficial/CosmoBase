@@ -7,10 +7,10 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
           <p className="text-[#EEEEFF]/60 font-sans text-sm">© 2026 Cosmo Base. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="https://fsifofficial.github.io/CosmoBase/manual" className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors font-sans text-sm">
+            <a href="https://fsifofficial.github.io/CosmoBase/manual" className="text-[#EEEEFF]/60 hover:text-white transition-colors font-sans text-sm">
               Cosmo Base 対応マニュアル
             </a>
-            <a href="https://fsifofficial.github.io/CosmoBase/contact" className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors font-sans text-sm"            >
+            <a href="https://fsifofficial.github.io/CosmoBase/contact" className="text-[#EEEEFF]/60 hover:text-white transition-colors font-sans text-sm"            >
               お問い合わせ
             </a>
             <div className="flex items-center gap-5">
@@ -28,7 +28,6 @@ export default function Footer() {
   
               {/* note */}
               <a href="https://note.com/cosmobase" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-all hover:scale-110 flex items-center">
-                {/* トップページより少し小さめの h-6 でバランスを取っています。小さければ h-7 にしてください！ */}
                 <img src="/CosmoBase/note-logo.svg" alt="note" className="h-6 w-auto" />
               </a>
             </div>
