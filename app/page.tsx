@@ -332,28 +332,27 @@ export default function Home() {
                   </Button>
                 </Link>
               </div>
-
-              <div className="flex flex-col items-center gap-4 mt-8">
+              <div className="flex flex-col items-center gap-5 mt-8 mb-10">
                 <span className="text-[#EEEEFF]/60 text-sm font-sans tracking-wider">
                   ＼ 最新情報はこちらで発信中！ ／
                 </span>
                 <div className="flex items-center gap-6">
                   {/* X (Twitter) */}
-                  <a href="https://x.com/CosmoBase" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/80 hover:text-[#83CBEB] transition-transform hover:scale-110">
+                  <a href="https://x.com/CosmoBase" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/80 hover:text-white transition-all hover:scale-110">
                     <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
                     </svg>
                   </a>
                   
                   {/* Instagram */}
-                  <a href="https://instagram.com/cosmobase.official" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/80 hover:text-[#83CBEB] transition-transform hover:scale-110">
+                  <a href="https://instagram.com/cosmobase.official" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/80 hover:text-white transition-all hover:scale-110">
                     <Instagram className="w-6 h-6" />
                   </a>
     
                   {/* note */}
-                 <a href="https://note.com/cosmobase" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 transition-opacity hover:scale-110 flex items-center h-6">
-                   <img src="/CosmoBase/note-logo.svg" alt="note" className="h-5 w-auto" />
-                 </a>
+                  <a href="https://note.com/cosmobase" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 transition-all hover:scale-110 flex items-center">
+                    <img src="/CosmoBase/note-logo.svg" alt="note" className="h-7 w-auto" />
+                  </a>
                 </div>
               </div>
                    
