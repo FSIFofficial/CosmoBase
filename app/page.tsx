@@ -351,9 +351,9 @@ export default function Home() {
                   </a>
     
                   {/* note */}
-                  <a href="https://note.com/cosmobase" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/80 hover:text-[#83CBEB] transition-transform hover:scale-110 flex items-center justify-center h-6">
-                    <span className="font-bold text-xl tracking-tighter leading-none">note</span>
-                  </a>
+                 <a href="https://note.com/cosmobase" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 transition-opacity hover:scale-110 flex items-center h-6">
+                   <img src="/CosmoBase/note-logo.svg" alt="note" className="h-5 w-auto" />
+                 </a>
                 </div>
               </div>
                    
