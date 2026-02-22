@@ -1,3 +1,5 @@
+import { Instagram } from "lucide-react"
+
 export default function Footer() {
   return (
     <footer className="border-t border-[#83CBEB]/20 py-8">
@@ -11,6 +13,24 @@ export default function Footer() {
             <a href="https://fsifofficial.github.io/CosmoBase/contact" className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors font-sans text-sm"            >
               お問い合わせ
             </a>
+            <div className="flex items-center gap-5">
+              {/* X (Twitter) */}
+              <a href="https://x.com/CosmoBase" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors">
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+                </svg>
+              </a>
+
+              {/* Instagram */}
+              <a href="https://instagram.com/cosmobase.official" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors">
+                <Instagram className="w-5 h-5" />
+              </a>
+  
+              {/* note */}
+              <a href="https://note.com/cosmobase" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors flex items-center justify-center h-5">
+                <span className="font-bold text-lg tracking-tighter leading-none">note</span>
+              </a>
+            </div>
           </div>
         </div>
         <div className="border-t border-[#83CBEB]/10 pt-6 text-center">
