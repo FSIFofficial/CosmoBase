@@ -27,8 +27,8 @@ export default function Footer() {
               </a>
   
               {/* note */}
-              <a href="https://note.com/cosmobase" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors flex items-center justify-center h-5">
-                <span className="font-bold text-lg tracking-tighter leading-none">note</span>
+              <a href="https://note.com/cosmobase" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity flex items-center h-5">
+                <img src="/note-logo.svg" alt="note" className="h-4 w-auto" />
               </a>
             </div>
           </div>
