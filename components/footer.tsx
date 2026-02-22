@@ -15,20 +15,21 @@ export default function Footer() {
             </a>
             <div className="flex items-center gap-5">
               {/* X (Twitter) */}
-              <a href="https://x.com/CosmoBase" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors">
+              <a href="https://x.com/CosmoBase" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/60 hover:text-white transition-all hover:scale-110">
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
                 </svg>
               </a>
-
+  
               {/* Instagram */}
-              <a href="https://instagram.com/cosmobase.official" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/60 hover:text-[#83CBEB] transition-colors">
+              <a href="https://instagram.com/cosmobase.official" target="_blank" rel="noopener noreferrer" className="text-[#EEEEFF]/60 hover:text-white transition-all hover:scale-110">
                 <Instagram className="w-5 h-5" />
               </a>
   
               {/* note */}
-              <a href="https://note.com/cosmobase" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity flex items-center h-5">
-                <img src="/CosmoBase/note-logo.svg" alt="note" className="h-4 w-auto" />
+              <a href="https://note.com/cosmobase" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-all hover:scale-110 flex items-center">
+                {/* トップページより少し小さめの h-6 でバランスを取っています。小さければ h-7 にしてください！ */}
+                <img src="/CosmoBase/note-logo.svg" alt="note" className="h-6 w-auto" />
               </a>
             </div>
           </div>
