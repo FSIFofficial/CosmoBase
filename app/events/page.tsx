@@ -6,11 +6,11 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "イベントカレンダー", 
-  description: "主催・共催するイベントをご確認いただけます。",
+  description: "宇宙イベントをご確認いただけます。",
     // OGPも個別で上書き
   openGraph: {
     title: "イベントカレンダー | Cosmo Base",
-    description: "主催・共催するイベントをご確認いただけます。",
+    description: "宇宙イベントをご確認いただけます。",
   },
 }
 
@@ -25,8 +25,6 @@ export default function EventsPage() {
         {/* ヘッダー */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-serif text-[#EEEEFF] mb-4">イベントカレンダー</h1>
-          <p className="text-[#83CBEB] text-lg font-sans">主催・共催するイベントをご確認いただけます</p>
-          <p className="text-[#EEEEFF]/60 text-sm font-sans mt-2">※他団体との共催イベントも含まれます</p>
         </div>
 
         {/* カレンダー (クライアントコンポーネント) */}
