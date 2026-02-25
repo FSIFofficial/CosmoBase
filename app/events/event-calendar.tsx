@@ -72,76 +72,71 @@ export default function EventCalendar({ events }: { events: Event[] }) {
   return (
     <>
       {/* フィルター */}
-      <div className="mb-8 flex flex-wrap gap-4 justify-center">
-        <div className="flex items-center gap-2">
-          <span className="text-[#EEEEFF] font-sans text-sm">種別:</span>
-          <Select value={typeFilter} onValueChange={setTypeFilter}>
-            <SelectTrigger className="w-[180px] bg-[#000033] border-[#83CBEB]/30 text-[#EEEEFF]">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent className="bg-[#000033] border-[#83CBEB]/30">
-              <SelectItem value="all" className="text-[#EEEEFF]">
-                すべて
-              </SelectItem>
-              <SelectItem value="講演会" className="text-[#EEEEFF]">
-                講演会
-              </SelectItem>
-              <SelectItem value="ワークショップ" className="text-[#EEEEFF]">
-                ワークショップ
-              </SelectItem>
-              <SelectItem value="観測会" className="text-[#EEEEFF]">
-                観測会
-              </SelectItem>
-              <SelectItem value="交流会" className="text-[#EEEEFF]">
-                交流会
-              </SelectItem>
-              <SelectItem value="オンライン" className="text-[#EEEEFF]">
-                オンライン
-              </SelectItem>
-            </SelectContent>
-          </Select>
+      {/* フィルター全体 */}
+      <div className="mb-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+        
+        {/* 左側：セレクトボックス群 */}
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="flex items-center gap-2">
+            <span className="text-[#EEEEFF] font-sans text-sm">種別:</span>
+            <Select value={typeFilter} onValueChange={setTypeFilter}>
+              <SelectTrigger className="w-[150px] bg-[#000033] border-[#83CBEB]/30 text-[#EEEEFF]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="bg-[#000033] border-[#83CBEB]/30">
+                <SelectItem value="all" className="text-[#EEEEFF]">すべて</SelectItem>
+                <SelectItem value="講演会" className="text-[#EEEEFF]">講演会</SelectItem>
+                <SelectItem value="ワークショップ" className="text-[#EEEEFF]">ワークショップ</SelectItem>
+                <SelectItem value="観測会" className="text-[#EEEEFF]">観測会</SelectItem>
+                <SelectItem value="交流会" className="text-[#EEEEFF]">交流会</SelectItem>
+                <SelectItem value="オンライン" className="text-[#EEEEFF]">オンライン</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="text-[#EEEEFF] font-sans text-sm">難易度:</span>
+            <Select value={difficultyFilter} onValueChange={setDifficultyFilter}>
+              <SelectTrigger className="w-[150px] bg-[#000033] border-[#83CBEB]/30 text-[#EEEEFF]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="bg-[#000033] border-[#83CBEB]/30">
+                <SelectItem value="all" className="text-[#EEEEFF]">すべて</SelectItem>
+                <SelectItem value="初心者向け" className="text-[#EEEEFF]">初心者向け</SelectItem>
+                <SelectItem value="中級者向け" className="text-[#EEEEFF]">中級者向け</SelectItem>
+                <SelectItem value="上級者向け" className="text-[#EEEEFF]">上級者向け</SelectItem>
+                <SelectItem value="全レベル" className="text-[#EEEEFF]">全レベル</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <span className="text-[#EEEEFF] font-sans text-sm">難易度:</span>
-          <Select value={difficultyFilter} onValueChange={setDifficultyFilter}>
-            <SelectTrigger className="w-[180px] bg-[#000033] border-[#83CBEB]/30 text-[#EEEEFF]">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent className="bg-[#000033] border-[#83CBEB]/30">
-              <SelectItem value="all" className="text-[#EEEEFF]">
-                すべて
-              </SelectItem>
-              <SelectItem value="初心者向け" className="text-[#EEEEFF]">
-                初心者向け
-              </SelectItem>
-              <SelectItem value="中級者向け" className="text-[#EEEEFF]">
-                中級者向け
-              </SelectItem>
-              <SelectItem value="上級者向け" className="text-[#EEEEFF]">
-                上級者向け
-              </SelectItem>
-              <SelectItem value="全レベル" className="text-[#EEEEFF]">
-                全レベル
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="flex justify-center mb-6">
-          <div className="inline-flex bg-[#000033] border border-[#83CBEB]/30 rounded-lg p-1">
-            <button onClick={() => setHostFilter("all")} className={`px-6 py-2 rounded-md text-sm font-sans transition-colors ${
-              hostFilter === "all" ? "bg-[#83CBEB] text-[#000033] font-bold" : "text-[#EEEEFF] hover:bg-[#83CBEB]/10"}`}>
+        {/* 右側：主催/外部の切り替えタブ */}
+        <div className="inline-flex bg-[#000033] border border-[#83CBEB]/30 rounded-lg p-1">
+          <button
+            onClick={() => setHostFilter("all")}
+            className={`px-4 py-2 rounded-md text-sm font-sans transition-colors ${
+              hostFilter === "all" ? "bg-[#83CBEB] text-[#000033] font-bold" : "text-[#EEEEFF] hover:bg-[#83CBEB]/10"
+            }`}
+          >
             すべて
-            </button>
-            <button onClick={() => setHostFilter("host")} className={`px-6 py-2 rounded-md text-sm font-sans transition-colors ${
-              hostFilter === "host" ? "bg-[#83CBEB] text-[#000033] font-bold" : "text-[#EEEEFF] hover:bg-[#83CBEB]/10"}`}>
+          </button>
+          <button
+            onClick={() => setHostFilter("host")}
+            className={`px-4 py-2 rounded-md text-sm font-sans transition-colors ${
+              hostFilter === "host" ? "bg-[#83CBEB] text-[#000033] font-bold" : "text-[#EEEEFF] hover:bg-[#83CBEB]/10"
+            }`}
+          >
             主催イベント
-            </button>
-            <button onClick={() => setHostFilter("external")} className={`px-6 py-2 rounded-md text-sm font-sans transition-colors ${
-              hostFilter === "external" ? "bg-[#83CBEB] text-[#000033] font-bold" : "text-[#EEEEFF] hover:bg-[#83CBEB]/10"}`}>
+          </button>
+          <button
+            onClick={() => setHostFilter("external")}
+            className={`px-4 py-2 rounded-md text-sm font-sans transition-colors ${
+              hostFilter === "external" ? "bg-[#83CBEB] text-[#000033] font-bold" : "text-[#EEEEFF] hover:bg-[#83CBEB]/10"
+            }`}
+          >
             外部イベント
-            </button>
-          </div>
+          </button>
         </div>
       </div>
 
@@ -319,4 +314,5 @@ export default function EventCalendar({ events }: { events: Event[] }) {
   )
 
 }
+
 
