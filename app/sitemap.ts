@@ -42,7 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/resources/event',
     '/resources/events',
     '/resources/news',
-    '/resources/technology',
+    '/resources/transportation',
     '/resources/ventures',
     '/value',
     '/contact',
