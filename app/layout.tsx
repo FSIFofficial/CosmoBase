@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Noto_Serif_JP, Noto_Sans_JP } from "next/font/google"
 import "./globals.css"
+import Script from "next/script";
 
 const notoSerif = Noto_Serif_JP({
   subsets: ["latin"],
@@ -83,6 +84,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+        {/* ここからアナリティクスのコードを追加 */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=G-3CH0EB23BR`}
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-3CH0EB23BR', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
+      </head>
       <body className={`${notoSans.variable} ${notoSerif.variable} font-sans antialiased`}>
         {/* ▼ ここに追加：JSON-LDを出力 */}
         <script
