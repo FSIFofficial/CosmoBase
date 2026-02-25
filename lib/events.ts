@@ -13,10 +13,11 @@ export type Event = {
   location: string;
   type: EventType;
   difficulty: DifficultyLevel;
-  capacity: number;
+  capacity?: number;
   description: string;
   speaker?: string;
   organizer?: string;
+  link?: string; 
 };
 
 export const getEvents = (): Event[] => {
@@ -36,5 +37,6 @@ export const getEvents = (): Event[] => {
     date: new Date(record.date),
     speaker: record.speaker || undefined,
     organizer: record.organizer || undefined,
+    link: record.link || undefined, 
   }));
 };
