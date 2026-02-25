@@ -35,6 +35,13 @@ export default function Home() {
     <div className="min-h-screen bg-[#000033]">
       <Header />
       <meta name="google-site-verification" content="KBDRGVtJakpozBGKSE9ELjeawwzt0ySBiN6bhEhOqEk" />
+      <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CH0EB23BR"></script>
+        <script>  window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-3CH0EB23BR');
+        </script>
       <section className="relative py-24 md:py-32 lg:py-40 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-2 h-2 bg-[#EEEEFF] rounded-full animate-pulse"></div>
