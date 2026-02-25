@@ -1,3 +1,4 @@
-id,title,date,time,location,type,difficulty,capacity,description,speaker,organizer
-1,CosmoBase オープン,2026-04-01,,Discode,ニュース,全レベル,*,CosmoBaseが正式にオープン,,"CosmoBase,FSIF"
+id,title,date,time,location,type,difficulty,capacity,description,speaker,organizer,link
+1,CosmoBase オープン,2026-04-01,,Discode,ニュース,全レベル,,CosmoBaseが正式にオープン,,,
+
 
