@@ -268,7 +268,7 @@ export default function EventCalendar({ events }: { events: Event[] }) {
                   <span className="font-sans">{selectedEvent.location}</span>
                 </div>
 
-                {selectedEvent.capacity && (
+                {selectedEvent.capacity > 0 && (
                 <div className="flex items-center gap-2 text-[#EEEEFF]">
                   <Users className="h-5 w-5 text-[#83CBEB]" />
                   <span className="font-sans">定員: {selectedEvent.capacity}名</span>
@@ -314,5 +314,6 @@ export default function EventCalendar({ events }: { events: Event[] }) {
   )
 
 }
+
 
 
