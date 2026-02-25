@@ -238,10 +238,12 @@ export default function EventCalendar({ events }: { events: Event[] }) {
                   <span className="font-sans">{selectedEvent.location}</span>
                 </div>
 
+                {selectedEvent.capacity && (
                 <div className="flex items-center gap-2 text-[#EEEEFF]">
                   <Users className="h-5 w-5 text-[#83CBEB]" />
                   <span className="font-sans">定員: {selectedEvent.capacity}名</span>
                 </div>
+                )}
 
                 {selectedEvent.speaker && (
                   <div className="flex items-center gap-2 text-[#EEEEFF]">
@@ -267,15 +269,18 @@ export default function EventCalendar({ events }: { events: Event[] }) {
                 <p className="text-[#EEEEFF]/80 font-sans leading-relaxed">{selectedEvent.description}</p>
               </div>
 
-              <Button className="w-full bg-[#83CBEB] hover:bg-[#83CBEB]/80 text-[#000033] font-sans">
-                <a href="https://discord.gg/TEnAD8Db8g" target="_blank" rel="noopener noreferrer" className="block">
-                  参加申し込み（Discordへ）
-                </a>
-              </Button>
+              {selectedEvent.link && (
+                <Button asChild className="w-full bg-[#83CBEB] hover:bg-[#83CBEB]/80 text-[#000033] font-sans">
+                  <a href={selectedEvent.link} target="_blank" rel="noopener noreferrer" className="block w-full">
+                    詳細・参加申し込み
+                  </a>
+                </Button>
+              )}
             </div>
           </div>
         </div>
       )}
     </>
   )
+
 }
