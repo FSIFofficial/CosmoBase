@@ -13,6 +13,7 @@ export default function EventCalendar({ events }: { events: Event[] }) {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
   const [typeFilter, setTypeFilter] = useState<string>("all")
   const [difficultyFilter, setDifficultyFilter] = useState<string>("all")
+  const [hostFilter, setHostFilter] = useState<"all" | "host" | "external">("all")
 
   // 月の初日と最終日を取得
   const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
@@ -29,11 +30,20 @@ export default function EventCalendar({ events }: { events: Event[] }) {
     return null
   })
 
-  // フィルタリングされたイベント
+// フィルタリングされたイベント
   const filteredEvents = events.filter((event) => {
+    // 主催かどうかの判定（Cosmo Base または CosmoBase）
+    const isHost = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
+    
+    const hostMatch = 
+      hostFilter === "all" || 
+      (hostFilter === "host" && isHost) || 
+      (hostFilter === "external" && !isHost);
+
     const typeMatch = typeFilter === "all" || event.type === typeFilter
     const difficultyMatch = difficultyFilter === "all" || event.difficulty === difficultyFilter
-    return typeMatch && difficultyMatch
+    
+    return hostMatch && typeMatch && difficultyMatch
   })
 
   // 特定の日付のイベントを取得
@@ -116,6 +126,22 @@ export default function EventCalendar({ events }: { events: Event[] }) {
               </SelectItem>
             </SelectContent>
           </Select>
+        </div>
+        <div className="flex justify-center mb-6">
+          <div className="inline-flex bg-[#000033] border border-[#83CBEB]/30 rounded-lg p-1">
+            <button onClick={() => setHostFilter("all")} className={`px-6 py-2 rounded-md text-sm font-sans transition-colors ${
+              hostFilter === "all" ? "bg-[#83CBEB] text-[#000033] font-bold" : "text-[#EEEEFF] hover:bg-[#83CBEB]/10"}`}>
+            すべて
+            </button>
+            <button onClick={() => setHostFilter("host")} className={`px-6 py-2 rounded-md text-sm font-sans transition-colors ${
+              hostFilter === "host" ? "bg-[#83CBEB] text-[#000033] font-bold" : "text-[#EEEEFF] hover:bg-[#83CBEB]/10"}`}>
+            主催イベント
+            </button>
+            <button onClick={() => setHostFilter("external")} className={`px-6 py-2 rounded-md text-sm font-sans transition-colors ${
+              hostFilter === "external" ? "bg-[#83CBEB] text-[#000033] font-bold" : "text-[#EEEEFF] hover:bg-[#83CBEB]/10"}`}>
+            外部イベント
+            </button>
+          </div>
         </div>
       </div>
 
@@ -213,7 +239,16 @@ export default function EventCalendar({ events }: { events: Event[] }) {
           <div className="bg-[#000033] border border-[#83CBEB]/30 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-start mb-4">
-                <h2 className="text-2xl font-serif text-[#EEEEFF] pr-8">{selectedEvent.title}</h2>
+                <div>
+                <div className="mb-3">
+                    {selectedEvent.organizer && (selectedEvent.organizer.includes("Cosmo Base") || selectedEvent.organizer.includes("CosmoBase")) ? (
+                      <Badge className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]">主催イベント</Badge>
+                    ) : (
+                      <Badge className="bg-transparent border border-[#EEEEFF]/50 text-[#EEEEFF] hover:bg-transparent">外部イベント</Badge>
+                    )}
+                  </div>
+                  <h2 className="text-2xl font-serif text-[#EEEEFF] pr-8">{selectedEvent.title}</h2>
+                </div>
                 <Button
                   onClick={() => setSelectedEvent(null)}
                   variant="ghost"
@@ -284,3 +319,4 @@ export default function EventCalendar({ events }: { events: Event[] }) {
   )
 
 }
+
