@@ -58,7 +58,7 @@ export default function Home() {
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-[#EEEEFF] mb-6 text-balance leading-tight">
-              宇宙を楽しむ。
+              宇宙を、楽しむ。
             </h1>
             <p className="text-xl md:text-2xl text-[#EEEEFF]/90 mb-12 font-sans leading-relaxed max-w-3xl mx-auto">
               Cosmo Baseは、宇宙に興味を持つすべての人が集い、学び、つながるコミュニティです。
