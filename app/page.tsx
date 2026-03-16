@@ -77,6 +77,14 @@ export default function Home() {
                   Cosmo Baseについて知る
                 </Button>
               </Link>
+              <Link href="/join">
+                <Button
+                  variant="outline"
+                  className="border-[#EEEEFF] text-[#EEEEFF] hover:bg-[#EEEEFF]/10 text-lg px-8 py-6 font-sans bg-transparent w-full sm:w-auto"
+                >
+                  コミュニティーへの参加方法
+                </Button>
+              </Link>              
             </div>
           </div>
         </div>
