@@ -76,15 +76,7 @@ export default function Home() {
                 >
                   Cosmo Baseについて知る
                 </Button>
-              </Link>
-              <Link href="/join">
-                <Button
-                  variant="outline"
-                  className="border-[#EEEEFF] text-[#EEEEFF] hover:bg-[#EEEEFF]/10 text-lg px-8 py-6 font-sans bg-transparent w-full sm:w-auto"
-                >
-                  コミュニティーへの参加方法
-                </Button>
-              </Link>              
+              </Link>           
             </div>
           </div>
         </div>
@@ -339,6 +331,11 @@ export default function Home() {
                     最新イベントを見る
                   </Button>
                 </Link>
+                <Link href="/join">
+                  <Button variant="outline" className="border-[#83CBEB] text-[#83CBEB] hover:bg-[#83CBEB]/10 text-lg px-8 py-6 font-sans bg-transparent w-full sm:w-auto">
+                    コミュニティーへの参加方法
+                  </Button>
+                </Link> 
               </div>
               
               <div className="flex flex-col items-center gap-5 mt-8 mb-8">
