@@ -25,11 +25,11 @@ export const metadata: Metadata = {
     default: "CosmoBase",
   },
   description:
-    "宇宙を、もっと身近な選択肢に。CosmoBaseは宇宙に興味がある人・産業をつなぐコミュニティーです。",
+    "宇宙を、楽しむ。CosmoBaseは宇宙に興味がある人・産業をつなぐコミュニティーです。",
   
   openGraph: {
     title: "Cosmo Base",
-    description: "宇宙を、もっと身近な選択肢に。",
+    description: "宇宙を、楽しむ。CosmoBaseは宇宙に興味がある人・産業をつなぐコミュニティーです。",
     url: "https://fsifofficial.github.io/CosmoBase",
     siteName: "Cosmo Base",
     locale: "ja_JP",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Cosmo Base",
-    description: "宇宙を、もっと身近な選択肢に。",
+    description: "宇宙を、楽しむ。CosmoBaseは宇宙に興味がある人・産業をつなぐコミュニティーです。",
   },
 
   // ▼ 2. アイコン設定（ここを強化しました）
