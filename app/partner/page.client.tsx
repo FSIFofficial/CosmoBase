@@ -259,7 +259,7 @@ export default function PartnerPageContent() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="w-full bg-[#000033] border border-[#83CBEB]/30 rounded p-3 text-[#EEEEFF] focus:border-[#83CBEB] focus:outline-none transition-colors"
-                        placeholder="株式会社CosmoBase"
+                        placeholder="Cosmo Base"
                       />
                     </div>
 
@@ -273,7 +273,7 @@ export default function PartnerPageContent() {
                           onChange={(e) => setCu(e.target.value)}
                           className="w-full bg-[#000033] border border-[#83CBEB]/30 rounded p-3 text-[#EEEEFF] focus:border-[#83CBEB] focus:outline-none transition-colors appearance-none"
                         >
-                          <option value="">選択</option>
+                          <option value="">選択してください</option>
                           <option value="企業">企業</option>
                           <option value="学生団体">学生団体</option>
                         </select>
@@ -288,7 +288,7 @@ export default function PartnerPageContent() {
                           onChange={(e) => setSpace(e.target.value)}
                           className="w-full bg-[#000033] border border-[#83CBEB]/30 rounded p-3 text-[#EEEEFF] focus:border-[#83CBEB] focus:outline-none transition-colors appearance-none"
                         >
-                          <option value="">選択</option>
+                          <option value="">選択してください</option>
                           <option value="宇宙系">宇宙系</option>
                           <option value="非宇宙系">非宇宙系</option>
                         </select>
