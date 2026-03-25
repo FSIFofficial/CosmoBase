@@ -93,7 +93,7 @@ export default function ValuePageContent() {
                 </div>
                 <div className="bg-[#000033]/60 border border-[#A6D7DB]/20 rounded-xl p-6 hover:border-[#A6D7DB]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
-                    <img src="/CosmoBase/logo-ittoide.png" alt="宇宙に行っといで" className="h-full w-auto object-contain" />
+                    <img src="/CosmoBase/CBittoide_logo.png" alt="宇宙に行っといで" className="h-full w-auto object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙に行っといで</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -165,8 +165,8 @@ export default function ValuePageContent() {
               <p className="text-[#EEEEFF]/80 font-sans leading-relaxed max-w-3xl mx-auto mb-8">
                 Cosmo Baseでは様々な接点を生むことを目的に、毎月1つ以上の新しいコンテンツをリリースし、継続した接点を創出し続けます。
               </p>
-
-              {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
+            </div>
+                          {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
               <a href="https://fsifofficial.github.io/CosmoBase/coming-soon" rel="noopener noreferrer">
                 <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
                   コミュニティーに参加する
@@ -179,7 +179,6 @@ export default function ValuePageContent() {
                 </Button>
               </a>
               */}
-            </div>
           </div>
         </div>
       </section>
