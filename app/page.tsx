@@ -78,21 +78,22 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      
       <section className="py-20 bg-[#000033]/50">
-        <div className="max-w-4xl mx-auto text-center mb-12">
+        <div className="max-w-4xl mx-auto text-center px-4 mb-12">
           <h2 className="text-3xl md:text-5xl font-serif text-[#EEEEFF] mb-12 text-center text-balance">
             オープン記念企画を実施中！！
           </h2>
-          <p className="text-lg text-[#EEEEFF]/80 font-sans leading-relaxed">
+          <p className="text-lg text-[#EEEEFF]/80 font-sans leading-relaxed mb-8">
             2026年4月1日のCosmo Baseオープンを記念してオープン記念企画を行います。
           </p>
-          <a href="https://cosmo-base.github.io/opening/"  rel="noopener noreferrer" className="items-center justify-center">
-            <img src="/CosmoBase/CBOP.png" className="w-180 hover:w-185 px-8 py-6 sm:w-auto　mt-6 justify-center"/>
-          </a>
+          <div className="flex justify-center">
+            <a href="https://cosmo-base.github.io/opening/" rel="noopener noreferrer" className="inline-block">
+              <img src="/CosmoBase/CBOP.png" alt="オープン記念企画" className="w-full max-w-[720px] object-contain rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_30px_rgba(131,203,235,0.2)] hover:-translate-y-2"/>
+            </a>
+          </div>
         </div>
       </section>
-
       
       <section className="py-20 bg-gradient-to-b from-[#000033] to-[#000033]/80">
         <div className="container mx-auto px-4">
