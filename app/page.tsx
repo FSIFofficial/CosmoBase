@@ -70,10 +70,7 @@ export default function Home() {
                 </Button>
               </Link>
               <Link href="/value">
-                <Button
-                  variant="outline"
-                  className="border-[#EEEEFF] text-[#EEEEFF] hover:bg-[#EEEEFF]/10 text-lg px-8 py-6 font-sans bg-transparent w-full sm:w-auto"
-                >
+                <Button variant="outline" className="border-[#EEEEFF] text-[#EEEEFF] hover:bg-[#EEEEFF]/10 text-lg px-8 py-6 font-sans bg-transparent w-full sm:w-auto">
                   Cosmo Baseについて知る
                 </Button>
               </Link>           
@@ -82,6 +79,23 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="py-20 bg-[#000033]/50">
+        <div className="max-w-4xl mx-auto text-center mb-12">
+          <h2 className="text-3xl md:text-5xl font-serif text-[#EEEEFF] mb-12 text-center text-balance">
+            オープン記念企画を実施中！！
+          </h2>
+          <p className="text-lg text-[#EEEEFF]/80 font-sans leading-relaxed">
+            2026年4月1日、宇宙が身近になるコミュニティー『Cosmo Base』がオープン。
+          </p>
+          <a href="https://cosmo-base.github.io/opening/"  rel="noopener noreferrer">
+            <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium w-full sm:w-auto">
+              詳細はこちら
+            </Button>
+          </a>
+        </div>
+      </section>
+
+      
       <section className="py-20 bg-gradient-to-b from-[#000033] to-[#000033]/80">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
