@@ -105,17 +105,16 @@ export default function ContactPageContent() {
 
             <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-2xl p-4 md:p-8">
               <div className="flex flex-col items-center">
-                {isSuccess ? (
-                  {/* 送信完了後の画面 */}
-                  <div className="text-center p-12 bg-[#000033] border border-[#83CBEB]/30 rounded-lg">
-                    <h3 className="text-2xl font-serif text-[#EEEEFF] mb-4">お問い合わせ完了</h3>
-                    <p className="text-[#EEEEFF]/80 font-sans leading-relaxed">
-                      メッセージを送信しました。自動返信メールをご確認ください。<br />
-                      担当者より順次ご連絡させていただきます。
-                    </p>
-                  </div>
-                ) : (
-                  {/* 入力フォームの画面 */}
+                {/* ▼ ここを修正しました（iframeを削除し、ネイティブフォームを組み込みました）▼ */}
+                {isSuccess ? (
+                  <div className="text-center p-12 bg-[#000033] border border-[#83CBEB]/30 rounded-lg">
+                    <h3 className="text-2xl font-serif text-[#EEEEFF] mb-4">お問い合わせ完了</h3>
+                    <p className="text-[#EEEEFF]/80 font-sans leading-relaxed">
+                      メッセージを送信しました。自動返信メールをご確認ください。<br />
+                      担当者より順次ご連絡させていただきます。
+                    </p>
+                  </div>
+                ) : (
                   <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl mx-auto p-6 bg-[#000033] border border-[#83CBEB]/30 rounded-lg">
                     <div>
                       <label className="block text-[#EEEEFF] font-sans text-sm mb-2">お名前 <span className="text-red-400">*</span></label>
