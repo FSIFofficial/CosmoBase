@@ -80,7 +80,7 @@ export default function Home() {
       </section>
       
       <section className="py-20 bg-[#000033]/50">
-        <div className="max-w-4xl mx-auto text-center px-4 mb-12">
+        <div className="max-w-4xl mx-auto text-center px-4 mb-6">
           <h2 className="text-3xl md:text-5xl font-serif text-[#EEEEFF] mb-12 text-center text-balance">
             オープン記念企画を実施中！！
           </h2>
