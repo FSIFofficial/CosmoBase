@@ -88,9 +88,7 @@ export default function Home() {
             2026年4月1日のCosmo Baseオープンを記念してオープン記念企画を行います。
           </p>
           <a href="https://cosmo-base.github.io/opening/"  rel="noopener noreferrer">
-            <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium w-full sm:w-auto　mt-6">
-              詳細はこちら
-            </Button>
+            <img src="/CosmoBase/CBOP.png" className="w-28 hover:w-30 px-8 py-6 sm:w-auto　mt-6"/>
           </a>
         </div>
       </section>
