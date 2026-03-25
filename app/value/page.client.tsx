@@ -1,9 +1,14 @@
 "use client"
 
 import { useEffect } from "react"
-import { Button } from "@/components/ui/button"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { 
+  HelpCircle, Newspaper, Target, 
+  Mic, MessageCircle, Compass, 
+  Calendar, Camera, 
+  Database, Award 
+} from "lucide-react"
 
 export default function ValuePageContent() {
   useEffect(() => {
@@ -14,163 +19,156 @@ export default function ValuePageContent() {
     <div className="min-h-screen bg-[#000033]">
       <Header />
 
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
+      <section className="py-20 w-full">
+        <div className="container mx-auto px-4 w-full">
+          <div className="max-w-6xl mx-auto w-full">
+            
+            {/* ▼ ページヘッダー ▼ */}
+            <div className="text-center mb-20">
               <h1 className="text-4xl md:text-6xl font-serif text-[#EEEEFF] mb-6 text-balance">
-                Cosmo Baseが提供する価値
+                Cosmo Baseのサービス
               </h1>
-              <p className="text-xl text-[#EEEEFF]/80 font-sans leading-relaxed">
-                参加することで得られる具体的なメリット
+              <p className="text-xl text-[#EEEEFF]/80 font-sans leading-relaxed max-w-3xl mx-auto">
+                宇宙に対する関心度に合わせて設計された<br className="hidden md:block" />
+                4つのレベルのコンテンツを提供し、継続的な接点を創出します。
               </p>
             </div>
 
-            <div className="space-y-8 mb-16">
-              <div className="bg-gradient-to-r from-[#83CBEB]/10 to-transparent border-l-4 border-[#83CBEB] rounded-lg p-6 md:p-8">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-[#83CBEB]/20 rounded-lg flex items-center justify-center text-2xl">
-                    📰
-                  </div>
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-serif text-[#EEEEFF] mb-3">
-                      自動的に情報が入ってくる仕組み
-                    </h3>
-                    <p className="text-[#EEEEFF]/80 font-sans mb-4 leading-relaxed">
-                      忙しい日々の中でも、宇宙の最新動向を見逃しません
-                    </p>
-                    <ul className="space-y-2 text-[#EEEEFF]/70 font-sans text-sm md:text-base">
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#83CBEB] mt-1">•</span>
-                        <span>週1回の宇宙ニュースまとめ配信</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#83CBEB] mt-1">•</span>
-                        <span>国内外のイベント・展示会レポート</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#83CBEB] mt-1">•</span>
-                        <span>打ち上げ予定・天文イベント情報</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+            {/* ▼ Level 1 ▼ */}
+            <div className="mb-20">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="bg-[#83CBEB] text-[#000033] font-bold px-4 py-2 rounded-lg text-xl font-sans">Level 1</div>
+                <h2 className="text-2xl md:text-3xl font-serif text-[#EEEEFF]">習慣化・体験</h2>
               </div>
-
-              <div className="bg-gradient-to-r from-[#EEEEBB]/10 to-transparent border-l-4 border-[#EEEEBB] rounded-lg p-6 md:p-8">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-[#EEEEBB]/20 rounded-lg flex items-center justify-center text-2xl">
-                    💬
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-[#83CBEB]/10 rounded-full flex items-center justify-center mb-4">
+                    <HelpCircle className="w-6 h-6 text-[#83CBEB]" />
                   </div>
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-serif text-[#EEEEFF] mb-3">相談・質問できる環境</h3>
-                    <p className="text-[#EEEEFF]/80 font-sans mb-4 leading-relaxed">
-                      専門家に気軽に聞ける、頼れる存在がここにあります
-                    </p>
-                    <ul className="space-y-2 text-[#EEEEFF]/70 font-sans text-sm md:text-base">
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#EEEEBB] mt-1">•</span>
-                        <span>宇宙の専門家にフラットに質問できるチャンネル</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#EEEEBB] mt-1">•</span>
-                        <span>企業・学生団体・個人の人脈形成とマッチング</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#EEEEBB] mt-1">•</span>
-                        <span>事業アイデアの相談・壁打ち相手</span>
-                      </li>
-                    </ul>
-                  </div>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">毎日宇宙クイズ</h3>
+                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
+                    毎日、宇宙に関するクイズをSNS等で発信中。宇宙に関わる第一歩としてボタン1つで気軽に参加でき、Space Voyager検定にも繋がります。
+                  </p>
                 </div>
-              </div>
-
-              <div className="bg-gradient-to-r from-[#83CBEB]/10 to-transparent border-l-4 border-[#83CBEB] rounded-lg p-6 md:p-8">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-[#83CBEB]/20 rounded-lg flex items-center justify-center text-2xl">
-                    📚
+                <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-[#83CBEB]/10 rounded-full flex items-center justify-center mb-4">
+                    <Newspaper className="w-6 h-6 text-[#83CBEB]" />
                   </div>
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-serif text-[#EEEEFF] mb-3">資料・ナレッジの蓄積</h3>
-                    <p className="text-[#EEEEFF]/80 font-sans mb-4 leading-relaxed">
-                      一から調べる必要はありません。既にまとまった情報がここに
-                    </p>
-                    <ul className="space-y-2 text-[#EEEEFF]/70 font-sans text-sm md:text-base">
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#83CBEB] mt-1">•</span>
-                        <span>宇宙産業に関する考察</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#83CBEB] mt-1">•</span>
-                        <span>ワークショップなどで使用した調査資料</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#83CBEB] mt-1">•</span>
-                        <span>イベントレポートやニュース記事</span>
-                      </li>
-                    </ul>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">週刊宇宙ニュース</h3>
+                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
+                    毎週、宇宙に関するニュースをスライドにまとめて発信。初心者向けから中級・上級向けまで、メディア事業へと繋がるコンテンツです。
+                  </p>
+                </div>
+                <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-[#83CBEB]/10 rounded-full flex items-center justify-center mb-4">
+                    <Target className="w-6 h-6 text-[#83CBEB]" />
                   </div>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙診断</h3>
+                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
+                    簡単な問題に回答することで自分のタイプが分かるコンテンツ。簡易版から、コミュニティー参加者が体験できる本格版まで準備しています。
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-[#83CBEB]/10 to-[#EEEEBB]/5 border border-[#83CBEB]/30 rounded-2xl p-8 md:p-12 mb-12">
-              <h2 className="text-2xl md:text-3xl font-serif text-[#EEEEFF] mb-6 text-center">具体的なイベント例</h2>
-              <div className="space-y-6">
-                <div className="bg-[#000033]/60 rounded-lg p-6">
-                  <h4 className="text-lg font-serif text-[#EEEEFF] mb-2">🎤 専門家トークセッション</h4>
-                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-3">
-                    宇宙開発に取り組み、宇宙産業を知る学生とのフリートークイベント。オンラインで入退室自由な場で月に一度宇宙を語ろう。
+            {/* ▼ Level 2 ▼ */}
+            <div className="mb-20">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="bg-[#83CBEB] text-[#000033] font-bold px-4 py-2 rounded-lg text-xl font-sans">Level 2</div>
+                <h2 className="text-2xl md:text-3xl font-serif text-[#EEEEFF]">対話・学習</h2>
+              </div>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-[#83CBEB]/10 rounded-full flex items-center justify-center mb-4">
+                    <Mic className="w-6 h-6 text-[#83CBEB]" />
+                  </div>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙知っトク</h3>
+                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
+                    毎週水曜日19:00から座談会や講座、トークセッションなどオンラインイベントを開催。出張版としてオフラインイベントも予定しています。
                   </p>
-                  <p className="text-[#83CBEB] font-sans text-xs">開催頻度：月1回程度</p>
                 </div>
-
-                <div className="bg-[#000033]/60 rounded-lg p-6">
-                  <h4 className="text-lg font-serif text-[#EEEEFF] mb-2">🔭 オンライン天体観測会</h4>
-                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-3">
-                    流星群や月食など、天文イベントをみんなで観測。専門家の解説付きで楽しめます。
+                <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-[#83CBEB]/10 rounded-full flex items-center justify-center mb-4">
+                    <MessageCircle className="w-6 h-6 text-[#83CBEB]" />
+                  </div>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙教えて</h3>
+                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
+                    宇宙に関する質問をいつでもできるチャンネル。生成AIを用いた即時回答の仕組みと、コミュニケーションを円滑にする環境を整えます。
                   </p>
-                  <p className="text-[#83CBEB] font-sans text-xs">開催：天文イベントに合わせて</p>
                 </div>
-
-                <div className="bg-[#000033]/60 rounded-lg p-6">
-                  <h4 className="text-lg font-serif text-[#EEEEFF] mb-2">💡 アイデアソン・ハッカソン</h4>
-                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-3">
-                    宇宙×他産業をテーマに、新しいビジネスアイデアを創出。学生・企業・個人が協力します。
+                <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-[#83CBEB]/10 rounded-full flex items-center justify-center mb-4">
+                    <Compass className="w-6 h-6 text-[#83CBEB]" />
+                  </div>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙に行っといで</h3>
+                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
+                    運営がおすすめする宇宙に関するイベントを紹介。レベル別に分かれた情報で、次につながるきっかけやパートナーとの連携を創出します。
                   </p>
-                  <p className="text-[#83CBEB] font-sans text-xs">開催頻度：年2-3回</p>
-                </div>
-
-                <div className="bg-[#000033]/60 rounded-lg p-6">
-                  <h4 className="text-lg font-serif text-[#EEEEFF] mb-2">📖 勉強会・ワークショップ</h4>
-                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-3">
-                    ロケット技術、衛星データ活用など、テーマごとに深く学べる勉強会を定期開催。
-                  </p>
-                  <p className="text-[#83CBEB] font-sans text-xs">{/*開催頻度：*/}サービス準備中</p>
-                </div>
-
-                <div className="bg-[#000033]/60 rounded-lg p-6">
-                  <h4 className="text-lg font-serif text-[#EEEEFF] mb-2">🎙️ ライブ配信・感想戦</h4>
-                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-3">
-                    ロケット打ち上げのライブ視聴会や、宇宙関連イベント後の感想戦で盛り上がります。
-                  </p>
-                  <p className="text-[#83CBEB] font-sans text-xs">開催：イベント発生時</p>
-                </div>
-
-                <div className="bg-[#000033]/60 rounded-lg p-6">
-                  <h4 className="text-lg font-serif text-[#EEEEFF] mb-2">🤝 交流会・懇親会</h4>
-                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed mb-3">
-                    オンライン・オフラインで気軽に交流。業界の枠を超えた新しいつながりが生まれます。
-                  </p>
-                  <p className="text-[#83CBEB] font-sans text-xs">開催頻度：不定期</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-2xl p-8 text-center">
-              <h3 className="text-2xl font-serif text-[#EEEEFF] mb-4">コミュニティーに参加してみませんか？</h3>
-              <p className="text-[#EEEEFF]/70 font-sans mb-6 leading-relaxed">
-                これらのイベントに参加して、宇宙をもっと身近に感じましょう
+            {/* ▼ Level 3 ▼ */}
+            <div className="mb-20">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="bg-[#EEEEBB] text-[#000033] font-bold px-4 py-2 rounded-lg text-xl font-sans">Level 3</div>
+                <h2 className="text-2xl md:text-3xl font-serif text-[#EEEEFF]">現実世界との接続</h2>
+              </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-[#000033]/60 border border-[#EEEEBB]/20 rounded-xl p-6 hover:border-[#EEEEBB]/50 transition-all hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-[#EEEEBB]/10 rounded-full flex items-center justify-center mb-4">
+                    <Calendar className="w-6 h-6 text-[#EEEEBB]" />
+                  </div>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Event Database</h3>
+                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
+                    全国で開催される宇宙に関するイベント一覧をカレンダー形式で公開。今後は検索性の向上など、データベースとしてさらに機能拡張していきます。
+                  </p>
+                </div>
+                <div className="bg-[#000033]/60 border border-[#EEEEBB]/20 rounded-xl p-6 hover:border-[#EEEEBB]/50 transition-all hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-[#EEEEBB]/10 rounded-full flex items-center justify-center mb-4">
+                    <Camera className="w-6 h-6 text-[#EEEEBB]" />
+                  </div>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙のイベント行ってきた</h3>
+                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
+                    運営メンバーが実際に宇宙に関するイベントへ参加した際に、その様子をイベントレポートとして不定期に配信・公開するコンテンツです。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* ▼ Level 4 ▼ */}
+            <div className="mb-12">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="bg-[#EEEEBB] text-[#000033] font-bold px-4 py-2 rounded-lg text-xl font-sans">Level 4</div>
+                <h2 className="text-2xl md:text-3xl font-serif text-[#EEEEFF]">知識の体系化</h2>
+              </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-[#000033]/60 border border-[#EEEEBB]/20 rounded-xl p-6 hover:border-[#EEEEBB]/50 transition-all hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-[#EEEEBB]/10 rounded-full flex items-center justify-center mb-4">
+                    <Database className="w-6 h-6 text-[#EEEEBB]" />
+                  </div>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Cosmo Base Library</h3>
+                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
+                    コミュニティー内で公開された資料や収集した情報を格納するデータベース。パートナー企業・団体様もここへ資料のアップロードが可能です。
+                  </p>
+                </div>
+                <div className="bg-[#000033]/60 border border-[#EEEEBB]/20 rounded-xl p-6 hover:border-[#EEEEBB]/50 transition-all hover:-translate-y-1">
+                  <div className="w-12 h-12 bg-[#EEEEBB]/10 rounded-full flex items-center justify-center mb-4">
+                    <Award className="w-6 h-6 text-[#EEEEBB]" />
+                  </div>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Space Voyager 検定</h3>
+                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
+                    参加者の学習意欲向上やレベル確認に利用できる検定制度。コミュニティーでの権限が増える「Space Navigator」認定なども行っています。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* ▼ 最後のメッセージ ▼ */}
+            <div className="mt-16 p-8 bg-[#83CBEB]/10 border border-[#83CBEB]/30 rounded-2xl text-center">
+              <h3 className="text-2xl font-serif text-[#EEEEFF] mb-4">増え続けるコンテンツ</h3>
+              <p className="text-[#EEEEFF]/80 font-sans leading-relaxed max-w-3xl mx-auto">
+                Cosmo Baseでは様々な接点を生むことを目的に、毎月1つ以上の新しいコンテンツをリリースし、継続した接点を創出し続けます。
               </p>
                  {/* ▼ 4/1のオープン以降はこちらを使う（今はコメントアウト） ▼ */}
                 {/* <a href="https://discord.gg/xVJDjuGyeM" target="_blank" rel="noopener noreferrer">
@@ -179,7 +177,7 @@ export default function ValuePageContent() {
                 </Button>
               </a>
               */}
-                    
+
               {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
               <a href="https://fsifofficial.github.io/CosmoBase/coming-soon" rel="noopener noreferrer">
                 <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
@@ -187,6 +185,7 @@ export default function ValuePageContent() {
                 </Button>
               </a>
             </div>
+
           </div>
         </div>
       </section>
