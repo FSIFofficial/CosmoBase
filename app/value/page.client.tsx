@@ -166,6 +166,7 @@ export default function ValuePageContent() {
                 Cosmo Baseでは様々な接点を生むことを目的に、毎月1つ以上の新しいコンテンツをリリースし、継続した接点を創出し続けます。
               </p>
             </div>
+            <div classsName="p-8 item-center text-center">
                           {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
               <a href="https://fsifofficial.github.io/CosmoBase/coming-soon" rel="noopener noreferrer">
                 <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
@@ -179,6 +180,7 @@ export default function ValuePageContent() {
                 </Button>
               </a>
               */}
+            </div>
           </div>
         </div>
       </section>
