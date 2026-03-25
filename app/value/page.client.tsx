@@ -3,12 +3,6 @@
 import { useEffect } from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { 
-  HelpCircle, Newspaper, Target, 
-  Mic, MessageCircle, Compass, 
-  Calendar, Camera, 
-  Database, Award 
-} from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function ValuePageContent() {
@@ -35,7 +29,7 @@ export default function ValuePageContent() {
               </p>
             </div>
 
-            {/* ▼ Level 1 ▼ */}
+            {/* ▼ Level 1 (Color: #83CBEB - 水色) ▼ */}
             <div className="mb-20">
               <div className="flex items-center gap-4 mb-8">
                 <div className="bg-[#83CBEB] text-[#000033] font-bold px-4 py-2 rounded-lg text-xl font-sans">Level 1</div>
@@ -43,8 +37,8 @@ export default function ValuePageContent() {
               </div>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
-                  <div className="w-12 h-12 bg-[#83CBEB]/10 rounded-full flex items-center justify-center mb-4">
-                    <HelpCircle className="w-6 h-6 text-[#83CBEB]" />
+                  <div className="h-12 bg-[#83CBEB]/10 rounded-full flex items-center justify-center mb-4"></div>
+                    <img src="/CosmoBase/CBquiz_logo.png" alt="毎日宇宙クイズ" className="w-8 h-8 object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">毎日宇宙クイズ</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -52,8 +46,8 @@ export default function ValuePageContent() {
                   </p>
                 </div>
                 <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
-                  <div className="w-12 h-12 bg-[#83CBEB]/10 rounded-full flex items-center justify-center mb-4">
-                    <Newspaper className="w-6 h-6 text-[#83CBEB]" />
+                  <div className="h-12 bg-[#83CBEB]/10 rounded-full flex items-center justify-center mb-4">
+                    <img src="/CosmoBase/CBnews_logo.png" alt="週刊宇宙ニュース" className="w-8 h-8 object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">週刊宇宙ニュース</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -61,8 +55,8 @@ export default function ValuePageContent() {
                   </p>
                 </div>
                 <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
-                  <div className="w-12 h-12 bg-[#83CBEB]/10 rounded-full flex items-center justify-center mb-4">
-                    <Target className="w-6 h-6 text-[#83CBEB]" />
+                  <div className="h-12 bg-[#83CBEB]/10 rounded-full flex items-center justify-center mb-4">
+                    <img src="/CosmoBase/CBtype_logo.png" alt="宇宙診断" className="w-8 h-8 object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙診断</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -72,34 +66,34 @@ export default function ValuePageContent() {
               </div>
             </div>
 
-            {/* ▼ Level 2 ▼ */}
+            {/* ▼ Level 2 (Color: #A6D7DB - 少し緑がかった水色) ▼ */}
             <div className="mb-20">
               <div className="flex items-center gap-4 mb-8">
-                <div className="bg-[#83CBEB] text-[#000033] font-bold px-4 py-2 rounded-lg text-xl font-sans">Level 2</div>
+                <div className="bg-[#A6D7DB] text-[#000033] font-bold px-4 py-2 rounded-lg text-xl font-sans">Level 2</div>
                 <h2 className="text-2xl md:text-3xl font-serif text-[#EEEEFF]">対話・学習</h2>
               </div>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
-                  <div className="w-12 h-12 bg-[#83CBEB]/10 rounded-full flex items-center justify-center mb-4">
-                    <Mic className="w-6 h-6 text-[#83CBEB]" />
+                <div className="bg-[#000033]/60 border border-[#A6D7DB]/20 rounded-xl p-6 hover:border-[#A6D7DB]/50 transition-all hover:-translate-y-1">
+                  <div className="h-12 bg-[#A6D7DB]/10 rounded-full flex items-center justify-center mb-4">
+                    <img src="/CosmoBase/CBshittoku_logo.png" alt="宇宙知っトク" className="w-8 h-8 object-contain" />
                   </div>
-                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙知っトク</h3>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Cosmo Baseで宇宙知っトク</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
                     毎週水曜日19:00から座談会や講座、トークセッションなどオンラインイベントを開催。出張版としてオフラインイベントも予定しています。
                   </p>
                 </div>
-                <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
-                  <div className="w-12 h-12 bg-[#83CBEB]/10 rounded-full flex items-center justify-center mb-4">
-                    <MessageCircle className="w-6 h-6 text-[#83CBEB]" />
+                <div className="bg-[#000033]/60 border border-[#A6D7DB]/20 rounded-xl p-6 hover:border-[#A6D7DB]/50 transition-all hover:-translate-y-1">
+                  <div className="h-12 bg-[#A6D7DB]/10 rounded-full flex items-center justify-center mb-4">
+                    <img src="/CosmoBase/CBoshiete_logo.png" alt="宇宙教えて" className="w-8 h-8 object-contain" />
                   </div>
-                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙教えて</h3>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Cosmo Baseで宇宙教えて</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
                     宇宙に関する質問をいつでもできるチャンネル。生成AIを用いた即時回答の仕組みと、コミュニケーションを円滑にする環境を整えます。
                   </p>
                 </div>
-                <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
-                  <div className="w-12 h-12 bg-[#83CBEB]/10 rounded-full flex items-center justify-center mb-4">
-                    <Compass className="w-6 h-6 text-[#83CBEB]" />
+                <div className="bg-[#000033]/60 border border-[#A6D7DB]/20 rounded-xl p-6 hover:border-[#A6D7DB]/50 transition-all hover:-translate-y-1">
+                  <div className="h-12 bg-[#A6D7DB]/10 rounded-full flex items-center justify-center mb-4">
+                    <img src="/CosmoBase/logo-ittoide.png" alt="宇宙に行っといで" className="w-8 h-8 object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙に行っといで</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -109,25 +103,25 @@ export default function ValuePageContent() {
               </div>
             </div>
 
-            {/* ▼ Level 3 ▼ */}
+            {/* ▼ Level 3 (Color: #C9E3CC - 淡い黄緑色) ▼ */}
             <div className="mb-20">
               <div className="flex items-center gap-4 mb-8">
-                <div className="bg-[#EEEEBB] text-[#000033] font-bold px-4 py-2 rounded-lg text-xl font-sans">Level 3</div>
+                <div className="bg-[#C9E3CC] text-[#000033] font-bold px-4 py-2 rounded-lg text-xl font-sans">Level 3</div>
                 <h2 className="text-2xl md:text-3xl font-serif text-[#EEEEFF]">現実世界との接続</h2>
               </div>
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-[#000033]/60 border border-[#EEEEBB]/20 rounded-xl p-6 hover:border-[#EEEEBB]/50 transition-all hover:-translate-y-1">
-                  <div className="w-12 h-12 bg-[#EEEEBB]/10 rounded-full flex items-center justify-center mb-4">
-                    <Calendar className="w-6 h-6 text-[#EEEEBB]" />
+                <div className="bg-[#000033]/60 border border-[#C9E3CC]/20 rounded-xl p-6 hover:border-[#C9E3CC]/50 transition-all hover:-translate-y-1">
+                  <div className="h-12 bg-[#C9E3CC]/10 rounded-full flex items-center justify-center mb-4">
+                    <img src="/CosmoBase/CBED_logo.png" alt="Event Database" className="w-8 h-8 object-contain" />
                   </div>
-                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Event Database</h3>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Cosmo Base Event Database</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
                     全国で開催される宇宙に関するイベント一覧をカレンダー形式で公開。今後は検索性の向上など、データベースとしてさらに機能拡張していきます。
                   </p>
                 </div>
-                <div className="bg-[#000033]/60 border border-[#EEEEBB]/20 rounded-xl p-6 hover:border-[#EEEEBB]/50 transition-all hover:-translate-y-1">
-                  <div className="w-12 h-12 bg-[#EEEEBB]/10 rounded-full flex items-center justify-center mb-4">
-                    <Camera className="w-6 h-6 text-[#EEEEBB]" />
+                <div className="bg-[#000033]/60 border border-[#C9E3CC]/20 rounded-xl p-6 hover:border-[#C9E3CC]/50 transition-all hover:-translate-y-1">
+                  <div className="h-12 bg-[#C9E3CC]/10 rounded-full flex items-center justify-center mb-4">
+                    <img src="/CosmoBase/CBittekita_logo.png" alt="宇宙のイベント行ってきた" className="w-8 h-8 object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙のイベント行ってきた</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -137,7 +131,7 @@ export default function ValuePageContent() {
               </div>
             </div>
 
-            {/* ▼ Level 4 ▼ */}
+            {/* ▼ Level 4 (Color: #EEEEBB - 淡い黄色) ▼ */}
             <div className="mb-12">
               <div className="flex items-center gap-4 mb-8">
                 <div className="bg-[#EEEEBB] text-[#000033] font-bold px-4 py-2 rounded-lg text-xl font-sans">Level 4</div>
@@ -145,8 +139,8 @@ export default function ValuePageContent() {
               </div>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-[#000033]/60 border border-[#EEEEBB]/20 rounded-xl p-6 hover:border-[#EEEEBB]/50 transition-all hover:-translate-y-1">
-                  <div className="w-12 h-12 bg-[#EEEEBB]/10 rounded-full flex items-center justify-center mb-4">
-                    <Database className="w-6 h-6 text-[#EEEEBB]" />
+                  <div className="h-12 bg-[#EEEEBB]/10 rounded-full flex items-center justify-center mb-4">
+                    <img src="/CosmoBase/CBL_logo.png" alt="Cosmo Base Library" className="w-8 h-8 object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Cosmo Base Library</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -155,7 +149,7 @@ export default function ValuePageContent() {
                 </div>
                 <div className="bg-[#000033]/60 border border-[#EEEEBB]/20 rounded-xl p-6 hover:border-[#EEEEBB]/50 transition-all hover:-translate-y-1">
                   <div className="w-12 h-12 bg-[#EEEEBB]/10 rounded-full flex items-center justify-center mb-4">
-                    <Award className="w-6 h-6 text-[#EEEEBB]" />
+                    <img src="/CosmoBase/CBvoyager_logo.png" alt="Space Voyager 検定" className="w-8 h-8 object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Space Voyager 検定</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -166,18 +160,11 @@ export default function ValuePageContent() {
             </div>
 
             {/* ▼ 最後のメッセージ ▼ */}
-            <div className="mt-16 p-8 bg-[#83CBEB]/10 border border-[#83CBEB]/30 rounded-2xl text-center">
+            <div className="mt-16 p-8 bg-gradient-to-r from-[#83CBEB]/10 via-[#C9E3CC]/10 to-[#EEEEBB]/10 border border-[#83CBEB]/30 rounded-2xl text-center">
               <h3 className="text-2xl font-serif text-[#EEEEFF] mb-4">増え続けるコンテンツ</h3>
-              <p className="text-[#EEEEFF]/80 font-sans leading-relaxed max-w-3xl mx-auto">
+              <p className="text-[#EEEEFF]/80 font-sans leading-relaxed max-w-3xl mx-auto mb-8">
                 Cosmo Baseでは様々な接点を生むことを目的に、毎月1つ以上の新しいコンテンツをリリースし、継続した接点を創出し続けます。
               </p>
-                 {/* ▼ 4/1のオープン以降はこちらを使う（今はコメントアウト） ▼ */}
-                {/* <a href="https://discord.gg/xVJDjuGyeM" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
-                  コミュニティーに参加する
-                </Button>
-              </a>
-              */}
 
               {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
               <a href="https://fsifofficial.github.io/CosmoBase/coming-soon" rel="noopener noreferrer">
@@ -185,8 +172,14 @@ export default function ValuePageContent() {
                   コミュニティーに参加する
                 </Button>
               </a>
+                 {/* ▼ 4/1のオープン以降はこちらを使う（今はコメントアウト） ▼ */}
+                {/* <a href="https://discord.gg/xVJDjuGyeM" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
+                  コミュニティーに参加する
+                </Button>
+              </a>
+              */}
             </div>
-
           </div>
         </div>
       </section>
