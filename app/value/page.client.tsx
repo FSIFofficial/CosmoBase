@@ -9,6 +9,7 @@ import {
   Calendar, Camera, 
   Database, Award 
 } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export default function ValuePageContent() {
   useEffect(() => {
