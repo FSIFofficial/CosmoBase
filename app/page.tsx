@@ -6,7 +6,11 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { ArrowRight, Instagram } from "lucide-react"
+import { ArrowRight, Instagram, Clock, Rocket, Sparkles } from "lucide-react"
+
+// ▼ 追加：カウントダウンコンポーネントを読み込みます
+// ※もし Countdown コンポーネントのファイル名や保存場所が違う場合は、ここのパスを修正してください
+import { Countdown } from "@/components/countdown" 
 
 interface StatsData {
   events: string
@@ -35,6 +39,8 @@ export default function Home() {
     <div className="min-h-screen bg-[#000033]">
       <Header />
       <meta name="google-site-verification" content="KBDRGVtJakpozBGKSE9ELjeawwzt0ySBiN6bhEhOqEk" />
+      
+      {/* ▼ ヒーローセクション ▼ */}
       <section className="relative py-24 md:py-32 lg:py-40 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-2 h-2 bg-[#EEEEFF] rounded-full animate-pulse"></div>
@@ -73,12 +79,18 @@ export default function Home() {
                 <Button variant="outline" className="border-[#EEEEFF] text-[#EEEEFF] hover:bg-[#EEEEFF]/10 text-lg px-8 py-6 font-sans bg-transparent w-full sm:w-auto">
                   Cosmo Baseについて知る
                 </Button>
-              </Link>           
+              </Link>            
             </div>
           </div>
         </div>
       </section>
+
+      {/* ▼ ここに追加：カウントダウン ▼ */}
+      {/* ヒーローセクションのすぐ下に配置することで、少し重なるような立体的なデザインになります */}
+      <Countdown />
+      {/* ▲ ここまで追加 ▲ */}
       
+      {/* ▼ オープン記念企画 ▼ */}
       <section className="py-20 bg-[#000033]/50">
         <div className="max-w-4xl mx-auto text-center px-4 mb-6">
           <h2 className="text-3xl md:text-5xl font-serif text-[#EEEEFF] mb-12 text-center text-balance">
