@@ -5,6 +5,7 @@ import Link from "next/link"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { AutoLink } from "@/components/auto-link"
 
 const faqs = [
   {
@@ -157,20 +158,12 @@ export default function FAQPage() {
                 <p className="text-[#EEEEFF]/70 font-sans mb-6 leading-relaxed">
                   こちらで解決しない質問は、お気軽にお問い合わせください
                 </p>
-                {/* ▼ 4/1のオープン以降はこちらを使う（今はコメントアウト） ▼ */}
-                  {/* <a href="https://discord.gg/xVJDjuGyeM" className="text-[#83CBEB] hover:underline">
-                  <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
-                   Discordで質問する
-                  </Button>
-                  </a>
-                  */}
                 
-                {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
-                <a href="https://fsifofficial.github.io/CosmoBase/coming-soon" className="text-[#83CBEB] hover:underline">
+                <AutoLink>
                   <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
                     Discordで質問する
                   </Button>
-                </a>
+                </AutoLink>
               </div>
 
               <div className="border-t border-[#83CBEB]/20 mt-8 pt-8 text-center">
