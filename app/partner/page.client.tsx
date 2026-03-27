@@ -90,7 +90,6 @@ export default function PartnerPageContent() {
               </p>
             </div>
 
-            {/* パートナー対象・メリットのブロック（変更なしのため省略せずにそのまま記載） */}
             <div className="bg-gradient-to-br from-[#83CBEB]/10 via-[#000033] to-[#EEEEBB]/5 border border-[#83CBEB]/30 rounded-2xl p-8 md:p-12 mb-12">
               <h2 className="text-2xl md:text-3xl font-serif text-[#EEEEFF] mb-6 text-center">
                 パートナー対象
@@ -217,7 +216,7 @@ export default function PartnerPageContent() {
                       </select>
                     </div>
 
-                    {/* ▼▼▼ 分岐：カジュアル面談が選ばれた時だけ表示されるエリア ▼▼▼ */}
+                    {/* ▼ 分岐：カジュアル面談 ▼ */}
                     {isCasualInterview && (
                       <div className="p-6 bg-[#83CBEB]/10 rounded-lg border border-[#83CBEB]/30 space-y-6 animate-in fade-in slide-in-from-top-4 duration-500">
                         <div>
@@ -248,7 +247,6 @@ export default function PartnerPageContent() {
                         </div>
                       </div>
                     )}
-                    {/* ▲▲▲ 分岐エリアここまで ▲▲▲ */}
 
                     {/* 2. 団体名 */}
                     <div>
@@ -259,42 +257,74 @@ export default function PartnerPageContent() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="w-full bg-[#000033] border border-[#83CBEB]/30 rounded p-3 text-[#EEEEFF] focus:border-[#83CBEB] focus:outline-none transition-colors"
-                        placeholder="Cosmo Base"
+                        placeholder="CosmoBase"
                       />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid md:grid-cols-2 gap-6">
                       {/* 3. 組織区分 */}
-                      <div>
-                        <label className="block text-[#EEEEFF] font-sans text-sm mb-2">組織区分 <span className="text-red-400">*</span></label>
-                        <select
-                          required
-                          value={cu}
-                          onChange={(e) => setCu(e.target.value)}
-                          className="w-full bg-[#000033] border border-[#83CBEB]/30 rounded p-3 text-[#EEEEFF] focus:border-[#83CBEB] focus:outline-none transition-colors appearance-none"
-                        >
-                          <option value="">選択してください</option>
-                          <option value="企業">企業</option>
-                          <option value="学生団体">学生団体</option>
-                        </select>
+                      <div className="bg-[#000033]/40 border border-[#83CBEB]/20 rounded-lg p-4">
+                        <label className="block text-[#EEEEFF] font-sans text-sm mb-4">組織区分 <span className="text-red-400">*</span></label>
+                        <div className="flex flex-col sm:flex-row gap-6">
+                          <label className="flex items-center gap-3 cursor-pointer group">
+                            <input 
+                              type="radio" 
+                              name="cu" 
+                              value="企業" 
+                              required 
+                              checked={cu === "企業"} 
+                              onChange={(e) => setCu(e.target.value)} 
+                              className="w-4 h-4 accent-[#83CBEB] cursor-pointer"
+                            />
+                            <span className="text-[#EEEEFF]/90 font-sans group-hover:text-[#83CBEB] transition-colors">企業</span>
+                          </label>
+                          <label className="flex items-center gap-3 cursor-pointer group">
+                            <input 
+                              type="radio" 
+                              name="cu" 
+                              value="学生団体" 
+                              required 
+                              checked={cu === "学生団体"} 
+                              onChange={(e) => setCu(e.target.value)} 
+                              className="w-4 h-4 accent-[#83CBEB] cursor-pointer"
+                            />
+                            <span className="text-[#EEEEFF]/90 font-sans group-hover:text-[#83CBEB] transition-colors">学生団体</span>
+                          </label>
+                        </div>
                       </div>
 
                       {/* 4. 分野区分 */}
-                      <div>
-                        <label className="block text-[#EEEEFF] font-sans text-sm mb-2">分野区分 <span className="text-red-400">*</span></label>
-                        <select
-                          required
-                          value={space}
-                          onChange={(e) => setSpace(e.target.value)}
-                          className="w-full bg-[#000033] border border-[#83CBEB]/30 rounded p-3 text-[#EEEEFF] focus:border-[#83CBEB] focus:outline-none transition-colors appearance-none"
-                        >
-                          <option value="">選択してください</option>
-                          <option value="宇宙系">宇宙系</option>
-                          <option value="非宇宙系">非宇宙系</option>
-                        </select>
+                      <div className="bg-[#000033]/40 border border-[#83CBEB]/20 rounded-lg p-4">
+                        <label className="block text-[#EEEEFF] font-sans text-sm mb-4">分野区分 <span className="text-red-400">*</span></label>
+                        <div className="flex flex-col sm:flex-row gap-6">
+                          <label className="flex items-center gap-3 cursor-pointer group">
+                            <input 
+                              type="radio" 
+                              name="space" 
+                              value="宇宙系" 
+                              required 
+                              checked={space === "宇宙系"} 
+                              onChange={(e) => setSpace(e.target.value)} 
+                              className="w-4 h-4 accent-[#83CBEB] cursor-pointer"
+                            />
+                            <span className="text-[#EEEEFF]/90 font-sans group-hover:text-[#83CBEB] transition-colors">宇宙系</span>
+                          </label>
+                          <label className="flex items-center gap-3 cursor-pointer group">
+                            <input 
+                              type="radio" 
+                              name="space" 
+                              value="非宇宙系" 
+                              required 
+                              checked={space === "非宇宙系"} 
+                              onChange={(e) => setSpace(e.target.value)} 
+                              className="w-4 h-4 accent-[#83CBEB] cursor-pointer"
+                            />
+                            <span className="text-[#EEEEFF]/90 font-sans group-hover:text-[#83CBEB] transition-colors">非宇宙系</span>
+                          </label>
+                        </div>
                       </div>
                     </div>
-
+       
                     {/* 5. 担当者 */}
                     <div>
                       <label className="block text-[#EEEEFF] font-sans text-sm mb-2">担当者 <span className="text-red-400">*</span></label>
