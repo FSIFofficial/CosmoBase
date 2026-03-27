@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { AutoLink } from "@/components/auto-link"
 
 export default function ValuePageContent() {
   useEffect(() => {
@@ -168,18 +169,11 @@ export default function ValuePageContent() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 p-6 mt-8">
                           {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
-              <a href="https://fsifofficial.github.io/CosmoBase/coming-soon" rel="noopener noreferrer">
+              <AutoLink>
                 <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
                   コミュニティーに参加する
                 </Button>
-              </a>
-                 {/* ▼ 4/1のオープン以降はこちらを使う（今はコメントアウト） ▼ */}
-                {/* <a href="https://discord.gg/xVJDjuGyeM" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium">
-                  コミュニティーに参加する
-                </Button>
-              </a>
-              */}
+              </AutoLink>
             </div>
           </div>
         </div>
