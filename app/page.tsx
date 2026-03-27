@@ -7,10 +7,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ArrowRight, Instagram, Clock, Rocket, Sparkles } from "lucide-react"
-
-// ▼ 追加：カウントダウンコンポーネントを読み込みます
-// ※もし Countdown コンポーネントのファイル名や保存場所が違う場合は、ここのパスを修正してください
 import { Countdown } from "@/components/countdown" 
+import { AutoLink } from "@/components/auto-link"
 
 interface StatsData {
   events: string
@@ -85,10 +83,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ▼ ここに追加：カウントダウン ▼ */}
-      {/* ヒーローセクションのすぐ下に配置することで、少し重なるような立体的なデザインになります */}
+      {/* ▼ カウントダウン ▼ */}
       <Countdown />
-      {/* ▲ ここまで追加 ▲ */}
       
       {/* ▼ オープン記念企画 ▼ */}
       <section className="py-20 bg-[#000033]/50">
@@ -337,20 +333,12 @@ export default function Home() {
                 Cosmo Baseで、新しい学びとつながりを始めましょう。
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              {/* ▼ 4/1のオープン以降はこちらを使う（今はコメントアウト） ▼ */}
-              {/* <a href="https://discord.gg/xVJDjuGyeM" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium w-full sm:w-auto">
-                    今すぐ参加する
-                </Button>
-              </a>
-              */}
-                    
-                {/* ▼ 3/1〜3/31まではこちらを表示 ▼ */}
-                <a href="https://fsifofficial.github.io/CosmoBase/coming-soon" rel="noopener noreferrer">
+                  
+                <AutoLink>
                   <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium w-full sm:w-auto">
                     今すぐ参加する
                   </Button>
-                </a>
+                </AutoLink>
                 <Link href="/events">
                   <Button variant="outline" className="border-[#EEEEFF] text-[#EEEEFF] hover:bg-[#EEEEFF]/10 text-lg px-8 py-6 font-sans bg-transparent w-full sm:w-auto">
                     最新イベントを見る
