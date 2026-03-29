@@ -15,7 +15,6 @@ export interface Event {
   link?: string;
 }
 
-// 説明文などに含まれる「改行」や「カンマ」を安全に処理するCSVパーサー
 function parseCSV(text: string): string[][] {
   const result: string[][] = [];
   let row: string[] = [];
@@ -29,7 +28,7 @@ function parseCSV(text: string): string[][] {
     if (char === '"') {
       if (inQuotes && nextChar === '"') {
         cell += '"';
-        i++; // エスケープされたダブルクォーテーション
+        i++;
       } else {
         inQuotes = !inQuotes;
       }
@@ -53,6 +52,20 @@ function parseCSV(text: string): string[][] {
   return result;
 }
 
+// 🌟 日付の時差ズレを防ぐための安全な日付変換関数
+function createSafeDate(dateStr: string): Date | null {
+  if (!dateStr) return null;
+  // "2026-04-01" や "2026/04/01" を年・月・日に分解して強制的に日本のカレンダーとして解釈させる
+  const parts = dateStr.split(/[-/]/);
+  if (parts.length >= 3) {
+    const year = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // JavaScriptの月は0から始まるため-1
+    const day = parseInt(parts[2], 10);
+    return new Date(year, month, day);
+  }
+  return new Date(dateStr);
+}
+
 export async function getEvents(): Promise<Event[]> {
   // ▼▼▼ あなたのCSVのURLをここに貼り付けてください ▼▼▼
   const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTJU_Qq6TICMIAhDidiH2BYlBcZBvS_Uwy4wth9tT-02RYWkVP_AufdGo0PMAbAyrHKeZrE1x0laETY/pub?gid=0&single=true&output=csv";
@@ -66,7 +79,6 @@ export async function getEvents(): Promise<Event[]> {
     
     if (rows.length < 2) return [];
 
-    // ヘッダー名から、それぞれの列が「何番目」にあるかを自動判定
     const headers = rows[0].map(h => h.trim().toLowerCase());
     const getIdx = (key: string) => headers.indexOf(key.toLowerCase());
 
@@ -95,19 +107,17 @@ export async function getEvents(): Promise<Event[]> {
       const title = safeGet(idxTitle);
       const dateStr = safeGet(idxDate);
 
-      // ▼▼▼ 修正：ID、タイトル、日付のどれかが空欄の行は、未完成データとして「完全に無視」する ▼▼▼
       if (!id || !title || !dateStr) continue;
 
-      const parsedDate = new Date(dateStr);
-      // 日付として正しくない文字列（Invalid Date）の場合も無視する
-      if (isNaN(parsedDate.getTime())) continue;
-      // ▲▲▲ これで今日のマスに細線（空のボタン）が大量発生しなくなります！ ▲▲▲
+      // 新しい安全な関数で日付を変換
+      const parsedDate = createSafeDate(dateStr);
+      if (!parsedDate || isNaN(parsedDate.getTime())) continue;
 
       events.push({
         id: id,
         title: title,
         date: parsedDate,
-        endDate: safeGet(idxEndDate) ? new Date(safeGet(idxEndDate)) : null,
+        endDate: createSafeDate(safeGet(idxEndDate)),
         time: safeGet(idxTime),
         location: safeGet(idxLocation),
         latlng: safeGet(idxLatlng),
