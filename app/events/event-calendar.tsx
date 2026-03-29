@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { ChevronLeft, ChevronRight, Calendar, MapPin, Users, Award, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -13,6 +13,13 @@ export default function EventCalendar({ events }: { events: Event[] }) {
   const [typeFilter, setTypeFilter] = useState<string>("all")
   const [difficultyFilter, setDifficultyFilter] = useState<string>("all")
   const [hostFilter, setHostFilter] = useState<"all" | "host" | "external">("all")
+  
+  // ▼ 月を変えても「本日」の枠が残るバグの修正用
+  const [today, setToday] = useState<Date | null>(null);
+
+  useEffect(() => {
+    setToday(new Date());
+  }, []);
 
   const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
   const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0)
@@ -27,14 +34,26 @@ export default function EventCalendar({ events }: { events: Event[] }) {
     return null
   })
 
-  const safeEvents = (events || [])
-    .filter((e) => e && e.date)
-    .map((e) => ({
-      ...e,
-      date: new Date(e.date),
-      endDate: e.endDate ? new Date(e.endDate) : null,
-    }))
-    .filter((e) => !isNaN(e.date.getTime()));
+  const safeEvents = useMemo(() => {
+    return (events || [])
+      .filter((e) => e && e.date)
+      .map((e) => ({
+        ...e,
+        date: new Date(e.date),
+        endDate: e.endDate ? new Date(e.endDate) : null,
+      }))
+      .filter((e) => !isNaN(e.date.getTime()));
+  }, [events]);
+
+  // ▼ 種別(Type)の動的リスト生成（「その他」は最後に並べ替える）
+  const eventTypes = useMemo(() => {
+    const types = Array.from(new Set(safeEvents.map(e => e.type).filter(Boolean)));
+    return types.sort((a, b) => {
+      if (a === "その他") return 1;
+      if (b === "その他") return -1;
+      return a.localeCompare(b, "ja");
+    });
+  }, [safeEvents]);
 
   const filteredEvents = safeEvents.filter((event) => {
     const isHost = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
@@ -42,13 +61,28 @@ export default function EventCalendar({ events }: { events: Event[] }) {
       hostFilter === "all" || 
       (hostFilter === "host" && isHost) || 
       (hostFilter === "external" && !isHost);
+    
     const typeMatch = typeFilter === "all" || event.type === typeFilter
-    const difficultyMatch = difficultyFilter === "all" || event.difficulty === difficultyFilter
+    
+    // ▼ 難易度の絞り込み判定
+    let difficultyMatch = true;
+    if (difficultyFilter !== "all") {
+      if (event.difficulty === "全レベル") {
+        difficultyMatch = true;
+      } else if (difficultyFilter === "初心者向け") {
+        difficultyMatch = event.difficulty === "初心者向け";
+      } else if (difficultyFilter === "中級者向け") {
+        difficultyMatch = event.difficulty === "中級者向け" || event.difficulty === "中級者以上向け";
+      } else if (difficultyFilter === "上級者向け") {
+        difficultyMatch = event.difficulty === "上級者向け" || event.difficulty === "中級者以上向け";
+      } else {
+        difficultyMatch = event.difficulty === difficultyFilter;
+      }
+    }
     
     return hostMatch && typeMatch && difficultyMatch
   })
 
-  // ▼▼▼ 特定の日付のイベントを取得し、「主催イベント」を上に並び替える(sort)処理を追加 ▼▼▼
   const getEventsForDay = (date: Date | null) => {
     if (!date) return []
     const dayEvents = filteredEvents.filter(
@@ -58,14 +92,13 @@ export default function EventCalendar({ events }: { events: Event[] }) {
         event.date.getFullYear() === date.getFullYear(),
     );
 
-    // Cosmo Base主催のものを上に持ってくる（点数をつけて並び替え）
+    // 主催イベントを上に表示
     return dayEvents.sort((a, b) => {
       const aIsHost = a.organizer && (a.organizer.includes("Cosmo Base") || a.organizer.includes("CosmoBase")) ? 1 : 0;
       const bIsHost = b.organizer && (b.organizer.includes("Cosmo Base") || b.organizer.includes("CosmoBase")) ? 1 : 0;
       return bIsHost - aIsHost; 
     });
   }
-  // ▲▲▲ 並び替え処理ここまで ▲▲▲
 
   const previousMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1))
@@ -88,14 +121,12 @@ export default function EventCalendar({ events }: { events: Event[] }) {
               <SelectTrigger className="w-[150px] bg-[#000033] border-[#83CBEB]/30 text-[#EEEEFF]">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-[#000033] border-[#83CBEB]/30">
+              <SelectContent className="bg-[#000033] border-[#83CBEB]/30 max-h-[300px]">
                 <SelectItem value="all" className="text-[#EEEEFF]">すべて</SelectItem>
-                <SelectItem value="講演会" className="text-[#EEEEFF]">講演会</SelectItem>
-                <SelectItem value="ワークショップ" className="text-[#EEEEFF]">ワークショップ</SelectItem>
-                <SelectItem value="観測会" className="text-[#EEEEFF]">観測会</SelectItem>
-                <SelectItem value="交流会" className="text-[#EEEEFF]">交流会</SelectItem>
-                <SelectItem value="オンライン" className="text-[#EEEEFF]">オンライン</SelectItem>
-                <SelectItem value="ニュース" className="text-[#EEEEFF]">ニュース</SelectItem>
+                {/* スプレッドシートから自動取得した種別を表示 */}
+                {eventTypes.map(type => (
+                  <SelectItem key={type} value={type} className="text-[#EEEEFF]">{type}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -111,7 +142,6 @@ export default function EventCalendar({ events }: { events: Event[] }) {
                 <SelectItem value="初心者向け" className="text-[#EEEEFF]">初心者向け</SelectItem>
                 <SelectItem value="中級者向け" className="text-[#EEEEFF]">中級者向け</SelectItem>
                 <SelectItem value="上級者向け" className="text-[#EEEEFF]">上級者向け</SelectItem>
-                <SelectItem value="全レベル" className="text-[#EEEEFF]">全レベル</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -185,10 +215,10 @@ export default function EventCalendar({ events }: { events: Event[] }) {
           {calendarDays.map((day, index) => {
             const events = getEventsForDay(day)
             const isToday =
-              day &&
-              day.getDate() === new Date().getDate() &&
-              day.getMonth() === new Date().getMonth() &&
-              day.getFullYear() === new Date().getFullYear()
+              day && today &&
+              day.getDate() === today.getDate() &&
+              day.getMonth() === today.getMonth() &&
+              day.getFullYear() === today.getFullYear()
 
             return (
               <div
@@ -212,7 +242,6 @@ export default function EventCalendar({ events }: { events: Event[] }) {
                     </div>
                     <div className="space-y-1">
                       {events.map((event) => {
-                        // 主催イベントの場合はボタンの色を目立たせる（少し濃い水色にするなど）
                         const isHostEvent = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
                         
                         return (
@@ -221,8 +250,8 @@ export default function EventCalendar({ events }: { events: Event[] }) {
                             onClick={() => setSelectedEvent(event)}
                             className={`w-full text-left text-xs p-1 rounded text-[#EEEEFF] transition-colors ${
                               isHostEvent 
-                                ? "bg-[#83CBEB]/50 hover:bg-[#83CBEB]/70 border border-[#83CBEB]/30" // 主催イベントは少し濃い背景＋枠線
-                                : "bg-[#83CBEB]/20 hover:bg-[#83CBEB]/40" // 外部イベントは控えめ
+                                ? "bg-[#83CBEB]/50 hover:bg-[#83CBEB]/70 border border-[#83CBEB]/30" 
+                                : "bg-[#83CBEB]/20 hover:bg-[#83CBEB]/40" 
                             }`}
                           >
                             {event.title}
