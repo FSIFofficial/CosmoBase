@@ -55,7 +55,7 @@ function parseCSV(text: string): string[][] {
 
 export async function getEvents(): Promise<Event[]> {
   // ▼▼▼ あなたのCSVのURLをここに貼り付けてください ▼▼▼
-  const GOOGLE_SHEET_CSV_URL = "ここに公開したCSVのURLをペーストしてください";
+  const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTJU_Qq6TICMIAhDidiH2BYlBcZBvS_Uwy4wth9tT-02RYWkVP_AufdGo0PMAbAyrHKeZrE1x0laETY/pub?gid=0&single=true&output=csv";
 
   try {
     const res = await fetch(GOOGLE_SHEET_CSV_URL, { next: { revalidate: 60 } });
