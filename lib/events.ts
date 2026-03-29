@@ -15,6 +15,7 @@ export interface Event {
   link?: string;
 }
 
+// 説明文などに含まれる「改行」や「カンマ」を安全に処理するCSVパーサー
 function parseCSV(text: string): string[][] {
   const result: string[][] = [];
   let row: string[] = [];
@@ -28,7 +29,7 @@ function parseCSV(text: string): string[][] {
     if (char === '"') {
       if (inQuotes && nextChar === '"') {
         cell += '"';
-        i++;
+        i++; // エスケープされたダブルクォーテーション
       } else {
         inQuotes = !inQuotes;
       }
@@ -55,19 +56,19 @@ function parseCSV(text: string): string[][] {
 // 🌟 日付の時差ズレを防ぐための安全な日付変換関数
 function createSafeDate(dateStr: string): Date | null {
   if (!dateStr) return null;
-  // "2026-04-01" や "2026/04/01" を年・月・日に分解して強制的に日本のカレンダーとして解釈させる
   const parts = dateStr.split(/[-/]/);
   if (parts.length >= 3) {
     const year = parseInt(parts[0], 10);
-    const month = parseInt(parts[1], 10) - 1; // JavaScriptの月は0から始まるため-1
+    const month = parseInt(parts[1], 10);
     const day = parseInt(parts[2], 10);
-    return new Date(year, month, day);
+    // 正午（T12:00:00+09:00）にしておくことで、世界中どこから見ても日付がズレにくくなります
+    return new Date(`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}T12:00:00+09:00`);
   }
   return new Date(dateStr);
 }
 
 export async function getEvents(): Promise<Event[]> {
-  // ▼▼▼ あなたのCSVのURLをここに貼り付けてください ▼▼▼
+  // ▼ 新しいCSVのURLに更新しました
   const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTJU_Qq6TICMIAhDidiH2BYlBcZBvS_Uwy4wth9tT-02RYWkVP_AufdGo0PMAbAyrHKeZrE1x0laETY/pub?gid=0&single=true&output=csv";
 
   try {
@@ -85,7 +86,7 @@ export async function getEvents(): Promise<Event[]> {
     const idxId = getIdx("id");
     const idxTitle = getIdx("title");
     const idxDate = getIdx("date");
-    const idxEndDate = getIdx("endDate");
+    const idxEndDate = getIdx("enddate");
     const idxTime = getIdx("time");
     const idxLocation = getIdx("location");
     const idxLatlng = getIdx("latlng");
@@ -109,7 +110,6 @@ export async function getEvents(): Promise<Event[]> {
 
       if (!id || !title || !dateStr) continue;
 
-      // 新しい安全な関数で日付を変換
       const parsedDate = createSafeDate(dateStr);
       if (!parsedDate || isNaN(parsedDate.getTime())) continue;
 
