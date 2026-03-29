@@ -29,7 +29,7 @@ function parseCSV(text: string): string[][] {
     if (char === '"') {
       if (inQuotes && nextChar === '"') {
         cell += '"';
-        i++; // ""（エスケープされたダブルクォーテーション）を1つに変換
+        i++; // エスケープされたダブルクォーテーション
       } else {
         inQuotes = !inQuotes;
       }
@@ -41,7 +41,7 @@ function parseCSV(text: string): string[][] {
       result.push(row);
       row = [];
       cell = '';
-      if (char === '\r') i++; // \r\n の場合はスキップ
+      if (char === '\r') i++;
     } else {
       cell += char;
     }
@@ -54,39 +54,62 @@ function parseCSV(text: string): string[][] {
 }
 
 export async function getEvents(): Promise<Event[]> {
-  // ▼▼▼ ステップ1でコピーしたCSVのURLをここに貼り付けます ▼▼▼
-  const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTJU_Qq6TICMIAhDidiH2BYlBcZBvS_Uwy4wth9tT-02RYWkVP_AufdGo0PMAbAyrHKeZrE1x0laETY/pub?gid=0&single=true&output=csv"
+  // ▼▼▼ あなたのCSVのURLをここに貼り付けてください ▼▼▼
+  const GOOGLE_SHEET_CSV_URL = "ここに公開したCSVのURLをペーストしてください";
 
   try {
-    // next: { revalidate: 60 } で、スプシの更新が最短60秒でサイトに自動反映されます
     const res = await fetch(GOOGLE_SHEET_CSV_URL, { next: { revalidate: 60 } });
     if (!res.ok) throw new Error("CSVの取得に失敗しました");
     
     const csvText = await res.text();
     const rows = parseCSV(csvText);
     
+    if (rows.length < 2) return [];
+
+    // 🌟 魔法のコード：1行目のヘッダー名から、それぞれの列が「何番目」にあるかを自動判定！
+    const headers = rows[0].map(h => h.trim().toLowerCase());
+    const getIdx = (key: string) => headers.indexOf(key.toLowerCase());
+
+    const idxId = getIdx("id");
+    const idxTitle = getIdx("title");
+    const idxDate = getIdx("date");
+    const idxEndDate = getIdx("endDate");
+    const idxTime = getIdx("time");
+    const idxLocation = getIdx("location");
+    const idxLatlng = getIdx("latlng");
+    const idxType = getIdx("type");
+    const idxDifficulty = getIdx("difficulty");
+    const idxCapacity = getIdx("capacity");
+    const idxDescription = getIdx("description");
+    const idxSpeaker = getIdx("speaker");
+    const idxOrganizer = getIdx("organizer");
+    const idxLink = getIdx("link");
+
     const events: Event[] = [];
-    // 1行目はヘッダーなので、2行目（i=1）からループ処理
+    
     for (let i = 1; i < rows.length; i++) {
       const values = rows[i];
-      // id（1列目）が空の行や、データが足りない行はスキップ
-      if (values.length < 10 || !values[0]) continue; 
+      // IDがない行（空行など）はスキップ
+      if (idxId === -1 || !values[idxId]) continue;
+
+      // 欠損データがあってもエラーで落ちないようにする安全装置
+      const safeGet = (idx: number) => (idx !== -1 && values[idx] !== undefined) ? values[idx] : "";
 
       events.push({
-        id: values[0],
-        title: values[1],
-        date: new Date(values[2]),
-        endDate: values[3] ? new Date(values[3]) : null,
-        time: values[4],
-        location: values[5],
-        latlng: values[6] || "",
-        type: values[7],
-        difficulty: values[8],
-        capacity: Number(values[9]) || 0,
-        description: values[10] || "",
-        speaker: values[11] || "",
-        organizer: values[12] || "",
-        link: values[13] || ""
+        id: safeGet(idxId),
+        title: safeGet(idxTitle),
+        date: safeGet(idxDate) ? new Date(safeGet(idxDate)) : new Date(),
+        endDate: safeGet(idxEndDate) ? new Date(safeGet(idxEndDate)) : null,
+        time: safeGet(idxTime),
+        location: safeGet(idxLocation),
+        latlng: safeGet(idxLatlng),
+        type: safeGet(idxType),
+        difficulty: safeGet(idxDifficulty),
+        capacity: Number(safeGet(idxCapacity)) || 0,
+        description: safeGet(idxDescription),
+        speaker: safeGet(idxSpeaker),
+        organizer: safeGet(idxOrganizer),
+        link: safeGet(idxLink)
       });
     }
     return events;
