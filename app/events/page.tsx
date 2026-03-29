@@ -7,16 +7,17 @@ import { Metadata } from "next"
 export const metadata: Metadata = {
   title: "イベントカレンダー", 
   description: "宇宙イベントをご確認いただけます。",
-    // OGPも個別で上書き
+  // OGPも個別で上書き
   openGraph: {
     title: "イベントカレンダー | Cosmo Base",
     description: "宇宙イベントをご確認いただけます。",
   },
 }
 
-export default function EventsPage() {
-  // サーバーサイドでCSVデータを取得
-  const events = getEvents();
+// ▼ サーバーサイドでデータ取得を待つために async を追加
+export default async function EventsPage() {
+  // ▼ サーバーサイドでCSVデータを取得 (awaitを追加)
+  const events = await getEvents();
 
   return (
     <div className="min-h-screen bg-[#000033]">
