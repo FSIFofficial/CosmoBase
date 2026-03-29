@@ -66,7 +66,7 @@ export async function getEvents(): Promise<Event[]> {
     
     if (rows.length < 2) return [];
 
-    // 🌟 魔法のコード：1行目のヘッダー名から、それぞれの列が「何番目」にあるかを自動判定！
+    // ヘッダー名から、それぞれの列が「何番目」にあるかを自動判定
     const headers = rows[0].map(h => h.trim().toLowerCase());
     const getIdx = (key: string) => headers.indexOf(key.toLowerCase());
 
@@ -89,16 +89,24 @@ export async function getEvents(): Promise<Event[]> {
     
     for (let i = 1; i < rows.length; i++) {
       const values = rows[i];
-      // IDがない行（空行など）はスキップ
-      if (idxId === -1 || !values[idxId]) continue;
-
-      // 欠損データがあってもエラーで落ちないようにする安全装置
       const safeGet = (idx: number) => (idx !== -1 && values[idx] !== undefined) ? values[idx] : "";
 
+      const id = safeGet(idxId);
+      const title = safeGet(idxTitle);
+      const dateStr = safeGet(idxDate);
+
+      // ▼▼▼ 修正：ID、タイトル、日付のどれかが空欄の行は、未完成データとして「完全に無視」する ▼▼▼
+      if (!id || !title || !dateStr) continue;
+
+      const parsedDate = new Date(dateStr);
+      // 日付として正しくない文字列（Invalid Date）の場合も無視する
+      if (isNaN(parsedDate.getTime())) continue;
+      // ▲▲▲ これで今日のマスに細線（空のボタン）が大量発生しなくなります！ ▲▲▲
+
       events.push({
-        id: safeGet(idxId),
-        title: safeGet(idxTitle),
-        date: safeGet(idxDate) ? new Date(safeGet(idxDate)) : new Date(),
+        id: id,
+        title: title,
+        date: parsedDate,
         endDate: safeGet(idxEndDate) ? new Date(safeGet(idxEndDate)) : null,
         time: safeGet(idxTime),
         location: safeGet(idxLocation),
