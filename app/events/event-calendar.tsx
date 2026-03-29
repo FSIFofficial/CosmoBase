@@ -30,8 +30,19 @@ export default function EventCalendar({ events }: { events: Event[] }) {
     return null
   })
 
-// フィルタリングされたイベント
-  const filteredEvents = events.filter((event) => {
+  // ▼▼▼ 追加：安全なデータへの変換（空行や無効な日付によるクラッシュを防止） ▼▼▼
+  const safeEvents = (events || [])
+    .filter((e) => e && e.date) // 日付がnullの不正な行を一旦除外
+    .map((e) => ({
+      ...e,
+      date: new Date(e.date), // 確実なDateオブジェクトとして再構築
+      endDate: e.endDate ? new Date(e.endDate) : null,
+    }))
+    .filter((e) => !isNaN(e.date.getTime())); // Invalid Date（計算不可能な日付）を除外
+  // ▲▲▲ 追加ここまで ▲▲▲
+
+  // フィルタリングされたイベント
+  const filteredEvents = safeEvents.filter((event) => {
     // 主催かどうかの判定（Cosmo Base または CosmoBase）
     const isHost = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
     
@@ -71,7 +82,6 @@ export default function EventCalendar({ events }: { events: Event[] }) {
 
   return (
     <>
-      {/* フィルター */}
       {/* フィルター全体 */}
       <div className="mb-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
         
@@ -90,6 +100,7 @@ export default function EventCalendar({ events }: { events: Event[] }) {
                 <SelectItem value="観測会" className="text-[#EEEEFF]">観測会</SelectItem>
                 <SelectItem value="交流会" className="text-[#EEEEFF]">交流会</SelectItem>
                 <SelectItem value="オンライン" className="text-[#EEEEFF]">オンライン</SelectItem>
+                <SelectItem value="ニュース" className="text-[#EEEEFF]">ニュース</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -296,7 +307,7 @@ export default function EventCalendar({ events }: { events: Event[] }) {
 
               <div className="mb-6">
                 <h3 className="text-lg font-serif text-[#EEEEFF] mb-2">イベント詳細</h3>
-                <p className="text-[#EEEEFF]/80 font-sans leading-relaxed">{selectedEvent.description}</p>
+                <p className="text-[#EEEEFF]/80 font-sans leading-relaxed whitespace-pre-wrap">{selectedEvent.description}</p>
               </div>
 
               {selectedEvent.link && (
@@ -312,8 +323,4 @@ export default function EventCalendar({ events }: { events: Event[] }) {
       )}
     </>
   )
-
 }
-
-
-
