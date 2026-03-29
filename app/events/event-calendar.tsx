@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Event } from "@/lib/events"
 
-// 親コンポーネントからイベントデータを受け取る
 export default function EventCalendar({ events }: { events: Event[] }) {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
@@ -15,12 +14,10 @@ export default function EventCalendar({ events }: { events: Event[] }) {
   const [difficultyFilter, setDifficultyFilter] = useState<string>("all")
   const [hostFilter, setHostFilter] = useState<"all" | "host" | "external">("all")
 
-  // 月の初日と最終日を取得
   const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
   const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0)
   const startingDayOfWeek = firstDayOfMonth.getDay()
 
-  // カレンダーの日付配列を生成
   const daysInMonth = lastDayOfMonth.getDate()
   const calendarDays = Array.from({ length: 42 }, (_, i) => {
     const dayNumber = i - startingDayOfWeek + 1
@@ -30,50 +27,50 @@ export default function EventCalendar({ events }: { events: Event[] }) {
     return null
   })
 
-  // ▼▼▼ 追加：安全なデータへの変換（空行や無効な日付によるクラッシュを防止） ▼▼▼
   const safeEvents = (events || [])
-    .filter((e) => e && e.date) // 日付がnullの不正な行を一旦除外
+    .filter((e) => e && e.date)
     .map((e) => ({
       ...e,
-      date: new Date(e.date), // 確実なDateオブジェクトとして再構築
+      date: new Date(e.date),
       endDate: e.endDate ? new Date(e.endDate) : null,
     }))
-    .filter((e) => !isNaN(e.date.getTime())); // Invalid Date（計算不可能な日付）を除外
-  // ▲▲▲ 追加ここまで ▲▲▲
+    .filter((e) => !isNaN(e.date.getTime()));
 
-  // フィルタリングされたイベント
   const filteredEvents = safeEvents.filter((event) => {
-    // 主催かどうかの判定（Cosmo Base または CosmoBase）
     const isHost = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
-    
     const hostMatch = 
       hostFilter === "all" || 
       (hostFilter === "host" && isHost) || 
       (hostFilter === "external" && !isHost);
-
     const typeMatch = typeFilter === "all" || event.type === typeFilter
     const difficultyMatch = difficultyFilter === "all" || event.difficulty === difficultyFilter
     
     return hostMatch && typeMatch && difficultyMatch
   })
 
-  // 特定の日付のイベントを取得
+  // ▼▼▼ 特定の日付のイベントを取得し、「主催イベント」を上に並び替える(sort)処理を追加 ▼▼▼
   const getEventsForDay = (date: Date | null) => {
     if (!date) return []
-    return filteredEvents.filter(
+    const dayEvents = filteredEvents.filter(
       (event) =>
         event.date.getDate() === date.getDate() &&
         event.date.getMonth() === date.getMonth() &&
         event.date.getFullYear() === date.getFullYear(),
-    )
-  }
+    );
 
-  // 前月へ
+    // Cosmo Base主催のものを上に持ってくる（点数をつけて並び替え）
+    return dayEvents.sort((a, b) => {
+      const aIsHost = a.organizer && (a.organizer.includes("Cosmo Base") || a.organizer.includes("CosmoBase")) ? 1 : 0;
+      const bIsHost = b.organizer && (b.organizer.includes("Cosmo Base") || b.organizer.includes("CosmoBase")) ? 1 : 0;
+      return bIsHost - aIsHost; 
+    });
+  }
+  // ▲▲▲ 並び替え処理ここまで ▲▲▲
+
   const previousMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1))
   }
 
-  // 次月へ
   const nextMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1))
   }
@@ -82,10 +79,8 @@ export default function EventCalendar({ events }: { events: Event[] }) {
 
   return (
     <>
-      {/* フィルター全体 */}
       <div className="mb-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
         
-        {/* 左側：セレクトボックス群 */}
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-2">
             <span className="text-[#EEEEFF] font-sans text-sm">種別:</span>
@@ -122,7 +117,6 @@ export default function EventCalendar({ events }: { events: Event[] }) {
           </div>
         </div>
 
-        {/* 右側：主催/外部の切り替えタブ */}
         <div className="inline-flex bg-[#000033] border border-[#83CBEB]/30 rounded-lg p-1">
           <button
             onClick={() => setHostFilter("all")}
@@ -151,9 +145,7 @@ export default function EventCalendar({ events }: { events: Event[] }) {
         </div>
       </div>
 
-      {/* カレンダー */}
       <div className="max-w-6xl mx-auto bg-[#000033] border border-[#83CBEB]/30 rounded-lg p-6">
-        {/* カレンダーヘッダー */}
         <div className="flex items-center justify-between mb-6">
           <Button
             onClick={previousMonth}
@@ -176,7 +168,6 @@ export default function EventCalendar({ events }: { events: Event[] }) {
           </Button>
         </div>
 
-        {/* 曜日ヘッダー */}
         <div className="grid grid-cols-7 gap-2 mb-2">
           {weekDays.map((day, index) => (
             <div
@@ -190,7 +181,6 @@ export default function EventCalendar({ events }: { events: Event[] }) {
           ))}
         </div>
 
-        {/* カレンダーグリッド */}
         <div className="grid grid-cols-7 gap-2">
           {calendarDays.map((day, index) => {
             const events = getEventsForDay(day)
@@ -221,15 +211,24 @@ export default function EventCalendar({ events }: { events: Event[] }) {
                       {day.getDate()}
                     </div>
                     <div className="space-y-1">
-                      {events.map((event) => (
-                        <button
-                          key={event.id}
-                          onClick={() => setSelectedEvent(event)}
-                          className="w-full text-left text-xs p-1 rounded bg-[#83CBEB]/30 hover:bg-[#83CBEB]/50 text-[#EEEEFF] transition-colors"
-                        >
-                          {event.title}
-                        </button>
-                      ))}
+                      {events.map((event) => {
+                        // 主催イベントの場合はボタンの色を目立たせる（少し濃い水色にするなど）
+                        const isHostEvent = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
+                        
+                        return (
+                          <button
+                            key={event.id}
+                            onClick={() => setSelectedEvent(event)}
+                            className={`w-full text-left text-xs p-1 rounded text-[#EEEEFF] transition-colors ${
+                              isHostEvent 
+                                ? "bg-[#83CBEB]/50 hover:bg-[#83CBEB]/70 border border-[#83CBEB]/30" // 主催イベントは少し濃い背景＋枠線
+                                : "bg-[#83CBEB]/20 hover:bg-[#83CBEB]/40" // 外部イベントは控えめ
+                            }`}
+                          >
+                            {event.title}
+                          </button>
+                        );
+                      })}
                     </div>
                   </>
                 )}
@@ -239,7 +238,6 @@ export default function EventCalendar({ events }: { events: Event[] }) {
         </div>
       </div>
 
-      {/* イベント詳細モーダル */}
       {selectedEvent && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
           <div className="bg-[#000033] border border-[#83CBEB]/30 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
