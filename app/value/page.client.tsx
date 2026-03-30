@@ -59,7 +59,7 @@ export default function ValuePageContent() {
                   <div className="flex items-center mb-4 h-12">
                     <img src="/CosmoBase/CBtype_logo.png" alt="宇宙診断" className="h-full w-auto object-contain" />
                   </div>
-                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙診断</h3>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙タイプ診断</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
                     簡単な問題に回答することで自分のタイプが分かるコンテンツ。簡易版から、コミュニティー参加者が体験できる本格版まで準備しています。
                   </p>
