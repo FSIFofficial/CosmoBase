@@ -12,7 +12,6 @@ export default function EventCalendar({ events }: { events: Event[] }) {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
   const [typeFilter, setTypeFilter] = useState<string>("all")
   const [difficultyFilter, setDifficultyFilter] = useState<string>("all")
-  // ▼ フィルターに「partner」を追加
   const [hostFilter, setHostFilter] = useState<"all" | "host" | "partner" | "external">("all")
   
   const [today, setToday] = useState<Date | null>(null);
@@ -56,8 +55,8 @@ export default function EventCalendar({ events }: { events: Event[] }) {
 
   const filteredEvents = safeEvents.filter((event) => {
     const isHost = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
-    // ▼ organizer に「パートナー」という文字が含まれていればパートナーイベントと判定
-    const isPartner = event.organizer && event.organizer.includes("パートナー");
+    // ▼ フラグを利用して判定
+    const isPartner = event.isPartner;
     const isExternal = !isHost && !isPartner;
 
     const hostMatch = 
@@ -89,25 +88,21 @@ export default function EventCalendar({ events }: { events: Event[] }) {
   const getEventsForDay = (date: Date | null) => {
     if (!date) return []
     
-    // ▼ カレンダーの日付を「その日の0時0分」として比較用の数値にする
     const checkDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
 
     const dayEvents = filteredEvents.filter((event) => {
-      // イベントの開始日
       const eventStart = new Date(event.date.getFullYear(), event.date.getMonth(), event.date.getDate()).getTime();
-      // イベントの終了日（未入力なら開始日と同じにする）
       const eventEnd = event.endDate 
         ? new Date(event.endDate.getFullYear(), event.endDate.getMonth(), event.endDate.getDate()).getTime()
         : eventStart;
 
-      // ▼ 複数日判定：カレンダーの日付が「開始日」と「終了日」の間にあるか？
       return checkDate >= eventStart && checkDate <= eventEnd;
     });
 
-    // 主催イベント、次にパートナーイベントを上に表示
+    // ▼ フラグを利用して並び替え（1位:主催, 2位:パートナー, 3位:その他）
     return dayEvents.sort((a, b) => {
-      const aScore = (a.organizer && a.organizer.includes("Cosmo Base")) ? 2 : (a.organizer && a.organizer.includes("パートナー")) ? 1 : 0;
-      const bScore = (b.organizer && b.organizer.includes("Cosmo Base")) ? 2 : (b.organizer && b.organizer.includes("パートナー")) ? 1 : 0;
+      const aScore = (a.organizer && (a.organizer.includes("Cosmo Base") || a.organizer.includes("CosmoBase"))) ? 2 : a.isPartner ? 1 : 0;
+      const bScore = (b.organizer && (b.organizer.includes("Cosmo Base") || b.organizer.includes("CosmoBase"))) ? 2 : b.isPartner ? 1 : 0;
       return bScore - aScore; 
     });
   }
@@ -262,7 +257,8 @@ export default function EventCalendar({ events }: { events: Event[] }) {
                     <div className="space-y-1">
                       {events.map((event) => {
                         const isHostEvent = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
-                        const isPartnerEvent = event.organizer && event.organizer.includes("パートナー");
+                        // ▼ フラグを利用して判定
+                        const isPartnerEvent = event.isPartner;
                         
                         let buttonClass = "bg-[#83CBEB]/20 hover:bg-[#83CBEB]/40 text-[#EEEEFF]"; // 外部イベント
                         if (isHostEvent) {
@@ -297,9 +293,10 @@ export default function EventCalendar({ events }: { events: Event[] }) {
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <div className="mb-3">
+                    {/* ▼ モーダル内のバッジもフラグで判定 ▼ */}
                     {selectedEvent.organizer && (selectedEvent.organizer.includes("Cosmo Base") || selectedEvent.organizer.includes("CosmoBase")) ? (
                       <Badge className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]">主催イベント</Badge>
-                    ) : selectedEvent.organizer && selectedEvent.organizer.includes("パートナー") ? (
+                    ) : selectedEvent.isPartner ? (
                       <Badge className="bg-[#EEEEBB] text-[#000033] hover:bg-[#EEEEBB]">パートナーイベント</Badge>
                     ) : (
                       <Badge className="bg-transparent border border-[#EEEEFF]/50 text-[#EEEEFF] hover:bg-transparent">外部イベント</Badge>
