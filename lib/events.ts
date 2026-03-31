@@ -14,6 +14,7 @@ export interface Event {
   speaker?: string;
   organizer?: string;
   link?: string;
+  isPartner: boolean; // ▼ 追加：パートナーフラグ
 }
 
 function parseCSV(text: string): string[][] {
@@ -86,7 +87,6 @@ export async function getEvents(): Promise<Event[]> {
     const idxEndDate = getIdx("enddate");
     const idxTime = getIdx("time");
     const idxLocation = getIdx("location");
-    // lat と lng に分かれました
     const idxLat = getIdx("lat");
     const idxLng = getIdx("lng");
     const idxType = getIdx("type");
@@ -96,6 +96,10 @@ export async function getEvents(): Promise<Event[]> {
     const idxSpeaker = getIdx("speaker");
     const idxOrganizer = getIdx("organizer");
     const idxLink = getIdx("link");
+    // ▼ 追加：パートナーフラグの列番号を取得（色々な命名揺れに対応）
+    let idxIsPartner = getIdx("ispartner");
+    if (idxIsPartner === -1) idxIsPartner = getIdx("is_partner");
+    if (idxIsPartner === -1) idxIsPartner = getIdx("パートナーフラグ");
 
     const events: Event[] = [];
     
@@ -112,6 +116,10 @@ export async function getEvents(): Promise<Event[]> {
       const parsedDate = createSafeDate(dateStr);
       if (!parsedDate || isNaN(parsedDate.getTime())) continue;
 
+      // ▼ 追加：チェックボックスの値（TRUE）をbooleanに変換
+      const isPartnerVal = safeGet(idxIsPartner).trim().toUpperCase();
+      const isPartner = isPartnerVal === "TRUE" || isPartnerVal === "1";
+
       events.push({
         id: id,
         title: title,
@@ -127,7 +135,8 @@ export async function getEvents(): Promise<Event[]> {
         description: safeGet(idxDescription),
         speaker: safeGet(idxSpeaker),
         organizer: safeGet(idxOrganizer),
-        link: safeGet(idxLink)
+        link: safeGet(idxLink),
+        isPartner: isPartner // 追加
       });
     }
     return events;
