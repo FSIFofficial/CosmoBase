@@ -12,9 +12,9 @@ export default function EventCalendar({ events }: { events: Event[] }) {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
   const [typeFilter, setTypeFilter] = useState<string>("all")
   const [difficultyFilter, setDifficultyFilter] = useState<string>("all")
-  const [hostFilter, setHostFilter] = useState<"all" | "host" | "external">("all")
+  // ▼ フィルターに「partner」を追加
+  const [hostFilter, setHostFilter] = useState<"all" | "host" | "partner" | "external">("all")
   
-  // ▼ 月を変えても「本日」の枠が残るバグの修正用
   const [today, setToday] = useState<Date | null>(null);
 
   useEffect(() => {
@@ -45,7 +45,6 @@ export default function EventCalendar({ events }: { events: Event[] }) {
       .filter((e) => !isNaN(e.date.getTime()));
   }, [events]);
 
-  // ▼ 種別(Type)の動的リスト生成（「その他」は最後に並べ替える）
   const eventTypes = useMemo(() => {
     const types = Array.from(new Set(safeEvents.map(e => e.type).filter(Boolean)));
     return types.sort((a, b) => {
@@ -57,14 +56,18 @@ export default function EventCalendar({ events }: { events: Event[] }) {
 
   const filteredEvents = safeEvents.filter((event) => {
     const isHost = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
+    // ▼ organizer に「パートナー」という文字が含まれていればパートナーイベントと判定
+    const isPartner = event.organizer && event.organizer.includes("パートナー");
+    const isExternal = !isHost && !isPartner;
+
     const hostMatch = 
       hostFilter === "all" || 
       (hostFilter === "host" && isHost) || 
-      (hostFilter === "external" && !isHost);
+      (hostFilter === "partner" && isPartner) || 
+      (hostFilter === "external" && isExternal);
     
     const typeMatch = typeFilter === "all" || event.type === typeFilter
     
-    // ▼ 難易度の絞り込み判定
     let difficultyMatch = true;
     if (difficultyFilter !== "all") {
       if (event.difficulty === "全レベル") {
@@ -85,18 +88,27 @@ export default function EventCalendar({ events }: { events: Event[] }) {
 
   const getEventsForDay = (date: Date | null) => {
     if (!date) return []
-    const dayEvents = filteredEvents.filter(
-      (event) =>
-        event.date.getDate() === date.getDate() &&
-        event.date.getMonth() === date.getMonth() &&
-        event.date.getFullYear() === date.getFullYear(),
-    );
+    
+    // ▼ カレンダーの日付を「その日の0時0分」として比較用の数値にする
+    const checkDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
 
-    // 主催イベントを上に表示
+    const dayEvents = filteredEvents.filter((event) => {
+      // イベントの開始日
+      const eventStart = new Date(event.date.getFullYear(), event.date.getMonth(), event.date.getDate()).getTime();
+      // イベントの終了日（未入力なら開始日と同じにする）
+      const eventEnd = event.endDate 
+        ? new Date(event.endDate.getFullYear(), event.endDate.getMonth(), event.endDate.getDate()).getTime()
+        : eventStart;
+
+      // ▼ 複数日判定：カレンダーの日付が「開始日」と「終了日」の間にあるか？
+      return checkDate >= eventStart && checkDate <= eventEnd;
+    });
+
+    // 主催イベント、次にパートナーイベントを上に表示
     return dayEvents.sort((a, b) => {
-      const aIsHost = a.organizer && (a.organizer.includes("Cosmo Base") || a.organizer.includes("CosmoBase")) ? 1 : 0;
-      const bIsHost = b.organizer && (b.organizer.includes("Cosmo Base") || b.organizer.includes("CosmoBase")) ? 1 : 0;
-      return bIsHost - aIsHost; 
+      const aScore = (a.organizer && a.organizer.includes("Cosmo Base")) ? 2 : (a.organizer && a.organizer.includes("パートナー")) ? 1 : 0;
+      const bScore = (b.organizer && b.organizer.includes("Cosmo Base")) ? 2 : (b.organizer && b.organizer.includes("パートナー")) ? 1 : 0;
+      return bScore - aScore; 
     });
   }
 
@@ -123,7 +135,6 @@ export default function EventCalendar({ events }: { events: Event[] }) {
               </SelectTrigger>
               <SelectContent className="bg-[#000033] border-[#83CBEB]/30 max-h-[300px]">
                 <SelectItem value="all" className="text-[#EEEEFF]">すべて</SelectItem>
-                {/* スプレッドシートから自動取得した種別を表示 */}
                 {eventTypes.map(type => (
                   <SelectItem key={type} value={type} className="text-[#EEEEFF]">{type}</SelectItem>
                 ))}
@@ -163,6 +174,14 @@ export default function EventCalendar({ events }: { events: Event[] }) {
             }`}
           >
             主催イベント
+          </button>
+          <button
+            onClick={() => setHostFilter("partner")}
+            className={`px-4 py-2 rounded-md text-sm font-sans transition-colors ${
+              hostFilter === "partner" ? "bg-[#83CBEB] text-[#000033] font-bold" : "text-[#EEEEFF] hover:bg-[#83CBEB]/10"
+            }`}
+          >
+            パートナー
           </button>
           <button
             onClick={() => setHostFilter("external")}
@@ -243,16 +262,20 @@ export default function EventCalendar({ events }: { events: Event[] }) {
                     <div className="space-y-1">
                       {events.map((event) => {
                         const isHostEvent = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
+                        const isPartnerEvent = event.organizer && event.organizer.includes("パートナー");
+                        
+                        let buttonClass = "bg-[#83CBEB]/20 hover:bg-[#83CBEB]/40 text-[#EEEEFF]"; // 外部イベント
+                        if (isHostEvent) {
+                          buttonClass = "bg-[#83CBEB]/50 hover:bg-[#83CBEB]/70 border border-[#83CBEB]/30 text-[#EEEEFF]"; // 主催イベント
+                        } else if (isPartnerEvent) {
+                          buttonClass = "bg-[#EEEEBB]/40 hover:bg-[#EEEEBB]/60 border border-[#EEEEBB]/30 text-[#EEEEFF]"; // パートナー（黄色アクセント）
+                        }
                         
                         return (
                           <button
                             key={event.id}
                             onClick={() => setSelectedEvent(event)}
-                            className={`w-full text-left text-xs p-1 rounded text-[#EEEEFF] transition-colors ${
-                              isHostEvent 
-                                ? "bg-[#83CBEB]/50 hover:bg-[#83CBEB]/70 border border-[#83CBEB]/30" 
-                                : "bg-[#83CBEB]/20 hover:bg-[#83CBEB]/40" 
-                            }`}
+                            className={`w-full text-left text-xs p-1 rounded transition-colors ${buttonClass}`}
                           >
                             {event.title}
                           </button>
@@ -273,9 +296,11 @@ export default function EventCalendar({ events }: { events: Event[] }) {
             <div className="p-6">
               <div className="flex justify-between items-start mb-4">
                 <div>
-                <div className="mb-3">
+                  <div className="mb-3">
                     {selectedEvent.organizer && (selectedEvent.organizer.includes("Cosmo Base") || selectedEvent.organizer.includes("CosmoBase")) ? (
                       <Badge className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]">主催イベント</Badge>
+                    ) : selectedEvent.organizer && selectedEvent.organizer.includes("パートナー") ? (
+                      <Badge className="bg-[#EEEEBB] text-[#000033] hover:bg-[#EEEEBB]">パートナーイベント</Badge>
                     ) : (
                       <Badge className="bg-transparent border border-[#EEEEFF]/50 text-[#EEEEFF] hover:bg-transparent">外部イベント</Badge>
                     )}
@@ -296,8 +321,11 @@ export default function EventCalendar({ events }: { events: Event[] }) {
                 <div className="flex items-center gap-2 text-[#EEEEFF]">
                   <Calendar className="h-5 w-5 text-[#83CBEB]" />
                   <span className="font-sans">
-                    {selectedEvent.date.getFullYear()}年{selectedEvent.date.getMonth() + 1}月
-                    {selectedEvent.date.getDate()}日 {selectedEvent.time}
+                    {selectedEvent.date.getFullYear()}年{selectedEvent.date.getMonth() + 1}月{selectedEvent.date.getDate()}日
+                    {selectedEvent.endDate && selectedEvent.endDate.getTime() !== selectedEvent.date.getTime() && (
+                      <> ～ {selectedEvent.endDate.getFullYear()}年{selectedEvent.endDate.getMonth() + 1}月{selectedEvent.endDate.getDate()}日</>
+                    )}
+                    {" "}{selectedEvent.time}
                   </span>
                 </div>
 
