@@ -5,7 +5,8 @@ export interface Event {
   endDate?: Date | null;
   time: string;
   location: string;
-  latlng?: string;
+  lat?: string;
+  lng?: string;
   type: string;
   difficulty: string;
   capacity: number;
@@ -15,7 +16,6 @@ export interface Event {
   link?: string;
 }
 
-// 説明文などに含まれる「改行」や「カンマ」を安全に処理するCSVパーサー
 function parseCSV(text: string): string[][] {
   const result: string[][] = [];
   let row: string[] = [];
@@ -29,7 +29,7 @@ function parseCSV(text: string): string[][] {
     if (char === '"') {
       if (inQuotes && nextChar === '"') {
         cell += '"';
-        i++; // エスケープされたダブルクォーテーション
+        i++;
       } else {
         inQuotes = !inQuotes;
       }
@@ -53,7 +53,6 @@ function parseCSV(text: string): string[][] {
   return result;
 }
 
-// 🌟 日付の時差ズレを防ぐための安全な日付変換関数
 function createSafeDate(dateStr: string): Date | null {
   if (!dateStr) return null;
   const parts = dateStr.split(/[-/]/);
@@ -61,14 +60,12 @@ function createSafeDate(dateStr: string): Date | null {
     const year = parseInt(parts[0], 10);
     const month = parseInt(parts[1], 10);
     const day = parseInt(parts[2], 10);
-    // 正午（T12:00:00+09:00）にしておくことで、世界中どこから見ても日付がズレにくくなります
     return new Date(`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}T12:00:00+09:00`);
   }
   return new Date(dateStr);
 }
 
 export async function getEvents(): Promise<Event[]> {
-  // ▼ 新しいCSVのURLに更新しました
   const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTJU_Qq6TICMIAhDidiH2BYlBcZBvS_Uwy4wth9tT-02RYWkVP_AufdGo0PMAbAyrHKeZrE1x0laETY/pub?gid=0&single=true&output=csv";
 
   try {
@@ -89,7 +86,9 @@ export async function getEvents(): Promise<Event[]> {
     const idxEndDate = getIdx("enddate");
     const idxTime = getIdx("time");
     const idxLocation = getIdx("location");
-    const idxLatlng = getIdx("latlng");
+    // lat と lng に分かれました
+    const idxLat = getIdx("lat");
+    const idxLng = getIdx("lng");
     const idxType = getIdx("type");
     const idxDifficulty = getIdx("difficulty");
     const idxCapacity = getIdx("capacity");
@@ -120,7 +119,8 @@ export async function getEvents(): Promise<Event[]> {
         endDate: createSafeDate(safeGet(idxEndDate)),
         time: safeGet(idxTime),
         location: safeGet(idxLocation),
-        latlng: safeGet(idxLatlng),
+        lat: safeGet(idxLat),
+        lng: safeGet(idxLng),
         type: safeGet(idxType),
         difficulty: safeGet(idxDifficulty),
         capacity: Number(safeGet(idxCapacity)) || 0,
