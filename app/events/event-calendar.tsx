@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo, useEffect } from "react"
-import { ChevronLeft, ChevronRight, Calendar, MapPin, Users, Award, X } from "lucide-react"
+import { ChevronLeft, ChevronRight, Calendar, MapPin, Users, Award, X, List, Bookmark } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -10,6 +10,8 @@ import { Event } from "@/lib/events"
 export default function EventCalendar({ events }: { events: Event[] }) {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
+  const [dayModalEvents, setDayModalEvents] = useState<{ date: Date; events: Event[] } | null>(null)
+  
   const [typeFilter, setTypeFilter] = useState<string>("all")
   const [difficultyFilter, setDifficultyFilter] = useState<string>("all")
   const [hostFilter, setHostFilter] = useState<"all" | "host" | "partner" | "external">("all")
@@ -55,7 +57,6 @@ export default function EventCalendar({ events }: { events: Event[] }) {
 
   const filteredEvents = safeEvents.filter((event) => {
     const isHost = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
-    // ▼ フラグを利用して判定
     const isPartner = event.isPartner;
     const isExternal = !isHost && !isPartner;
 
@@ -85,12 +86,39 @@ export default function EventCalendar({ events }: { events: Event[] }) {
     return hostMatch && typeMatch && difficultyMatch
   })
 
+  // ▼▼▼ 長期イベント（1週間以上）と短期イベントを分ける処理 ▼▼▼
+  const SEVEN_DAYS_MS = 6 * 24 * 60 * 60 * 1000; // 6日以上の差（=7日間以上開催）を長期とみなす
+
+  const shortTermEvents = filteredEvents.filter(e => {
+    if (!e.endDate) return true;
+    return (e.endDate.getTime() - e.date.getTime()) < SEVEN_DAYS_MS;
+  });
+
+  const longTermEvents = filteredEvents.filter(e => {
+    if (!e.endDate) return false;
+    return (e.endDate.getTime() - e.date.getTime()) >= SEVEN_DAYS_MS;
+  });
+
+  // 今月のカレンダーに重なっている長期イベントのみを抽出
+  const currentMonthLongTermEvents = longTermEvents.filter(event => {
+    const monthStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getTime();
+    const monthEnd = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0, 23, 59, 59).getTime();
+    const eventStart = event.date.getTime();
+    const eventEnd = event.endDate!.getTime();
+    return eventStart <= monthEnd && eventEnd >= monthStart;
+  }).sort((a, b) => {
+    const aScore = (a.organizer && (a.organizer.includes("Cosmo Base") || a.organizer.includes("CosmoBase"))) ? 2 : a.isPartner ? 1 : 0;
+    const bScore = (b.organizer && (b.organizer.includes("Cosmo Base") || b.organizer.includes("CosmoBase"))) ? 2 : b.isPartner ? 1 : 0;
+    return bScore - aScore; 
+  });
+  // ▲▲▲ 分割処理ここまで ▲▲▲
+
   const getEventsForDay = (date: Date | null) => {
     if (!date) return []
-    
     const checkDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
 
-    const dayEvents = filteredEvents.filter((event) => {
+    // カレンダーのマスには「短期イベント（shortTermEvents）」のみを表示する
+    const dayEvents = shortTermEvents.filter((event) => {
       const eventStart = new Date(event.date.getFullYear(), event.date.getMonth(), event.date.getDate()).getTime();
       const eventEnd = event.endDate 
         ? new Date(event.endDate.getFullYear(), event.endDate.getMonth(), event.endDate.getDate()).getTime()
@@ -99,7 +127,6 @@ export default function EventCalendar({ events }: { events: Event[] }) {
       return checkDate >= eventStart && checkDate <= eventEnd;
     });
 
-    // ▼ フラグを利用して並び替え（1位:主催, 2位:パートナー, 3位:その他）
     return dayEvents.sort((a, b) => {
       const aScore = (a.organizer && (a.organizer.includes("Cosmo Base") || a.organizer.includes("CosmoBase"))) ? 2 : a.isPartner ? 1 : 0;
       const bScore = (b.organizer && (b.organizer.includes("Cosmo Base") || b.organizer.includes("CosmoBase"))) ? 2 : b.isPartner ? 1 : 0;
@@ -116,11 +143,11 @@ export default function EventCalendar({ events }: { events: Event[] }) {
   }
 
   const weekDays = ["日", "月", "火", "水", "木", "金", "土"]
+  const MAX_EVENTS_PER_DAY = 3;
 
   return (
     <>
       <div className="mb-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-        
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-2">
             <span className="text-[#EEEEFF] font-sans text-sm">種別:</span>
@@ -234,10 +261,14 @@ export default function EventCalendar({ events }: { events: Event[] }) {
               day.getMonth() === today.getMonth() &&
               day.getFullYear() === today.getFullYear()
 
+            const showMore = events.length > MAX_EVENTS_PER_DAY;
+            const displayEvents = showMore ? events.slice(0, MAX_EVENTS_PER_DAY - 1) : events;
+            const moreCount = events.length - displayEvents.length;
+
             return (
               <div
                 key={index}
-                className={`min-h-[100px] p-2 rounded border ${
+                className={`min-h-[120px] p-2 rounded border flex flex-col ${
                   day
                     ? isToday
                       ? "bg-[#83CBEB]/20 border-[#83CBEB]"
@@ -254,29 +285,38 @@ export default function EventCalendar({ events }: { events: Event[] }) {
                     >
                       {day.getDate()}
                     </div>
-                    <div className="space-y-1">
-                      {events.map((event) => {
+                    <div className="space-y-1 flex-grow">
+                      {displayEvents.map((event) => {
                         const isHostEvent = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
-                        // ▼ フラグを利用して判定
                         const isPartnerEvent = event.isPartner;
                         
-                        let buttonClass = "bg-[#83CBEB]/20 hover:bg-[#83CBEB]/40 text-[#EEEEFF]"; // 外部イベント
+                        let buttonClass = "bg-[#83CBEB]/20 hover:bg-[#83CBEB]/40 text-[#EEEEFF]"; 
                         if (isHostEvent) {
-                          buttonClass = "bg-[#83CBEB]/50 hover:bg-[#83CBEB]/70 border border-[#83CBEB]/30 text-[#EEEEFF]"; // 主催イベント
+                          buttonClass = "bg-[#83CBEB]/50 hover:bg-[#83CBEB]/70 border border-[#83CBEB]/30 text-[#EEEEFF]"; 
                         } else if (isPartnerEvent) {
-                          buttonClass = "bg-[#EEEEBB]/40 hover:bg-[#EEEEBB]/60 border border-[#EEEEBB]/30 text-[#EEEEFF]"; // パートナー（黄色アクセント）
+                          buttonClass = "bg-[#EEEEBB]/40 hover:bg-[#EEEEBB]/60 border border-[#EEEEBB]/30 text-[#EEEEFF]"; 
                         }
                         
                         return (
                           <button
                             key={event.id}
                             onClick={() => setSelectedEvent(event)}
-                            className={`w-full text-left text-xs p-1 rounded transition-colors ${buttonClass}`}
+                            className={`w-full text-left text-xs p-1.5 rounded transition-colors truncate ${buttonClass}`}
+                            title={event.title}
                           >
                             {event.title}
                           </button>
                         );
                       })}
+                      
+                      {showMore && (
+                        <button
+                          onClick={() => setDayModalEvents({ date: day, events })}
+                          className="w-full text-center text-xs p-1 rounded font-bold text-[#83CBEB] hover:bg-[#83CBEB]/20 transition-colors mt-1"
+                        >
+                          ＋他 {moreCount} 件
+                        </button>
+                      )}
                     </div>
                   </>
                 )}
@@ -284,8 +324,129 @@ export default function EventCalendar({ events }: { events: Event[] }) {
             )
           })}
         </div>
+
+        {/* ▼▼▼ 長期イベントをカレンダーの下に別で表示 ▼▼▼ */}
+        {currentMonthLongTermEvents.length > 0 && (
+          <div className="mt-12 pt-8 border-t border-[#83CBEB]/30">
+            <h3 className="text-xl font-serif text-[#EEEEFF] mb-6 flex items-center gap-2">
+              <Bookmark className="w-5 h-5 text-[#83CBEB]" />
+              今月の長期開催イベント（展示・企画など）
+            </h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              {currentMonthLongTermEvents.map((event) => {
+                const isHostEvent = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
+                const isPartnerEvent = event.isPartner;
+                
+                let cardClass = "bg-[#83CBEB]/10 hover:bg-[#83CBEB]/20 border border-[#83CBEB]/20";
+                if (isHostEvent) {
+                  cardClass = "bg-[#83CBEB]/30 hover:bg-[#83CBEB]/40 border border-[#83CBEB]/50";
+                } else if (isPartnerEvent) {
+                  cardClass = "bg-[#EEEEBB]/20 hover:bg-[#EEEEBB]/30 border border-[#EEEEBB]/40";
+                }
+
+                return (
+                  <button
+                    key={event.id}
+                    onClick={() => setSelectedEvent(event)}
+                    className={`text-left p-4 rounded-lg transition-colors flex flex-col gap-2 ${cardClass}`}
+                  >
+                    <div className="flex flex-wrap gap-2">
+                      {isHostEvent ? (
+                        <Badge className="bg-[#83CBEB] text-[#000033] text-[10px] px-2 py-0">主催イベント</Badge>
+                      ) : isPartnerEvent ? (
+                        <Badge className="bg-[#EEEEBB] text-[#000033] text-[10px] px-2 py-0">パートナー</Badge>
+                      ) : (
+                        <Badge className="bg-transparent border border-[#EEEEFF]/30 text-[#EEEEFF] text-[10px] px-2 py-0">外部イベント</Badge>
+                      )}
+                      <Badge className="bg-[#83CBEB]/20 border border-[#83CBEB]/30 text-[#EEEEFF] text-[10px] px-2 py-0">
+                        {event.type}
+                      </Badge>
+                    </div>
+                    <h4 className="text-[#EEEEFF] font-medium leading-tight">{event.title}</h4>
+                    <div className="text-[#EEEEFF]/70 text-xs flex items-center gap-3 mt-1">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3 h-3" />
+                        {event.date.getMonth() + 1}月{event.date.getDate()}日 〜 {event.endDate!.getMonth() + 1}月{event.endDate!.getDate()}日
+                      </span>
+                      {event.location && (
+                        <span className="flex items-center gap-1 truncate">
+                          <MapPin className="w-3 h-3" />
+                          {event.location}
+                        </span>
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+        {/* ▲▲▲ 長期イベント表示ここまで ▲▲▲ */}
       </div>
 
+      {/* ▼ 1日のイベント一覧モーダル ▼ */}
+      {dayModalEvents && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-40 p-4">
+          <div className="bg-[#000033] border border-[#83CBEB]/30 rounded-lg max-w-md w-full max-h-[80vh] flex flex-col shadow-2xl">
+            <div className="p-4 border-b border-[#83CBEB]/20 flex justify-between items-center bg-[#83CBEB]/5 rounded-t-lg">
+              <h2 className="text-xl font-serif text-[#EEEEFF] flex items-center gap-2">
+                <List className="h-5 w-5 text-[#83CBEB]" />
+                {dayModalEvents.date.getMonth() + 1}月{dayModalEvents.date.getDate()}日のイベント
+              </h2>
+              <Button
+                onClick={() => setDayModalEvents(null)}
+                variant="ghost"
+                size="icon"
+                className="text-[#EEEEFF] hover:text-[#83CBEB]"
+              >
+                <X className="h-5 w-5" />
+              </Button>
+            </div>
+            
+            <div className="p-4 overflow-y-auto space-y-3">
+              {dayModalEvents.events.map((event) => {
+                const isHostEvent = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
+                const isPartnerEvent = event.isPartner;
+                
+                let cardClass = "bg-[#83CBEB]/10 hover:bg-[#83CBEB]/20 border border-[#83CBEB]/20";
+                if (isHostEvent) {
+                  cardClass = "bg-[#83CBEB]/30 hover:bg-[#83CBEB]/40 border border-[#83CBEB]/50";
+                } else if (isPartnerEvent) {
+                  cardClass = "bg-[#EEEEBB]/20 hover:bg-[#EEEEBB]/30 border border-[#EEEEBB]/40";
+                }
+
+                return (
+                  <button
+                    key={event.id}
+                    onClick={() => {
+                      setSelectedEvent(event);
+                      setDayModalEvents(null); 
+                    }}
+                    className={`w-full text-left p-3 rounded-lg transition-colors flex flex-col gap-2 ${cardClass}`}
+                  >
+                    <div className="flex gap-2">
+                      {isHostEvent ? (
+                        <Badge className="bg-[#83CBEB] text-[#000033] text-[10px] px-1 py-0 h-4">主催</Badge>
+                      ) : isPartnerEvent ? (
+                        <Badge className="bg-[#EEEEBB] text-[#000033] text-[10px] px-1 py-0 h-4">パートナー</Badge>
+                      ) : null}
+                      <Badge className="bg-transparent border border-[#EEEEFF]/30 text-[#EEEEFF] text-[10px] px-1 py-0 h-4">
+                        {event.type}
+                      </Badge>
+                    </div>
+                    <span className="text-[#EEEEFF] text-sm font-medium">{event.title}</span>
+                    <span className="text-[#EEEEFF]/60 text-xs flex items-center gap-1">
+                      <Calendar className="w-3 h-3" /> {event.time}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ▼ イベント詳細モーダル ▼ */}
       {selectedEvent && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
           <div className="bg-[#000033] border border-[#83CBEB]/30 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
@@ -293,7 +454,6 @@ export default function EventCalendar({ events }: { events: Event[] }) {
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <div className="mb-3">
-                    {/* ▼ モーダル内のバッジもフラグで判定 ▼ */}
                     {selectedEvent.organizer && (selectedEvent.organizer.includes("Cosmo Base") || selectedEvent.organizer.includes("CosmoBase")) ? (
                       <Badge className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]">主催イベント</Badge>
                     ) : selectedEvent.isPartner ? (
