@@ -1,31 +1,27 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { Building2, Users, Globe, Twitter, Linkedin, Facebook, Instagram, Mail, ChevronLeft } from "lucide-react"
+import { Building2, Users, Globe, ChevronLeft } from "lucide-react"
 import Image from "next/image"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-// ▼ データ取得用の関数をインポート（このあと作ります）
 import { getPartners, getPartnerById } from "@/lib/partners"
 import type { Metadata } from "next"
 
-// Next.js 16対応: paramsはPromise
 type Props = {
   params: Promise<{ id: string }>
 }
 
 export async function generateStaticParams() {
-  const partners = getPartners()
+  const partners = await getPartners()
   return partners.map((partner) => ({
     id: partner.id,
   }))
 }
 
-// ▼ ここを修正しました！
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params
   
-  // IDを使ってパートナーを探す（ニュースではなくパートナー！）
-  const partner = getPartnerById(id)
+  const partner = await getPartnerById(id)
 
   if (!partner) {
     return {
@@ -37,7 +33,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: partner.name,
     description: partner.description,
     
-    // OGP設定
     openGraph: {
       title: `${partner.name} | パートナー紹介`,
       description: partner.description,
@@ -48,7 +43,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PartnerDetailPage({ params }: Props) {
   const { id } = await params
-  const partner = getPartnerById(id)
+  // ▼ await を追加
+  const partner = await getPartnerById(id)
 
   if (!partner) {
     notFound()
@@ -79,7 +75,6 @@ export default async function PartnerDetailPage({ params }: Props) {
               {/* Logo */}
               <div className="flex-shrink-0">
                 <div className="flex h-32 w-32 items-center justify-center rounded-lg bg-[#EEEEFF]/5 border border-[#83CBEB]/30">
-                  {/* 画像がない場合のフォールバックを追加 */}
                   {partner.logo ? (
                     <Image
                       src={partner.logo}
@@ -148,13 +143,12 @@ export default async function PartnerDetailPage({ params }: Props) {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 rounded-lg bg-[#000033]/50 border border-[#83CBEB]/30 px-4 py-2 text-sm font-medium text-[#EEEEFF] hover:bg-[#83CBEB]/10 transition-colors"
                 >
-                  <svg viewBox="0 0 24 24"  fill="#83CBEB"  className="h-4 w-4" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="#83CBEB" className="h-4 w-4" aria-hidden="true">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
                   {partner.twitter}
                 </a>
               )}
-              {/* その他のSNSリンク... */}
             </div>
           </div>
         </section>
@@ -163,39 +157,29 @@ export default async function PartnerDetailPage({ params }: Props) {
         <section className="py-12">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <h2 className="mb-6 font-serif text-2xl font-bold text-[#EEEEFF]">概要</h2>
-            <p className="text-lg leading-relaxed text-[#EEEEFF]/80">{partner.detailedDescription}</p>
+            <p className="text-lg leading-relaxed text-[#EEEEFF]/80 whitespace-pre-wrap">{partner.detailedDescription}</p>
           </div>
         </section>
 
-        {/* Activities */}
-        <section className="border-t border-[#83CBEB]/20 bg-[#000033]/30 py-12">
-          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <h2 className="mb-6 font-serif text-2xl font-bold text-[#EEEEFF]">主な活動内容</h2>
-            <ul className="space-y-3">
-              {partner.activities.map((activity, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <div className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-[#83CBEB]" />
-                  <span className="text-lg text-[#EEEEFF]/80">{activity}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
+        {/* Activities (箇条書きリストを廃止し、改行保持のテキスト表示に変更) */}
+        {partner.activities && (
+          <section className="border-t border-[#83CBEB]/20 bg-[#000033]/30 py-12">
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+              <h2 className="mb-6 font-serif text-2xl font-bold text-[#EEEEFF]">主な活動内容</h2>
+              <p className="text-lg leading-relaxed text-[#EEEEFF]/80 whitespace-pre-wrap">{partner.activities}</p>
+            </div>
+          </section>
+        )}
 
-        {/* Achievements */}
-        <section className="py-12">
-          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <h2 className="mb-6 font-serif text-2xl font-bold text-[#EEEEFF]">主な実績</h2>
-            <ul className="space-y-3">
-              {partner.achievements.map((achievement, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <div className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-[#EEEEBB]" />
-                  <span className="text-lg text-[#EEEEFF]/80">{achievement}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
+        {/* Achievements (箇条書きリストを廃止し、改行保持のテキスト表示に変更) */}
+        {partner.achievements && (
+          <section className="py-12">
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+              <h2 className="mb-6 font-serif text-2xl font-bold text-[#EEEEFF]">主な実績</h2>
+              <p className="text-lg leading-relaxed text-[#EEEEFF]/80 whitespace-pre-wrap">{partner.achievements}</p>
+            </div>
+          </section>
+        )}
       </main>
 
       <Footer />
