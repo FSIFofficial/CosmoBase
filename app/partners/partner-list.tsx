@@ -4,13 +4,12 @@ import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Building2, Users, Search, Globe, Twitter } from "lucide-react"
+import { Building2, Users, Search, Globe, Facebook, Instagram } from "lucide-react"
 import Image from "next/image"
 import { Partner } from "@/lib/partners"
 
 type PartnerType = "company" | "organization"
 
-// 親(page.tsx)からデータを受け取る
 export default function PartnerList({ initialPartners }: { initialPartners: Partner[] }) {
   const [searchQuery, setSearchQuery] = useState("")
   const [filterType, setFilterType] = useState<"all" | PartnerType>("all")
@@ -89,10 +88,10 @@ export default function PartnerList({ initialPartners }: { initialPartners: Part
               <Link
                 key={partner.id}
                 href={`/partners/${partner.id}`}
-                className="group relative overflow-hidden rounded-lg border border-[#83CBEB]/30 bg-[#000033]/30 p-6 transition-all hover:border-[#83CBEB] hover:bg-[#000033]/50"
+                className="group relative overflow-hidden rounded-lg border border-[#83CBEB]/30 bg-[#000033]/30 p-6 transition-all hover:border-[#83CBEB] hover:bg-[#000033]/50 flex flex-col"
               >
                 {/* Type Badge */}
-                <div className="absolute right-4 top-4">
+                <div className="absolute right-4 top-4 z-10">
                   <div
                     className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${
                       partner.type === "company" ? "bg-[#83CBEB]/20 text-[#83CBEB]" : "bg-[#EEEEBB]/20 text-[#EEEEBB]"
@@ -112,40 +111,50 @@ export default function PartnerList({ initialPartners }: { initialPartners: Part
                   </div>
                 </div>
 
-                {/* Logo */}
-                <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-lg bg-[#EEEEFF]/5">
+                {/* ▼ ロゴ画像：縦長・横長対応 (h-24 で高さを固定し、幅はフルに。object-contain で見切れ防止) ▼ */}
+                <div className="mb-4 flex h-24 w-full items-center justify-center rounded-lg bg-[#EEEEFF]/5 p-3 border border-[#83CBEB]/10">
                   <Image
                     src={partner.logo || "/placeholder.svg"}
                     alt={partner.name}
-                    width={80}
-                    height={80}
-                    className="h-16 w-16 object-contain"
+                    width={300}
+                    height={300}
+                    className="h-full w-full object-contain"
                   />
                 </div>
 
                 {/* Content */}
-                <h3 className="mb-2 font-serif text-xl font-bold text-[#EEEEFF] group-hover:text-[#83CBEB] transition-colors">
-                  {partner.name}
-                </h3>
-                <p className="mb-3 text-sm text-[#EEEEFF]/70 line-clamp-2">{partner.description}</p>
-                <div className="inline-block rounded-full bg-[#83CBEB]/10 px-3 py-1 text-xs font-medium text-[#83CBEB]">
-                  {partner.category}
+                <div className="flex-grow">
+                  <h3 className="mb-2 font-serif text-xl font-bold text-[#EEEEFF] group-hover:text-[#83CBEB] transition-colors">
+                    {partner.name}
+                  </h3>
+                  <p className="mb-3 text-sm text-[#EEEEFF]/70 line-clamp-2">{partner.description}</p>
+                  <div className="inline-block rounded-full bg-[#83CBEB]/10 px-3 py-1 text-xs font-medium text-[#83CBEB]">
+                    {partner.category}
+                  </div>
                 </div>
 
-                {/* Links */}
-                <div className="mt-4 flex items-center gap-3 border-t border-[#83CBEB]/20 pt-4">
+                {/* Links (SNSアイコンをコンパクトに配置) */}
+                <div className="mt-4 flex flex-wrap items-center gap-4 border-t border-[#83CBEB]/20 pt-4">
                   {partner.website && (
-                    <div className="flex items-center gap-1.5 text-xs text-[#EEEEFF]/60">
-                      <Globe className="h-4 w-4" />
-                      <span>HP</span>
+                    <div className="flex items-center gap-1 text-xs text-[#EEEEFF]/60" title="公式サイト">
+                      <Globe className="h-4 w-4" /> HP
                     </div>
                   )}
                   {partner.twitter && (
-                    <div className="flex items-center gap-1.5 text-xs text-[#EEEEFF]/60">
-                      <svg viewBox="0 0 24 24"  fill="currentColor"  className="h-4 w-4" aria-hidden="true">
+                    <div className="flex items-center gap-1 text-xs text-[#EEEEFF]/60" title="X (Twitter)">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
                         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                       </svg>
-                      <span>{partner.twitter}</span>
+                    </div>
+                  )}
+                  {partner.facebook && (
+                    <div className="flex items-center gap-1 text-xs text-[#EEEEFF]/60" title="Facebook">
+                      <Facebook className="h-4 w-4" />
+                    </div>
+                  )}
+                  {partner.instagram && (
+                    <div className="flex items-center gap-1 text-xs text-[#EEEEFF]/60" title="Instagram">
+                      <Instagram className="h-4 w-4" />
                     </div>
                   )}
                 </div>
@@ -162,5 +171,4 @@ export default function PartnerList({ initialPartners }: { initialPartners: Part
       </section>
     </>
   )
-
 }
