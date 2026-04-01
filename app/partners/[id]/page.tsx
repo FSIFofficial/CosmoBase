@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { Building2, Users, Globe, ChevronLeft } from "lucide-react"
+import { Building2, Users, Globe, ChevronLeft, Facebook, Instagram } from "lucide-react"
 import Image from "next/image"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -20,7 +20,6 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params
-  
   const partner = await getPartnerById(id)
 
   if (!partner) {
@@ -32,7 +31,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: partner.name,
     description: partner.description,
-    
     openGraph: {
       title: `${partner.name} | パートナー紹介`,
       description: partner.description,
@@ -41,9 +39,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+// URLを綺麗にリンク化するためのヘルパー関数
+function getSocialUrl(platform: 'twitter' | 'facebook' | 'instagram', value: string) {
+  if (value.startsWith('http')) return value;
+  const cleanValue = value.replace("@", "");
+  switch (platform) {
+    case 'twitter': return `https://x.com/${cleanValue}`;
+    case 'facebook': return `https://facebook.com/${cleanValue}`;
+    case 'instagram': return `https://instagram.com/${cleanValue}`;
+  }
+}
+
 export default async function PartnerDetailPage({ params }: Props) {
   const { id } = await params
-  // ▼ await を追加
   const partner = await getPartnerById(id)
 
   if (!partner) {
@@ -72,16 +80,17 @@ export default async function PartnerDetailPage({ params }: Props) {
         <section className="py-12 sm:py-16">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col gap-8 sm:flex-row sm:items-start">
-              {/* Logo */}
-              <div className="flex-shrink-0">
-                <div className="flex h-32 w-32 items-center justify-center rounded-lg bg-[#EEEEFF]/5 border border-[#83CBEB]/30">
+              
+              {/* ▼ ロゴ画像：縦長・横長対応 (縦横に余裕を持たせたコンテナ＋object-contain) ▼ */}
+              <div className="flex-shrink-0 w-full sm:w-auto">
+                <div className="flex h-40 w-full sm:w-56 p-4 items-center justify-center rounded-lg bg-[#EEEEFF]/5 border border-[#83CBEB]/30">
                   {partner.logo ? (
                     <Image
                       src={partner.logo}
                       alt={partner.name}
-                      width={120}
-                      height={120}
-                      className="h-28 w-28 object-contain"
+                      width={400}
+                      height={400}
+                      className="h-full w-full object-contain"
                     />
                   ) : (
                     <span className="text-4xl">🚀</span>
@@ -115,13 +124,15 @@ export default async function PartnerDetailPage({ params }: Props) {
                 </div>
                 <h1 className="mb-3 font-serif text-3xl font-bold text-[#EEEEFF] sm:text-4xl">{partner.name}</h1>
                 <p className="mb-4 text-lg text-[#EEEEFF]/80">{partner.description}</p>
-                <p className="text-sm text-[#EEEEFF]/60">設立: {partner.established}</p>
+                {partner.established && (
+                  <p className="text-sm text-[#EEEEFF]/60">設立: {partner.established}</p>
+                )}
               </div>
             </div>
           </div>
         </section>
 
-        {/* Links Section */}
+        {/* Links Section (各種SNSリンク) */}
         <section className="border-y border-[#83CBEB]/20 bg-[#000033]/30 py-6">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <div className="flex flex-wrap items-center gap-4">
@@ -138,7 +149,7 @@ export default async function PartnerDetailPage({ params }: Props) {
               )}
               {partner.twitter && (
                 <a
-                  href={`https://twitter.com/${partner.twitter.replace("@", "")}`}
+                  href={getSocialUrl('twitter', partner.twitter)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 rounded-lg bg-[#000033]/50 border border-[#83CBEB]/30 px-4 py-2 text-sm font-medium text-[#EEEEFF] hover:bg-[#83CBEB]/10 transition-colors"
@@ -146,7 +157,29 @@ export default async function PartnerDetailPage({ params }: Props) {
                   <svg viewBox="0 0 24 24" fill="#83CBEB" className="h-4 w-4" aria-hidden="true">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
-                  {partner.twitter}
+                  X (Twitter)
+                </a>
+              )}
+              {partner.facebook && (
+                <a
+                  href={getSocialUrl('facebook', partner.facebook)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg bg-[#000033]/50 border border-[#83CBEB]/30 px-4 py-2 text-sm font-medium text-[#EEEEFF] hover:bg-[#83CBEB]/10 transition-colors"
+                >
+                  <Facebook className="h-4 w-4 text-[#83CBEB]" />
+                  Facebook
+                </a>
+              )}
+              {partner.instagram && (
+                <a
+                  href={getSocialUrl('instagram', partner.instagram)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg bg-[#000033]/50 border border-[#83CBEB]/30 px-4 py-2 text-sm font-medium text-[#EEEEFF] hover:bg-[#83CBEB]/10 transition-colors"
+                >
+                  <Instagram className="h-4 w-4 text-[#83CBEB]" />
+                  Instagram
                 </a>
               )}
             </div>
@@ -161,7 +194,7 @@ export default async function PartnerDetailPage({ params }: Props) {
           </div>
         </section>
 
-        {/* Activities (箇条書きリストを廃止し、改行保持のテキスト表示に変更) */}
+        {/* Activities */}
         {partner.activities && (
           <section className="border-t border-[#83CBEB]/20 bg-[#000033]/30 py-12">
             <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -171,7 +204,7 @@ export default async function PartnerDetailPage({ params }: Props) {
           </section>
         )}
 
-        {/* Achievements (箇条書きリストを廃止し、改行保持のテキスト表示に変更) */}
+        {/* Achievements */}
         {partner.achievements && (
           <section className="py-12">
             <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
