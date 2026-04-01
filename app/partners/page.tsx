@@ -3,29 +3,27 @@ import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { getPartners } from "@/lib/partners"
-import PartnerList from "./partner-list" // 作成したクライアントコンポーネント
+import PartnerList from "./partner-list" 
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "パートナー企業・団体", 
   description: "Cosmo Baseと共に宇宙の未来を創るパートナー企業・団体をご紹介します。",
-    // OGPも個別で上書き
   openGraph: {
     title: "パートナー企業・団体 | Cosmo Base",
     description: "Cosmo Baseと共に宇宙の未来を創るパートナー企業・団体をご紹介します。",
   },
 }
 
-export default function PartnersPage() {
-  // サーバーサイドでデータを取得
-  const partners = getPartners();
+// ▼ async を追加
+export default async function PartnersPage() {
+  // ▼ await を追加してサーバーサイドでデータを取得
+  const partners = await getPartners();
 
   return (
     <div className="min-h-screen bg-[#000033]">
-      {/* Header */}
       <Header />
 
-      {/* Hero Section */}
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -39,10 +37,8 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* 検索・一覧部分はクライアントコンポーネントに任せる */}
       <PartnerList initialPartners={partners} />
 
-      {/* Partner Program Section */}
       <section className="border-t border-[#83CBEB]/20 bg-gradient-to-br from-[#83CBEB]/5 to-[#EEEEBB]/5 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -106,7 +102,6 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* Footer */}
       <Footer />
     </div>
   )
