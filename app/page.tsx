@@ -172,16 +172,17 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-       <section className="py-20 bg-[#000033]/50">
+      <section className="py-20 bg-[#000033]/50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <img src="/CosmoBase/CB_type.png" alt="宇宙タイプ診断" className="flex w-10 h-full justify-center"/> 
+          <div className="max-w-4xl mx-auto flex flex-col items-center">
+            <img src="/CosmoBase/CB_type.png" alt="宇宙タイプ診断" className="w-48 md:w-64 h-auto object-contain mb-8"/>
             <h2 className="text-3xl md:text-5xl font-serif text-[#EEEEFF] mb-6 text-center text-balance">
               あなたの宇宙タイプは？
             </h2>
-            <p className="text-[#EEEEFF]/90 font-sans leading-relaxed py-6 text-center">30秒の診断で、あなたが宇宙で活躍する未来がわかる</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <p className="text-[#EEEEFF]/90 font-sans leading-relaxed mb-8 text-center">
+              30秒の診断で、あなたが宇宙で活躍する未来がわかる
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center w-full">
               <Link href="/space-type">
                 <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium w-full sm:w-auto">
                   診断してみる
@@ -190,8 +191,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-       </section>
-
+      </section>
+      
       {/* <section className="py-20 bg-gradient-to-b from-[#000033] to-[#000033]/80">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
