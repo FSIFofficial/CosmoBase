@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { SpaceTypeDiagnosis } from "@/components/projects/space-type-diagnosis"
+import { SpaceTypeDiagnosis } from "@/components/space-type-diagnosis"
 
 export const metadata: Metadata = {
   title: "あなたの宇宙タイプは？ | Cosmo Base",
