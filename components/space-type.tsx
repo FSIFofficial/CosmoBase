@@ -185,7 +185,7 @@ function ResultScreen({ answers }: { answers: number[] }) {
             <p className="font-bold text-sm tracking-widest mb-2 text-[#000033]/70">あなたの宇宙タイプは...</p>
             <h1 className="text-2xl md:text-3xl font-serif font-extrabold leading-tight mb-4 text-[#000033]">{data.title}</h1>
             <div className="w-full flex items-center justify-center rounded-xl">
-              <img src={`/opening/${data.img}`} alt={data.title} className="w-full max-w-[450px] h-auto object-contain rounded-xl filter" />
+              <img src={`/CosmoBase/${data.img}`} alt={data.title} className="w-full max-w-[450px] h-auto object-contain rounded-xl filter" />
             </div>
           </div>
 
