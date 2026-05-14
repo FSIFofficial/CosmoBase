@@ -306,14 +306,7 @@ export function SpaceTypeDiagnosis() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="relative py-12 text-center">
-        <div className="mt-8 pt-8 border-t border-border/50 w-full">
-          <p className="text-sm text-muted-foreground">
-            &copy; 2026 Cosmo Base. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </main>
   )
 }
