@@ -111,8 +111,8 @@ export function SpaceTypeDiagnosis() {
                 (item) => (
                   <div
                     key={item}
-                    // ▼ 枠線を追加 ▼
-                    className="glass rounded-full px-6 py-3 flex items-center gap-2 border border-[#000033]"
+                    // ▼ 枠線を #EEEEFF の半透明に変更 ▼
+                    className="glass rounded-full px-6 py-3 flex items-center gap-2 border border-[#EEEEFF]/30"
                   >
                     <CheckCircle className="h-4 w-4 text-cyan" />
                     <span className="text-sm text-foreground">{item}</span>
@@ -150,8 +150,8 @@ export function SpaceTypeDiagnosis() {
                 return (
                   <div
                     key={type.code}
-                    // ▼ 枠線を追加 ▼
-                    className="glass-card rounded-2xl p-6 md:p-8 border border-[#000033]"
+                    // ▼ 枠線を #EEEEFF の半透明に変更 ▼
+                    className="glass-card rounded-2xl p-6 md:p-8 border border-[#EEEEFF]/30"
                   >
                     <div className="flex items-start gap-4 mb-4">
                       <div
@@ -219,8 +219,8 @@ export function SpaceTypeDiagnosis() {
             <div className="flex flex-col items-center max-w-md mx-auto w-full">
               {steps.map((item, index) => (
                 <div key={item.step} className="w-full flex flex-col items-center">
-                  {/* ▼ 枠線を追加 ▼ */}
-                  <div className="glass w-full rounded-2xl p-6 flex items-center gap-6 relative z-10 border border-[#000033]">
+                  {/* ▼ 枠線を #EEEEFF の半透明に変更 ▼ */}
+                  <div className="glass w-full rounded-2xl p-6 flex items-center gap-6 relative z-10 border border-[#EEEEFF]/30">
                     <div
                       className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 text-base font-bold"
                       style={{ background: "rgba(0, 242, 254, 0.15)", color: "#00f2fe", }}
@@ -277,8 +277,8 @@ export function SpaceTypeDiagnosis() {
             <div className="flex flex-wrap justify-center gap-3">
               {["ロマン志向", "日常・社会志向", "インプット", "アウトプット"].map(
                 (tag) => (
-                  // ▼ 枠線を追加 ▼
-                  <span key={tag} className="glass rounded-full px-4 py-2 text-sm text-foreground border border-[#000033]">
+                  // ▼ 枠線を #EEEEFF の半透明に変更 ▼
+                  <span key={tag} className="glass rounded-full px-4 py-2 text-sm text-foreground border border-[#EEEEFF]/30">
                     {tag}
                   </span>
                 )
