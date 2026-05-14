@@ -65,7 +65,9 @@ export function SpaceTypeDiagnosis() {
             
             {/* ▼ ページヘッダー ▼ */}
             <div className="text-center mb-20">
-              <img src="/CosmoBase/CB_type.png" alt="宇宙タイプ診断" className="w-48 md:w-64 h-auto object-contain mb-2"/>
+              <div className="max-w-4xl mx-auto flex flex-col items-center">
+                <img src="/CosmoBase/CB_type.png" alt="宇宙タイプ診断" className="w-48 md:w-64 h-auto object-contain mb-2"/>
+              </div>
               <div className="inline-flex items-center gap-2 mb-6">
                  <Rocket className="h-5 w-5 text-cyan" />
                  <span className="text-sm font-semibold tracking-widest uppercase text-cyan">
