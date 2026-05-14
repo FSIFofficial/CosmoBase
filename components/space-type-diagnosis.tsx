@@ -85,10 +85,11 @@ export function SpaceTypeDiagnosis() {
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </button>
             </Link>
-           </div>
+            </div>
           </div>
+        </div>
       </section>
-
+    
       {/* About Section */}
       <section className="relative py-24 md:py-32">
         <div className="max-w-4xl mx-auto px-6 text-center">
