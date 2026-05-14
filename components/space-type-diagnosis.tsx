@@ -1,6 +1,8 @@
 "use client"
 
 import Link from "next/link"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
 import { Telescope, Satellite, Rocket, Building, ArrowLeft, ArrowRight, Share2, CheckCircle, } from "lucide-react"
 
 
@@ -52,45 +54,39 @@ const steps = [
 
 export function SpaceTypeDiagnosis() {
   return (
+    <div className="min-h-screen bg-[#000033]">
+      <Header />
     <main className="relative min-h-screen overflow-x-hidden">
 
-      {/* Back link */}
-      <div className="fixed top-6 left-6 z-50">
-        <Link
-          href="/"
-          className="glass inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-foreground hover:text-cyan transition-colors"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          <span>トップに戻る</span>
-        </Link>
-      </div>
-
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-6 text-center">
-        <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 mb-6">
-            <Rocket className="h-5 w-5 text-cyan" />
-            <span className="text-sm font-semibold tracking-widest uppercase text-cyan">
-              Space Type Diagnosis
-            </span>
+      <section className="py-20 w-full">
+        <div className="container mx-auto px-4 w-full">
+          <div className="max-w-6xl mx-auto w-full">
+            
+            {/* ▼ ページヘッダー ▼ */}
+            <div className="text-center mb-20">
+              <div className="inline-flex items-center gap-2 mb-6">
+                 <Rocket className="h-5 w-5 text-cyan" />
+                 <span className="text-sm font-semibold tracking-widest uppercase text-cyan">
+                    Space Type Diagnosis
+                 </span>
+              </div>
+              <h1 className="text-4xl md:text-6xl font-serif text-[#EEEEFF] mb-6 text-balance">
+                  あなたの宇宙タイプは？
+              </h1>
+              <p className="text-xl text-[#EEEEFF]/80 font-sans leading-relaxed max-w-3xl mx-auto">
+                30秒の診断で、あなたが宇宙で活躍する未来がわかる
+            </div>
+            <Link href="/space-type/content">
+              <button
+                className="group relative inline-flex items-center gap-3 rounded-full px-8 py-4 text-lg font-bold text-primary-foreground transition-all duration-300 animate-glow-pulse hover:scale-105 cursor-pointer"
+                style={{ background: "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)", }}>
+                <span>宇宙タイプを診断する</span>
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </button>
+            </Link>
+           </div>
           </div>
-
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-foreground text-balance mb-6">
-            あなたの宇宙タイプは？
-          </h1>
-
-          <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-2xl mx-auto mb-10 text-pretty">
-            30秒の診断で、あなたが宇宙で活躍する未来がわかる
-          </p>
-          <Link href="/space-type/content">
-            <button
-              className="group relative inline-flex items-center gap-3 rounded-full px-8 py-4 text-lg font-bold text-primary-foreground transition-all duration-300 animate-glow-pulse hover:scale-105 cursor-pointer"
-              style={{ background: "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)", }}>
-              <span>宇宙タイプを診断する</span>
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </button>
-          </Link>
-        </div>
       </section>
 
       {/* About Section */}
