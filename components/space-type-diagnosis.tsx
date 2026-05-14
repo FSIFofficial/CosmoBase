@@ -72,7 +72,7 @@ export function SpaceTypeDiagnosis() {
                  </span>
               </div>
               <h1 className="text-4xl md:text-6xl font-serif text-[#EEEEFF] mb-6 text-balance">
-                  あなたの宇宙タイプは？
+                 あなたの宇宙タイプは？
               </h1>
               <p className="text-xl text-[#EEEEFF]/80 font-sans leading-relaxed max-w-3xl mx-auto">
                 30秒の診断で、あなたが宇宙で活躍する未来がわかる
@@ -85,11 +85,11 @@ export function SpaceTypeDiagnosis() {
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </button>
             </Link>
-            </div>
+           </div>
           </div>
-        </div>
+        </div> {/* ← エラー修正: 閉じタグが不足していたため追加しました */}
       </section>
-    
+
       {/* About Section */}
       <section className="relative py-24 md:py-32">
         <div className="max-w-4xl mx-auto px-6 text-center">
@@ -179,9 +179,10 @@ export function SpaceTypeDiagnosis() {
                   >
                     {type.catchCopy}
                   </p>
-                  <p className="text-sm text-muted-foreground pl-4 mb-4 leading-relaxed">
+                  {/* ▼ エラー修正: <p>の中に<p>を入れるとReactエラーになるため、外側を<div>に変更しました ▼ */}
+                  <div className="text-sm text-muted-foreground pl-4 mb-4 leading-relaxed">
                     {type.description.split("\n").map((line:string,i:number) => <p key={i}>{line}</p>)}
-                  </p>
+                  </div>
                   <div className="flex flex-wrap gap-2">
                     {type.activities.map((activity) => (
                       <span
@@ -309,5 +310,6 @@ export function SpaceTypeDiagnosis() {
 
       <Footer />
     </main>
+    </div>
   )
 }
