@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Telescope, Satellite, Rocket, Building, ArrowLeft, ArrowRight, Share2, CheckCircle, } from "lucide-react"
-import { StarField } from "@/components/star-field"
+
 
 const spaceTypes = [
   {
@@ -53,7 +53,6 @@ const steps = [
 export function SpaceTypeDiagnosis() {
   return (
     <main className="relative min-h-screen overflow-x-hidden">
-      <StarField />
 
       {/* Back link */}
       <div className="fixed top-6 left-6 z-50">
