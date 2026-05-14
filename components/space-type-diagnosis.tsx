@@ -65,6 +65,7 @@ export function SpaceTypeDiagnosis() {
             
             {/* ▼ ページヘッダー ▼ */}
             <div className="text-center mb-20">
+              <img src="/CosmoBase/CB_type.png" alt="宇宙タイプ診断" className="w-48 md:w-64 h-auto object-contain mb-2"/>
               <div className="inline-flex items-center gap-2 mb-6">
                  <Rocket className="h-5 w-5 text-cyan" />
                  <span className="text-sm font-semibold tracking-widest uppercase text-cyan">
@@ -74,7 +75,7 @@ export function SpaceTypeDiagnosis() {
               <h1 className="text-4xl md:text-6xl font-serif text-[#EEEEFF] mb-6 text-balance">
                  あなたの宇宙タイプは？
               </h1>
-              <p className="text-xl text-[#EEEEFF]/80 font-sans leading-relaxed max-w-3xl mx-auto">
+              <p className="text-xl text-[#EEEEFF]/80 font-sans leading-relaxed max-w-3xl mx-auto mb-6">
                 30秒の診断で、あなたが宇宙で活躍する未来がわかる
               </p>
             <Link href="/space-type/content">
@@ -87,7 +88,7 @@ export function SpaceTypeDiagnosis() {
             </Link>
            </div>
           </div>
-        </div> {/* ← エラー修正: 閉じタグが不足していたため追加しました */}
+        </div>
       </section>
 
       {/* About Section */}
