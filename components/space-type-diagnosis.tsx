@@ -76,7 +76,7 @@ export function SpaceTypeDiagnosis() {
               </h1>
               <p className="text-xl text-[#EEEEFF]/80 font-sans leading-relaxed max-w-3xl mx-auto">
                 30秒の診断で、あなたが宇宙で活躍する未来がわかる
-            </div>
+              </p>
             <Link href="/space-type/content">
               <button
                 className="group relative inline-flex items-center gap-3 rounded-full px-8 py-4 text-lg font-bold text-primary-foreground transition-all duration-300 animate-glow-pulse hover:scale-105 cursor-pointer"
