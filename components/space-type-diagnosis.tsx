@@ -83,7 +83,7 @@ export function SpaceTypeDiagnosis() {
           <p className="text-lg md:text-xl leading-relaxed text-muted-foreground max-w-2xl mx-auto mb-10 text-pretty">
             30秒の診断で、あなたが宇宙で活躍する未来がわかる
           </p>
-          <Link href="/projects/space-type/content">
+          <Link href="/space-type/content">
             <button
               className="group relative inline-flex items-center gap-3 rounded-full px-8 py-4 text-lg font-bold text-primary-foreground transition-all duration-300 animate-glow-pulse hover:scale-105 cursor-pointer"
               style={{ background: "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)", }}>
@@ -299,7 +299,7 @@ export function SpaceTypeDiagnosis() {
             今すぐ宇宙タイプを診断する
           </h2>
           <p className="text-muted-foreground mb-10">診断は30秒</p>
-          <Link href="/projects/space-type/content">
+          <Link href="/space-type/content">
             <button
               className="group relative inline-flex items-center gap-3 rounded-full px-10 py-5 text-lg md:text-xl font-bold text-primary-foreground transition-all duration-300 animate-glow-pulse hover:scale-105 cursor-pointer"
               style={{ background: "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)", }}
