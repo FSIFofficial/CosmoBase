@@ -173,6 +173,24 @@ export default function Home() {
         </div>
       </section>
 
+       <section className="py-20 bg-[#000033]/50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-serif text-[#EEEEFF] mb-12 text-center text-balance">
+              あなたの宇宙タイプは？
+            </h2>
+            <p className="text-[#EEEEFF]/90 font-sans leading-relaxed">30秒の診断で、あなたが宇宙で活躍する未来がわかる</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/space-type">
+                <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium w-full sm:w-auto">
+                  診断してみる
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+       </section>
+
       {/* <section className="py-20 bg-gradient-to-b from-[#000033] to-[#000033]/80">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
