@@ -175,7 +175,7 @@ export default function Home() {
       <section className="py-20 bg-[#000033]/50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto flex flex-col items-center">
-            <img src="/CosmoBase/CB_type.png" alt="宇宙タイプ診断" className="w-48 md:w-64 h-auto object-contain mb-8"/>
+            <img src="/CosmoBase/CB_type.png" alt="宇宙タイプ診断" className="w-48 md:w-64 h-auto object-contain mb-2"/>
             <h2 className="text-3xl md:text-5xl font-serif text-[#EEEEFF] mb-6 text-center text-balance">
               あなたの宇宙タイプは？
             </h2>
