@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { SpaceType } from "@/components/projects/space-type"
+import { SpaceType } from "@/components/space-type"
 
 export const metadata: Metadata = {
   title: "宇宙タイプ診断| Cosmo Base",
