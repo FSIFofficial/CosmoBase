@@ -5,7 +5,6 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Telescope, Satellite, Rocket, Building, ArrowLeft, ArrowRight, Share2, CheckCircle, } from "lucide-react"
 
-
 const spaceTypes = [
   {
     icon: Telescope,
@@ -56,263 +55,263 @@ export function SpaceTypeDiagnosis() {
   return (
     <div className="min-h-screen bg-[#000033]">
       <Header />
-    <main className="relative min-h-screen overflow-x-hidden">
+      <main className="relative min-h-screen overflow-x-hidden">
 
-      {/* Hero Section */}
-      <section className="py-20 w-full">
-        <div className="container mx-auto px-4 w-full">
-          <div className="max-w-6xl mx-auto w-full">
-            
-            {/* ▼ ページヘッダー ▼ */}
-            <div className="text-center mb-20">
-              <div className="max-w-4xl mx-auto flex flex-col items-center">
-                <img src="/CosmoBase/CB_type.png" alt="宇宙タイプ診断" className="w-48 md:w-64 h-auto object-contain mb-2"/>
-              </div>
-              <div className="inline-flex items-center gap-2 mb-6">
-                 <Rocket className="h-5 w-5 text-cyan" />
-                 <span className="text-sm font-semibold tracking-widest uppercase text-cyan">
-                    Space Type Diagnosis
-                 </span>
-              </div>
-              <h1 className="text-4xl md:text-6xl font-serif text-[#EEEEFF] mb-6 text-balance">
-                 あなたの宇宙タイプは？
-              </h1>
-              <p className="text-xl text-[#EEEEFF]/80 font-sans leading-relaxed max-w-3xl mx-auto mb-6">
-                30秒の診断で、あなたが宇宙で活躍する未来がわかる
+        {/* Hero Section */}
+        <section className="py-20 w-full">
+          <div className="container mx-auto px-4 w-full">
+            <div className="max-w-6xl mx-auto w-full">
+              
+              {/* ▼ ページヘッダー ▼ */}
+              <div className="text-center mb-20">
+                <div className="max-w-4xl mx-auto flex flex-col items-center">
+                  <img src="/CosmoBase/CB_type.png" alt="宇宙タイプ診断" className="w-48 md:w-64 h-auto object-contain mb-2"/>
+                </div>
+                <div className="inline-flex items-center gap-2 mb-6">
+                   <Rocket className="h-5 w-5 text-cyan" />
+                   <span className="text-sm font-semibold tracking-widest uppercase text-cyan">
+                     Space Type Diagnosis
+                   </span>
+                </div>
+                <h1 className="text-4xl md:text-6xl font-serif text-[#EEEEFF] mb-6 text-balance">
+                   あなたの宇宙タイプは？
+                </h1>
+                <p className="text-xl text-[#EEEEFF]/80 font-sans leading-relaxed max-w-3xl mx-auto mb-6">
+                  30秒の診断で、あなたが宇宙で活躍する未来がわかる
+                </p>
+              <Link href="/space-type/content">
+                <button
+                  className="group relative inline-flex items-center gap-3 rounded-full px-8 py-4 text-lg font-bold text-primary-foreground transition-all duration-300 animate-glow-pulse hover:scale-105 cursor-pointer"
+                  style={{ background: "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)", }}>
+                  <span>宇宙タイプを診断する</span>
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </button>
+              </Link>
+             </div>
+            </div>
+          </div>
+        </section>
+
+        {/* About Section */}
+        <section className="relative py-24 md:py-32">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
+              宇宙をもっと身近に
+            </h2>
+            <p className="text-lg leading-relaxed text-muted-foreground mb-12 text-pretty">
+              宇宙は遠い世界ではありません。
+              <br />
+              この診断では、あなたの興味や思考から
+              <br />
+              どんな宇宙分野に向いているのかを見つけます。
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-4">
+              {["YES / NOで答えるだけ", "30秒で結果", "SNSでシェア可能"].map(
+                (item) => (
+                  <div
+                    key={item}
+                    // ▼ 枠線を追加 ▼
+                    className="glass rounded-full px-6 py-3 flex items-center gap-2 border border-[#000033]"
+                  >
+                    <CheckCircle className="h-4 w-4 text-cyan" />
+                    <span className="text-sm text-foreground">{item}</span>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* Space Types Section */}
+        <section className="relative py-24 md:py-32">
+          <div
+            className="absolute top-0 left-0 right-0 h-px"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent 0%, rgba(79,172,254,0.3) 50%, transparent 100%)",
+            }}
+          />
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                4つの宇宙タイプ
+              </h2>
+              <p className="text-muted-foreground text-pretty max-w-xl mx-auto">
+                「関心軸（ロマン/日常）」と「行動軸（インプット/アウトプット）」の
+                <br className="hidden md:block" />
+                2軸で、あなたの宇宙タイプを診断します
               </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {spaceTypes.map((type) => {
+                const Icon = type.icon
+                return (
+                  <div
+                    key={type.code}
+                    // ▼ 枠線を追加 ▼
+                    className="glass-card rounded-2xl p-6 md:p-8 border border-[#000033]"
+                  >
+                    <div className="flex items-start gap-4 mb-4">
+                      <div
+                        className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
+                        style={{
+                          background: `${type.accent}15`,
+                        }}
+                      >
+                        <Icon className="h-7 w-7" style={{ color: type.accent }} />
+                      </div>
+                      <div>
+                        <span
+                          className="text-xs font-bold tracking-wider uppercase"
+                          style={{ color: type.accent }}
+                        >
+                          {type.code}
+                        </span>
+                        <h3 className="text-xl font-bold text-foreground">
+                          {type.title} タイプ
+                        </h3>
+                      </div>
+                    </div>
+                    <p
+                      className="text-sm font-medium mb-3"
+                      style={{ color: type.accent }}
+                    >
+                      {type.catchCopy}
+                    </p>
+                    <div className="text-sm text-muted-foreground pl-4 mb-4 leading-relaxed">
+                      {type.description.split("\n").map((line:string,i:number) => <p key={i}>{line}</p>)}
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {type.activities.map((activity) => (
+                        <span
+                          key={activity}
+                          className="text-xs px-3 py-1 rounded-full"
+                          style={{
+                            background: `${type.accent}10`,
+                            color: type.accent,
+                          }}
+                        >
+                          {activity}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Steps Section */}
+        <section className="relative py-24 md:py-32">
+          <div
+            className="absolute top-0 left-0 right-0 h-px"
+            style={{ background: "linear-gradient(90deg, transparent 0%, rgba(79,172,254,0.3) 50%, transparent 100%)", }}
+          />
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                診断の流れ
+              </h2>
+            </div>
+            <div className="flex flex-col items-center max-w-md mx-auto w-full">
+              {steps.map((item, index) => (
+                <div key={item.step} className="w-full flex flex-col items-center">
+                  {/* ▼ 枠線を追加 ▼ */}
+                  <div className="glass w-full rounded-2xl p-6 flex items-center gap-6 relative z-10 border border-[#000033]">
+                    <div
+                      className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 text-base font-bold"
+                      style={{ background: "rgba(0, 242, 254, 0.15)", color: "#00f2fe", }}
+                    >
+                      {index + 1}
+                    </div>
+                    <div>
+                      <p className="text-xs text-cyan font-semibold tracking-wider uppercase mb-0.5">
+                        {item.step}
+                      </p>
+                      <p className="text-sm md:text-base text-foreground font-medium">
+                        {item.text}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 逆三角形（最後のステップ以外で表示） */}
+                  {index < steps.length - 1 && (
+                    <div className="text-cyan opacity-80 relative z-0 -my-2">
+                      <svg
+                        width="60"
+                        height="60"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="drop-shadow-[0_0_8px_rgba(0,242,254,0.4)]"
+                      >
+                        <path d="M4 8 L12 16 L20 8 Z" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Cosmo Base Intro */}
+        <section className="relative py-24 md:py-32">
+          <div
+            className="absolute top-0 left-0 right-0 h-px"
+            style={{ background: "linear-gradient(90deg, transparent 0%, rgba(79,172,254,0.3) 50%, transparent 100%)", }}
+          />
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
+              宇宙をもっと身近に
+            </h2>
+            <p className="text-lg leading-relaxed text-muted-foreground mb-8 text-pretty">
+              Cosmo Baseは、
+              <br />
+              宇宙を学び、つながり、
+              <br />
+              未来を創るコミュニティです。
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {["ロマン志向", "日常・社会志向", "インプット", "アウトプット"].map(
+                (tag) => (
+                  // ▼ 枠線を追加 ▼
+                  <span key={tag} className="glass rounded-full px-4 py-2 text-sm text-foreground border border-[#000033]">
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="relative py-24 md:py-16">
+          <div
+            className="absolute top-0 left-0 right-0 h-px"
+            style={{ background: "linear-gradient(90deg, transparent 0%, rgba(79,172,254,0.3) 50%, transparent 100%)", }}
+          />
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+              今すぐ宇宙タイプを診断する
+            </h2>
+            <p className="text-muted-foreground mb-10">診断は30秒</p>
             <Link href="/space-type/content">
               <button
-                className="group relative inline-flex items-center gap-3 rounded-full px-8 py-4 text-lg font-bold text-primary-foreground transition-all duration-300 animate-glow-pulse hover:scale-105 cursor-pointer"
-                style={{ background: "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)", }}>
-                <span>宇宙タイプを診断する</span>
+                className="group relative inline-flex items-center gap-3 rounded-full px-10 py-5 text-lg md:text-xl font-bold text-primary-foreground transition-all duration-300 animate-glow-pulse hover:scale-105 cursor-pointer"
+                style={{ background: "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)", }}
+              >
+                <span>診断スタート</span>
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </button>
             </Link>
-           </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* About Section */}
-      <section className="relative py-24 md:py-32">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
-            宇宙をもっと身近に
-          </h2>
-          <p className="text-lg leading-relaxed text-muted-foreground mb-12 text-pretty">
-            宇宙は遠い世界ではありません。
-            <br />
-            この診断では、あなたの興味や思考から
-            <br />
-            どんな宇宙分野に向いているのかを見つけます。
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-4">
-            {["YES / NOで答えるだけ", "30秒で結果", "SNSでシェア可能"].map(
-              (item) => (
-                <div
-                  key={item}
-                  className="glass rounded-full px-6 py-3 flex items-center gap-2"
-                >
-                  <CheckCircle className="h-4 w-4 text-cyan" />
-                  <span className="text-sm text-foreground">{item}</span>
-                </div>
-              )
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Space Types Section */}
-      <section className="relative py-24 md:py-32">
-        <div
-          className="absolute top-0 left-0 right-0 h-px"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent 0%, rgba(79,172,254,0.3) 50%, transparent 100%)",
-          }}
-        />
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              4つの宇宙タイプ
-            </h2>
-            <p className="text-muted-foreground text-pretty max-w-xl mx-auto">
-              「関心軸（ロマン/日常）」と「行動軸（インプット/アウトプット）」の
-              <br className="hidden md:block" />
-              2軸で、あなたの宇宙タイプを診断します
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {spaceTypes.map((type) => {
-              const Icon = type.icon
-              return (
-                <div
-                  key={type.code}
-                  className="glass-card rounded-2xl p-6 md:p-8"
-                  style={{
-                    borderColor: `${type.accent}30`,
-                  }}
-                >
-                  <div className="flex items-start gap-4 mb-4">
-                    <div
-                      className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
-                      style={{
-                        background: `${type.accent}15`,
-                      }}
-                    >
-                      <Icon className="h-7 w-7" style={{ color: type.accent }} />
-                    </div>
-                    <div>
-                      <span
-                        className="text-xs font-bold tracking-wider uppercase"
-                        style={{ color: type.accent }}
-                      >
-                        {type.code}
-                      </span>
-                      <h3 className="text-xl font-bold text-foreground">
-                        {type.title} タイプ
-                      </h3>
-                    </div>
-                  </div>
-                  <p
-                    className="text-sm font-medium mb-3"
-                    style={{ color: type.accent }}
-                  >
-                    {type.catchCopy}
-                  </p>
-                  {/* ▼ エラー修正: <p>の中に<p>を入れるとReactエラーになるため、外側を<div>に変更しました ▼ */}
-                  <div className="text-sm text-muted-foreground pl-4 mb-4 leading-relaxed">
-                    {type.description.split("\n").map((line:string,i:number) => <p key={i}>{line}</p>)}
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {type.activities.map((activity) => (
-                      <span
-                        key={activity}
-                        className="text-xs px-3 py-1 rounded-full"
-                        style={{
-                          background: `${type.accent}10`,
-                          color: type.accent,
-                        }}
-                      >
-                        {activity}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Steps Section */}
-      <section className="relative py-24 md:py-32">
-        <div
-          className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: "linear-gradient(90deg, transparent 0%, rgba(79,172,254,0.3) 50%, transparent 100%)", }}
-        />
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              診断の流れ
-            </h2>
-          </div>
-          <div className="flex flex-col items-center max-w-md mx-auto w-full">
-            {steps.map((item, index) => (
-              <div key={item.step} className="w-full flex flex-col items-center">
-                <div className="glass w-full rounded-2xl p-6 flex items-center gap-6 relative z-10">
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 text-base font-bold"
-                    style={{ background: "rgba(0, 242, 254, 0.15)", color: "#00f2fe", }}
-                  >
-                    {index + 1}
-                  </div>
-                  <div>
-                    <p className="text-xs text-cyan font-semibold tracking-wider uppercase mb-0.5">
-                      {item.step}
-                    </p>
-                    <p className="text-sm md:text-base text-foreground font-medium">
-                      {item.text}
-                    </p>
-                  </div>
-                </div>
-
-                {/* 逆三角形（最後のステップ以外で表示） */}
-                {index < steps.length - 1 && (
-                  <div className="text-cyan opacity-80 relative z-0 -my-2">
-                    <svg
-                      width="60"
-                      height="60"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="drop-shadow-[0_0_8px_rgba(0,242,254,0.4)]" /* 少し発光させるとglassと合います */
-                    >
-                      <path d="M4 8 L12 16 L20 8 Z" />
-                    </svg>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Cosmo Base Intro */}
-      <section className="relative py-24 md:py-32">
-        <div
-          className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: "linear-gradient(90deg, transparent 0%, rgba(79,172,254,0.3) 50%, transparent 100%)", }}
-        />
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
-            宇宙をもっと身近に
-          </h2>
-          <p className="text-lg leading-relaxed text-muted-foreground mb-8 text-pretty">
-            Cosmo Baseは、
-            <br />
-            宇宙を学び、つながり、
-            <br />
-            未来を創るコミュニティです。
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {["ロマン志向", "日常・社会志向", "インプット", "アウトプット"].map(
-              (tag) => (
-                <span key={tag} className="glass rounded-full px-4 py-2 text-sm text-foreground">
-                  {tag}
-                </span>
-              )
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="relative py-24 md:py-16">
-        <div
-          className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: "linear-gradient(90deg, transparent 0%, rgba(79,172,254,0.3) 50%, transparent 100%)", }}
-        />
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-            今すぐ宇宙タイプを診断する
-          </h2>
-          <p className="text-muted-foreground mb-10">診断は30秒</p>
-          <Link href="/space-type/content">
-            <button
-              className="group relative inline-flex items-center gap-3 rounded-full px-10 py-5 text-lg md:text-xl font-bold text-primary-foreground transition-all duration-300 animate-glow-pulse hover:scale-105 cursor-pointer"
-              style={{ background: "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)", }}
-            >
-              <span>診断スタート</span>
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </button>
-          </Link>
-        </div>
-      </section>
-
-      <Footer />
-    </main>
+        <Footer />
+      </main>
     </div>
   )
 }
