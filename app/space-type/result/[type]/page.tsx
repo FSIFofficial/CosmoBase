@@ -90,7 +90,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     // ⚠️ GitHub Pagesの公開URL（絶対パス）に必ず変更してください
-    const siteUrl = 'https://cosmo-base.github.io/opening/';
+    const siteUrl = 'https://fsifofficial.github.io/CosmoBase/';
 
     const ogImageUrl = `${siteUrl}/${data.img_Xshare}?v=2`;
 
@@ -100,7 +100,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         openGraph: {
             title: `${data.title} | Cosmo Base 宇宙タイプ診断`,
             description: '30秒の診断で、あなたが宇宙で活躍する未来がわかる。',
-            url: `${siteUrl}/projects/space-type/result/${type}`,
+            url: `${siteUrl}/space-type/result/${type}`,
             siteName: 'Cosmo Base',
             images: [{ url: ogImageUrl, width: 1200, height: 630, alt: `宇宙タイプ診断結果: ${data.title}`, },],
             type: 'website',
@@ -130,7 +130,7 @@ export default async function StaticResultPage({ params }: Props) {
 
     return (
         <div className="min-h-screen bg-[#000033] text-white flex flex-col items-center justify-center p-6 font-sans">
-            <img src="/opening/CB_type.png" alt="CBtype" className="w-50 pb-6 h-auto object-contain rounded-xl filter" />
+            <img src="/CosmoBase/CB_type.png" alt="CBtype" className="w-50 pb-6 h-auto object-contain rounded-xl filter" />
 
             {/* メイン結果カード */}
             <div
@@ -138,7 +138,7 @@ export default async function StaticResultPage({ params }: Props) {
                 style={{ backgroundColor: data.color }}
             >
                 <div className="w-full flex items-center justify-center mb-6">
-                    <img src={`/opening/${data.img}`} alt={data.title} className="w-full max-w-[450px] h-auto object-contain rounded-xl filter" />
+                    <img src={`/CosmoBase/${data.img}`} alt={data.title} className="w-full max-w-[450px] h-auto object-contain rounded-xl filter" />
                 </div>
 
                 <p className="font-bold text-sm  tracking-widest mb-2 text-[#000033]/70">この方の宇宙タイプは...</p>
@@ -151,7 +151,7 @@ export default async function StaticResultPage({ params }: Props) {
             </div>
 
             {/* 診断誘導CTA */}
-            <Link href="/projects/space-type" className="w-full max-w-sm mb-12">
+            <Link href="/space-type" className="w-full max-w-sm mb-12">
                 <button className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 text-white font-bold py-4 rounded-full text-lg shadow-lg transform transition hover:scale-105 flex items-center justify-center gap-2">
                     🚀 自分も宇宙タイプを診断してみる
                 </button>
@@ -176,7 +176,7 @@ export default async function StaticResultPage({ params }: Props) {
                                     style={{ backgroundColor: otherData.color }}
                                 ></div>
 
-                                <img className="w-25" src={`/opening/${otherData.img}`} />
+                                <img className="w-25" src={`/CosmoBase/${otherData.img}`} />
                                 <div>
                                     <h3 className="font-serif font-bold text-md text-[#EEEEFF]">{otherData.title} タイプ</h3>
                                     <p className="text-xs text-gray-400 mt-1">{otherData.catchcopy}</p>
@@ -186,7 +186,7 @@ export default async function StaticResultPage({ params }: Props) {
                     })}
                 </div>
 
-                <Link href="/projects/space-type" className="block mt-6 text-center">
+                <Link href="/space-type" className="block mt-6 text-center">
                     <p className="text-sm text-blue-400 font-bold hover:underline">
                         あなたのタイプを診断する ›
                     </p>
