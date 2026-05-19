@@ -30,6 +30,11 @@ export default function Footer() {
               <a href="https://note.com/cosmobase" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-all hover:scale-110 flex items-center">
                 <img src="/CosmoBase/note-logo.svg" alt="note" className="h-6 w-auto" />
               </a>
+
+              {/* YouTube */}
+              <a href="https://www.youtube.com/channel/UC3bcWCM6ccvsyQyiXLIwhkQ" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-all hover:scale-110 flex items-center">
+                <img src="/CosmoBase/youtube.png" alt="YouTube" className="h-6 w-auto" />
+              </a>
             </div>
           </div>
         </div>
