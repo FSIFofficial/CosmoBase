@@ -19,9 +19,9 @@ interface StatsData {
 
 export default function Home() {
   const [stats, setStats] = useState<StatsData>({
-    events: "0",         //開催イベント数
-    participants: "24",  //参加者数
-    collaborations: "0", //コラボレーション実績
+    events: "6",         //開催イベント数
+    participants: "121",  //参加者数
+    collaborations: "3", //パートナー数
     media: "0",          //メディア掲載
   })
 
@@ -193,7 +193,7 @@ export default function Home() {
         </div>
       </section>
       
-      {/* <section className="py-20 bg-gradient-to-b from-[#000033] to-[#000033]/80">
+      <section className="py-20 bg-gradient-to-b from-[#000033] to-[#000033]/80">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-serif text-[#EEEEFF] mb-12 text-center text-balance">
@@ -213,7 +213,7 @@ export default function Home() {
 
               <div className="text-center">
                 <div className="text-5xl md:text-6xl font-serif text-[#83CBEB] mb-3">{stats.collaborations}</div>
-                <p className="text-[#EEEEFF]/80 font-sans">コラボレーション実績</p>
+                <p className="text-[#EEEEFF]/80 font-sans">パートナー数</p>
               </div>
 
               <div className="text-center">
@@ -223,7 +223,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>*/}
+      </section>
 
       <section className="py-20 bg-[#000033]/50">
         <div className="container mx-auto px-4">
