@@ -94,6 +94,15 @@ export default function ValuePageContent() {
                 </div>
                 <div className="bg-[#000033]/60 border border-[#A6D7DB]/20 rounded-xl p-6 hover:border-[#A6D7DB]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
+                    <img src="/CosmoBase/CBMD_logo.png" alt="Cosmo Base Museum Database" className="h-full w-auto object-contain" />
+                  </div>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Cosmo Base Museum Database</h3>
+                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
+                    日本国内で宇宙に関する展示を行う博物館や科学館を集約したデータベース。地図上での探索や条件による検索など、直感的に施設を探せます。
+                  </p>
+                </div>
+                <div className="bg-[#000033]/60 border border-[#A6D7DB]/20 rounded-xl p-6 hover:border-[#A6D7DB]/50 transition-all hover:-translate-y-1">
+                  <div className="flex items-center mb-4 h-12">
                     <img src="/CosmoBase/CBittoide_logo.png" alt="宇宙に行っといで" className="h-full w-auto object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙に行っといで</h3>
