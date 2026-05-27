@@ -35,7 +35,7 @@ export default function Header() {
           {/* デスクトップ用ナビゲーション (PCで見える) */}
           <nav className="hidden md:flex items-center gap-6">
             <Link href="/value" className="text-[#EEEEFF] hover:text-[#83CBEB] transition-colors font-sans text-sm">
-              提供する価値
+              Cosmo Baseのサービス
             </Link>
             <Link href="/partners" className="text-[#EEEEFF] hover:text-[#83CBEB] transition-colors font-sans text-sm">
               パートナー
@@ -74,7 +74,7 @@ export default function Header() {
               onClick={closeMenu}
               className="text-[#EEEEFF] hover:text-[#83CBEB] hover:bg-[#83CBEB]/10 px-4 py-3 rounded-md transition-colors font-sans text-sm"
             >
-              提供する価値
+              Cosmo Baseのサービス
             </Link>
             <Link
               href="/partners"
