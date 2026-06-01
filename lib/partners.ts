@@ -59,8 +59,9 @@ function parseCSV(text: string): string[][] {
 // ▼ async関数に変更
 export async function getPartners(): Promise<Partner[]> {
   // ▼▼▼ パートナー用スプレッドシートのCSV公開URL ▼▼▼
-  const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQqA4JrKGZvzaQCYQRVA_nrN_45CwpnuRyJp2PU8dtgs5qDqEbThvfDVkK_fKgFtLPDp0wwDW9BXTPL/pub?gid=522161586&single=true&output=csv";
-
+  const PARTNER_SPREADSHEET_BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQqA4JrKGZvzaQCYQRVA_nrN_45CwpnuRyJp2PU8dtgs5qDqEbThvfDVkK_fKgFtLPDp0wwDW9BXTPL/pub?gid=522161586&single=true&output=csv";
+  const BUILD_TIMESTAMP = Date.now();
+  const GOOGLE_SHEET_CSV_URL = `${PARTNER_SPREADSHEET_BASE_URL}&_t=${BUILD_TIMESTAMP}`;
   try {
     // キャッシュを60秒に設定
     const res = await fetch(GOOGLE_SHEET_CSV_URL, { next: { revalidate: 60 } });
