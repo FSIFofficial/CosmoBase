@@ -4,7 +4,7 @@ import { parse } from 'csv-parse/sync';
 
 // 型定義をここに移動
 export type NewsArticle = {
-  id: number;
+  id: string;
   title: string;
   date: string;
   category: "お知らせ" | "イベントレポート" | "メンバー紹介" | "コラム" | "パートナー情報";
