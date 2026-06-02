@@ -16,30 +16,27 @@ type Props = {
 export async function generateStaticParams() {
   const articles = getNewsArticles()
   return articles.map((article) => ({
-    id: article.id.toString(),
+    id: article.id,
   }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  // 1. params を await して ID を取得
   const { id } = await params
-  // 2. IDを使ってデータを探す
-  const article = getNewsArticleById(Number(id))
-  // 記事が見つからない場合のフォールバック
+  
+  // ★ Number(id) の変換を外し、直接 id を渡す
+  const article = getNewsArticleById(id)
+  
   if (!article) {
     return {
       title: "記事が見つかりません",
     }
   }
   const title = `${article.title}` 
-  // excerptがない場合は本文の最初を使うなどの工夫も可能です
   const description = article.excerpt || "記事の詳細です"
-  // 3. メタデータを返す
+  
   return {
     title: title, 
     description: description,
-    
-    // OGP設定
     openGraph: {
       title: title,
       description: description,
@@ -49,11 +46,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function NewsArticlePage({ params }: Props) {
-  // ★重要: Next.js 16では params を await する必要があります
   const { id } = await params
   
-  const articleId = Number(id)
-  const article = getNewsArticleById(articleId)
+  // ★ Number() の変換を削除
+  const article = getNewsArticleById(id)
   const allArticles = getNewsArticles();
 
   if (!article) {
