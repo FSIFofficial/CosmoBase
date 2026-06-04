@@ -19,10 +19,10 @@ interface StatsData {
 
 export default function Home() {
   const [stats, setStats] = useState<StatsData>({
-    events: "6",         //開催イベント数
-    participants: "144",  //参加者数
-    collaborations: "3", //パートナー数
-    media: "0",          //メディア掲載
+    events: "7",         //開催イベント数
+    participants: "151",  //参加者数
+    collaborations: "4", //パートナー数
+    media: "1",          //メディア掲載
   })
 
   useEffect(() => {
