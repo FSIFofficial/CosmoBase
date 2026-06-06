@@ -1,106 +1,232 @@
+import { notFound } from "next/navigation"
+import Link from "next/link"
+import { Building2, Users, Globe, ChevronLeft, Facebook, Instagram, Newspaper } from "lucide-react" // ◀︎ Newspaperを追加
+import Image from "next/image"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { getPartners } from "@/lib/partners"
-import PartnerList from "./partner-list" 
-import { Metadata } from "next"
+import { getPartners, getPartnerById } from "@/lib/partners"
+import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  title: "パートナー企業・団体", 
-  description: "Cosmo Baseと共に宇宙の未来を創るパートナー企業・団体をご紹介します。",
-  openGraph: {
-    title: "パートナー企業・団体 | Cosmo Base",
-    description: "Cosmo Baseと共に宇宙の未来を創るパートナー企業・団体をご紹介します。",
-  },
+type Props = {
+  params: Promise<{ id: string }>
 }
 
-// ▼ async を追加
-export default async function PartnersPage() {
-  // ▼ await を追加してサーバーサイドでデータを取得
-  const partners = await getPartners();
+export async function generateStaticParams() {
+  const partners = await getPartners()
+  return partners.map((partner) => ({
+    id: partner.id,
+  }))
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params
+  const partner = await getPartnerById(id)
+
+  if (!partner) {
+    return {
+      title: "パートナーが見つかりません",
+    }
+  }
+
+  return {
+    title: partner.name,
+    description: partner.description,
+    openGraph: {
+      title: `${partner.name} | パートナー紹介`,
+      description: partner.description,
+      images: partner.logo ? [partner.logo] : [],
+    },
+  }
+}
+
+// URLを綺麗にリンク化するためのヘルパー関数
+function getSocialUrl(platform: 'twitter' | 'facebook' | 'instagram', value: string) {
+  if (value.startsWith('http')) return value;
+  const cleanValue = value.replace("@", "");
+  switch (platform) {
+    case 'twitter': return `https://x.com/${cleanValue}`;
+    case 'facebook': return `https://facebook.com/${cleanValue}`;
+    case 'instagram': return `https://instagram.com/${cleanValue}`;
+  }
+}
+
+export default async function PartnerDetailPage({ params }: Props) {
+  const { id } = await params
+  const partner = await getPartnerById(id)
+
+  if (!partner) {
+    notFound()
+  }
 
   return (
     <div className="min-h-screen bg-[#000033]">
       <Header />
 
-      <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="font-serif text-4xl font-bold tracking-tight text-[#EEEEFF] sm:text-5xl lg:text-6xl text-balance">
-              パートナー企業・団体
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-[#EEEEFF]/80 text-pretty">
-              Cosmo Baseと共に宇宙の未来を創るパートナー企業・団体をご紹介します。
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <PartnerList initialPartners={partners} />
-
-      <section className="border-t border-[#83CBEB]/20 bg-gradient-to-br from-[#83CBEB]/5 to-[#EEEEBB]/5 py-16">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-[#EEEEFF] sm:text-4xl text-balance mb-4">
-              パートナー制度について
-            </h2>
-            <p className="text-lg text-[#EEEEFF]/80 max-w-3xl mx-auto text-pretty">
-              Cosmo Baseと一緒に宇宙の可能性を広げていきましょう
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-[#000033]/60 border border-[#83CBEB]/30 rounded-xl p-6">
-              <h3 className="font-serif text-xl text-[#EEEEFF] mb-4">パートナー対象</h3>
-              <ul className="space-y-3 text-[#EEEEFF]/80 font-sans">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#83CBEB] mt-1">•</span>
-                  <span>企業（宇宙系・非宇宙系問わず）</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#83CBEB] mt-1">•</span>
-                  <span>学生団体（大学・高専サークル等）</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#83CBEB] mt-1">•</span>
-                  <span>教育・研究団体</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-[#000033]/60 border border-[#EEEEBB]/30 rounded-xl p-6">
-              <h3 className="font-serif text-xl text-[#EEEEFF] mb-4">主なメリット</h3>
-              <ul className="space-y-3 text-[#EEEEFF]/80 font-sans">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#EEEEBB] mt-1">•</span>
-                  <span>コミュニティー内での情報発信</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#EEEEBB] mt-1">•</span>
-                  <span>学生・他産業との接点創出</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#EEEEBB] mt-1">•</span>
-                  <span>イベント・企画への参画機会</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#EEEEBB] mt-1">•</span>
-                  <span>将来の事業・人材の種まき</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="text-center">
-            <Link href="/partner">
-              <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6">
-                パートナー制度の詳細を見る
-              </Button>
+      <main>
+        {/* Back Button */}
+        <div className="border-b border-[#83CBEB]/20 bg-[#000033]/50">
+          <div className="mx-auto max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
+            <Link
+              href="/partners"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[#EEEEFF]/80 hover:text-[#83CBEB] transition-colors"
+            >
+              <ChevronLeft className="h-4 w-4" />
+              パートナー一覧に戻る
             </Link>
           </div>
         </div>
-      </section>
+
+        {/* Partner Header */}
+        <section className="py-12 sm:py-16">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col gap-8 sm:flex-row sm:items-start">
+              
+              {/* ▼ ロゴ画像 ▼ */}
+              <div className="flex-shrink-0 w-full sm:w-auto">
+                <div className="flex h-40 w-full sm:w-56 p-4 items-center justify-center rounded-lg bg-[#EEEEFF]/5 border border-[#83CBEB]/30">
+                  {partner.logo ? (
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      width={400}
+                      height={400}
+                      className="h-full w-full object-contain"
+                    />
+                  ) : (
+                    <span className="text-4xl">🚀</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Info */}
+              <div className="flex-1">
+                <div className="mb-4 flex items-center gap-3">
+                  <div
+                    className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium ${
+                      partner.type === "company" ? "bg-[#83CBEB]/20 text-[#83CBEB]" : "bg-[#EEEEBB]/20 text-[#EEEEBB]"
+                    }`}
+                  >
+                    {partner.type === "company" ? (
+                      <>
+                        <Building2 className="h-4 w-4" />
+                        企業
+                      </>
+                    ) : (
+                      <>
+                        <Users className="h-4 w-4" />
+                        団体
+                      </>
+                    )}
+                  </div>
+                  <div className="rounded-full bg-[#83CBEB]/10 px-4 py-1.5 text-sm font-medium text-[#83CBEB]">
+                    {partner.category}
+                  </div>
+                </div>
+                <h1 className="mb-3 font-serif text-3xl font-bold text-[#EEEEFF] sm:text-4xl">{partner.name}</h1>
+                <p className="mb-4 text-lg text-[#EEEEFF]/80">{partner.description}</p>
+                {partner.established && (
+                  <p className="text-sm text-[#EEEEFF]/60 mb-2">設立: {partner.established}</p>
+                )}
+
+                {/* ▼ 追加：パートナー締結ニュースへのリンク ▼ */}
+                {partner.newsLink && (
+                  <div className="mt-6">
+                    <Link
+                      href={partner.newsLink}
+                      className="inline-flex items-center gap-2 rounded-lg bg-[#83CBEB] px-5 py-2.5 text-sm font-bold text-[#000033] hover:bg-[#83CBEB]/90 transition-colors shadow-lg shadow-[#83CBEB]/20"
+                    >
+                      <Newspaper className="h-4 w-4" />
+                      パートナー締結のお知らせを見る
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Links Section (各種SNSリンク) */}
+        <section className="border-y border-[#83CBEB]/20 bg-[#000033]/30 py-6">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-wrap items-center gap-4">
+              {partner.website && (
+                <a
+                  href={partner.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg bg-[#000033]/50 border border-[#83CBEB]/30 px-4 py-2 text-sm font-medium text-[#EEEEFF] hover:bg-[#83CBEB]/10 transition-colors"
+                >
+                  <Globe className="h-4 w-4 text-[#83CBEB]" />
+                  公式サイト
+                </a>
+              )}
+              {partner.twitter && (
+                <a
+                  href={getSocialUrl('twitter', partner.twitter)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg bg-[#000033]/50 border border-[#83CBEB]/30 px-4 py-2 text-sm font-medium text-[#EEEEFF] hover:bg-[#83CBEB]/10 transition-colors"
+                >
+                  <svg viewBox="0 0 24 24" fill="#83CBEB" className="h-4 w-4" aria-hidden="true">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                  X (Twitter)
+                </a>
+              )}
+              {partner.facebook && (
+                <a
+                  href={getSocialUrl('facebook', partner.facebook)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg bg-[#000033]/50 border border-[#83CBEB]/30 px-4 py-2 text-sm font-medium text-[#EEEEFF] hover:bg-[#83CBEB]/10 transition-colors"
+                >
+                  <Facebook className="h-4 w-4 text-[#83CBEB]" />
+                  Facebook
+                </a>
+              )}
+              {partner.instagram && (
+                <a
+                  href={getSocialUrl('instagram', partner.instagram)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg bg-[#000033]/50 border border-[#83CBEB]/30 px-4 py-2 text-sm font-medium text-[#EEEEFF] hover:bg-[#83CBEB]/10 transition-colors"
+                >
+                  <Instagram className="h-4 w-4 text-[#83CBEB]" />
+                  Instagram
+                </a>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* Detailed Description */}
+        <section className="py-12">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <h2 className="mb-6 font-serif text-2xl font-bold text-[#EEEEFF]">概要</h2>
+            <p className="text-lg leading-relaxed text-[#EEEEFF]/80 whitespace-pre-wrap">{partner.detailedDescription}</p>
+          </div>
+        </section>
+
+        {/* Activities */}
+        {partner.activities && (
+          <section className="border-t border-[#83CBEB]/20 bg-[#000033]/30 py-12">
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+              <h2 className="mb-6 font-serif text-2xl font-bold text-[#EEEEFF]">主な活動内容</h2>
+              <p className="text-lg leading-relaxed text-[#EEEEFF]/80 whitespace-pre-wrap">{partner.activities}</p>
+            </div>
+          </section>
+        )}
+
+        {/* Achievements */}
+        {partner.achievements && (
+          <section className="py-12">
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+              <h2 className="mb-6 font-serif text-2xl font-bold text-[#EEEEFF]">主な実績</h2>
+              <p className="text-lg leading-relaxed text-[#EEEEFF]/80 whitespace-pre-wrap">{partner.achievements}</p>
+            </div>
+          </section>
+        )}
+      </main>
 
       <Footer />
     </div>

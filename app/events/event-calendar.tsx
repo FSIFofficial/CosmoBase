@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Event } from "@/lib/events"
-import { LaunchEvent } from "@/lib/launches" // 追加
+import { LaunchEvent } from "@/lib/launches"
 
 type CalendarItem = Event | LaunchEvent;
 
@@ -509,7 +509,7 @@ export default function EventCalendar({ events, launches = [] }: { events: Event
                 <p className="text-[#EEEEFF]/80 font-sans leading-relaxed whitespace-pre-wrap">{selectedEvent.description}</p>
               </div>
 
-              {selectedEvent.link && (
+              {'link' in selectedEvent && selectedEvent.link && (
                 <Button asChild className="w-full bg-[#83CBEB] hover:bg-[#83CBEB]/80 text-[#000033] font-sans">
                   <a href={selectedEvent.link} target="_blank" rel="noopener noreferrer" className="block w-full">
                     詳細・関連リンク

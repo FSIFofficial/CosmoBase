@@ -16,6 +16,7 @@ export interface Partner {
   established?: string;
   activities: string;  
   achievements: string; 
+  newsLink?: string; // ◀︎ 追加
 }
 
 // 説明文などに含まれる「改行」や「カンマ」を安全に処理するCSVパーサー
@@ -90,6 +91,7 @@ export async function getPartners(): Promise<Partner[]> {
     const idxEstablished = getIdx("established");
     const idxActivities = getIdx("activities");
     const idxAchievements = getIdx("achievements");
+    const idxNewsLink = getIdx("newslink"); // ◀︎ 追加
 
     const partners: Partner[] = [];
     
@@ -114,7 +116,8 @@ export async function getPartners(): Promise<Partner[]> {
         category: safeGet(idxCategory),
         established: safeGet(idxEstablished),
         activities: safeGet(idxActivities),
-        achievements: safeGet(idxAchievements)
+        achievements: safeGet(idxAchievements),
+        newsLink: safeGet(idxNewsLink) || undefined // ◀︎ 追加
       });
     }
     return partners;
@@ -124,7 +127,6 @@ export async function getPartners(): Promise<Partner[]> {
   }
 }
 
-// ▼ 非同期データ取得に合わせて async関数 に変更
 export async function getPartnerById(id: string): Promise<Partner | undefined> {
   const partners = await getPartners();
   return partners.find((p) => p.id === id);

@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/partners/layout,_N_T_/partners/[id]/layout,_N_T_/partners/[id]/page,_N_T_/partners/KIT-AURORA"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/partners/$d$id/__PAGE__",
+    "/partners/$d$id",
+    "/partners",
+    "/_index",
+    "/_head"
+  ]
+}

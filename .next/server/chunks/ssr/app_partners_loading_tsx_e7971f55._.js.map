@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../app/partners/loading.tsx"],"sourcesContent":["export default function Loading() {\n  return null\n}\n"],"names":[],"mappings":"uCAAe,SAAS,IACtB,OAAO,IACT"}

@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fnews\u002F[id]","\u002Fpartners\u002F[id]","\u002Fspace-type\u002Fresult\u002F[type]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()

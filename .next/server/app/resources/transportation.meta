@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/resources/layout,_N_T_/resources/transportation/layout,_N_T_/resources/transportation/page,_N_T_/resources/transportation"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/resources/transportation/__PAGE__",
+    "/resources/transportation",
+    "/resources",
+    "/_index",
+    "/_head"
+  ]
+}
