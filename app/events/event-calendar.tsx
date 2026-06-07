@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo, useEffect } from "react"
-import { ChevronLeft, ChevronRight, Calendar, MapPin, Users, Award, X, List, Bookmark, Rocket } from "lucide-react"
+import { ChevronLeft, ChevronRight, Calendar, MapPin, Users, Award, X, Bookmark, Rocket } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -13,7 +13,6 @@ type CalendarItem = Event | LaunchEvent;
 export default function EventCalendar({ events, launches = [] }: { events: Event[], launches?: LaunchEvent[] }) {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedEvent, setSelectedEvent] = useState<CalendarItem | null>(null)
-  const [dayModalEvents, setDayModalEvents] = useState<{ date: Date; items: CalendarItem[] } | null>(null)
   
   const [typeFilter, setTypeFilter] = useState<string>("all")
   const [difficultyFilter, setDifficultyFilter] = useState<string>("all")
@@ -89,7 +88,6 @@ export default function EventCalendar({ events, launches = [] }: { events: Event
     return hostMatch && typeMatch && difficultyMatch
   })
 
-  // ▼ 長期イベントと短期イベントを分ける処理
   const SEVEN_DAYS_MS = 6 * 24 * 60 * 60 * 1000;
 
   const shortTermEvents = filteredEvents.filter(e => {
@@ -114,17 +112,18 @@ export default function EventCalendar({ events, launches = [] }: { events: Event
     return bScore - aScore; 
   });
 
-  // 日付ごとのイベントと打ち上げを取得する関数
-  const getItemsForDay = (date: Date | null) => {
-    if (!date) return { dayLaunches: [], dayEvents: [] }
+  // ▼ 日付ごとのアイテム取得（優先度によるソート＆最大3件の絞り込み） ▼
+  const getItemsForDay = (date: Date | null): CalendarItem[] => {
+    if (!date) return [];
     const checkDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
 
-    // ロケット打ち上げの抽出（フィルターの影響を受けず常に表示）
+    // 1. その日のロケット打ち上げを取得
     const dayLaunches = (launches || []).filter(launch => {
       const launchDate = new Date(launch.date.getFullYear(), launch.date.getMonth(), launch.date.getDate()).getTime();
       return checkDate === launchDate;
     });
 
+    // 2. その日のイベントを取得
     const dayEvents = shortTermEvents.filter((event) => {
       const eventStart = new Date(event.date.getFullYear(), event.date.getMonth(), event.date.getDate()).getTime();
       const eventEnd = event.endDate 
@@ -133,25 +132,33 @@ export default function EventCalendar({ events, launches = [] }: { events: Event
       return checkDate >= eventStart && checkDate <= eventEnd;
     });
 
-    const sortedEvents = dayEvents.sort((a, b) => {
-      const aScore = (a.organizer && (a.organizer.includes("Cosmo Base") || a.organizer.includes("CosmoBase"))) ? 2 : a.isPartner ? 1 : 0;
-      const bScore = (b.organizer && (b.organizer.includes("Cosmo Base") || b.organizer.includes("CosmoBase"))) ? 2 : b.isPartner ? 1 : 0;
-      return bScore - aScore; 
+    // 3. 結合して優先度スコアでソート (ロケット:3, 主催:2, パートナー:1, 外部:0)
+    const allItems: CalendarItem[] = [...dayLaunches, ...dayEvents].sort((a, b) => {
+      const getScore = (item: CalendarItem) => {
+        if ('isLaunch' in item) return 3; // ロケット
+        
+        const event = item as Event;
+        if (event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"))) return 2; // 主催
+        if (event.isPartner) return 1; // パートナー
+        return 0; // 外部
+      };
+      
+      // スコアが高い順（降順）
+      return getScore(b) - getScore(a);
     });
 
-    return { dayLaunches, dayEvents: sortedEvents };
+    // 4. 強制的に上位3件のみを返す（+ボタン等を出さない）
+    return allItems.slice(0, 3);
   }
 
   const previousMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1))
   const nextMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1))
 
   const weekDays = ["日", "月", "火", "水", "木", "金", "土"]
-  const MAX_EVENTS_PER_DAY = 3;
 
   return (
     <>
       <div className="mb-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-        {/* フィルターUIは既存のまま */}
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-2">
             <span className="text-[#EEEEFF] font-sans text-sm">種別:</span>
@@ -192,7 +199,6 @@ export default function EventCalendar({ events, launches = [] }: { events: Event
         </div>
       </div>
 
-      {/* カレンダー */}
       <div className="max-w-6xl mx-auto bg-[#000033] border border-[#83CBEB]/30 rounded-lg p-6">
         <div className="flex items-center justify-between mb-6">
           <Button onClick={previousMonth} variant="ghost" size="icon" className="text-[#EEEEFF] hover:text-[#83CBEB] hover:bg-[#83CBEB]/10"><ChevronLeft className="h-6 w-6" /></Button>
@@ -208,14 +214,8 @@ export default function EventCalendar({ events, launches = [] }: { events: Event
 
         <div className="grid grid-cols-7 gap-2">
           {calendarDays.map((day, index) => {
-            const { dayLaunches, dayEvents } = getItemsForDay(day)
-            const allItems = [...dayLaunches, ...dayEvents] // 打ち上げを先に結合
-
+            const displayItems = getItemsForDay(day);
             const isToday = day && today && day.getDate() === today.getDate() && day.getMonth() === today.getMonth() && day.getFullYear() === today.getFullYear()
-
-            const showMore = allItems.length > MAX_EVENTS_PER_DAY;
-            const displayItems = showMore ? allItems.slice(0, MAX_EVENTS_PER_DAY - 1) : allItems;
-            const moreCount = allItems.length - displayItems.length;
 
             return (
               <div
@@ -231,7 +231,6 @@ export default function EventCalendar({ events, launches = [] }: { events: Event
                     </div>
                     <div className="space-y-1 flex-grow">
                       {displayItems.map((item) => {
-                        // ロケット打ち上げの場合の表示
                         if ('isLaunch' in item) {
                           return (
                             <button
@@ -245,7 +244,6 @@ export default function EventCalendar({ events, launches = [] }: { events: Event
                           );
                         }
 
-                        // 通常イベントの場合の表示
                         const event = item as Event;
                         const isHostEvent = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
                         const isPartnerEvent = event.isPartner;
@@ -268,15 +266,6 @@ export default function EventCalendar({ events, launches = [] }: { events: Event
                           </button>
                         );
                       })}
-                      
-                      {showMore && (
-                        <button
-                          onClick={() => setDayModalEvents({ date: day, items: allItems })}
-                          className="w-full text-center text-xs p-1 rounded font-bold text-[#83CBEB] hover:bg-[#83CBEB]/20 transition-colors mt-1"
-                        >
-                          ＋他 {moreCount} 件
-                        </button>
-                      )}
                     </div>
                   </>
                 )}
@@ -343,81 +332,6 @@ export default function EventCalendar({ events, launches = [] }: { events: Event
         )}
       </div>
 
-      {/* 1日のイベント一覧モーダル (+他○件 を押したとき) */}
-      {dayModalEvents && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-40 p-4">
-          <div className="bg-[#000033] border border-[#83CBEB]/30 rounded-lg max-w-md w-full max-h-[80vh] flex flex-col shadow-2xl">
-            <div className="p-4 border-b border-[#83CBEB]/20 flex justify-between items-center bg-[#83CBEB]/5 rounded-t-lg">
-              <h2 className="text-xl font-serif text-[#EEEEFF] flex items-center gap-2">
-                <List className="h-5 w-5 text-[#83CBEB]" />
-                {dayModalEvents.date.getMonth() + 1}月{dayModalEvents.date.getDate()}日のイベント
-              </h2>
-              <Button onClick={() => setDayModalEvents(null)} variant="ghost" size="icon" className="text-[#EEEEFF] hover:text-[#83CBEB]">
-                <X className="h-5 w-5" />
-              </Button>
-            </div>
-            
-            <div className="p-4 overflow-y-auto space-y-3">
-              {dayModalEvents.items.map((item) => {
-                // ロケット打ち上げ
-                if ('isLaunch' in item) {
-                  return (
-                    <button
-                      key={item.id}
-                      onClick={() => { setSelectedEvent(item); setDayModalEvents(null); }}
-                      className="w-full text-left p-3 rounded-lg transition-colors flex flex-col gap-2 bg-[#FF8C00]/10 hover:bg-[#FF8C00]/20 border border-[#FF8C00]/30"
-                    >
-                      <div className="flex gap-2">
-                        <Badge className="bg-[#FF8C00] text-[#000033] text-[10px] px-1 py-0 h-4">打上げ</Badge>
-                      </div>
-                      <span className="text-[#EEEEFF] text-sm font-medium">🚀 {item.title}</span>
-                      <span className="text-[#EEEEFF]/60 text-xs flex items-center gap-1">
-                        <Calendar className="w-3 h-3" /> {item.time}
-                      </span>
-                    </button>
-                  );
-                }
-
-                // 通常イベント
-                const event = item as Event;
-                const isHostEvent = event.organizer && (event.organizer.includes("Cosmo Base") || event.organizer.includes("CosmoBase"));
-                const isPartnerEvent = event.isPartner;
-                
-                let cardClass = "bg-[#83CBEB]/10 hover:bg-[#83CBEB]/20 border border-[#83CBEB]/20";
-                if (isHostEvent) {
-                  cardClass = "bg-[#83CBEB]/30 hover:bg-[#83CBEB]/40 border border-[#83CBEB]/50";
-                } else if (isPartnerEvent) {
-                  cardClass = "bg-[#EEEEBB]/20 hover:bg-[#EEEEBB]/30 border border-[#EEEEBB]/40";
-                }
-
-                return (
-                  <button
-                    key={event.id}
-                    onClick={() => { setSelectedEvent(event); setDayModalEvents(null); }}
-                    className={`w-full text-left p-3 rounded-lg transition-colors flex flex-col gap-2 ${cardClass}`}
-                  >
-                    <div className="flex gap-2">
-                      {isHostEvent ? (
-                        <Badge className="bg-[#83CBEB] text-[#000033] text-[10px] px-1 py-0 h-4">主催</Badge>
-                      ) : isPartnerEvent ? (
-                        <Badge className="bg-[#EEEEBB] text-[#000033] text-[10px] px-1 py-0 h-4">パートナー</Badge>
-                      ) : null}
-                      <Badge className="bg-transparent border border-[#EEEEFF]/30 text-[#EEEEFF] text-[10px] px-1 py-0 h-4">
-                        {event.type}
-                      </Badge>
-                    </div>
-                    <span className="text-[#EEEEFF] text-sm font-medium">{event.title}</span>
-                    <span className="text-[#EEEEFF]/60 text-xs flex items-center gap-1">
-                      <Calendar className="w-3 h-3" /> {event.time}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* ▼ イベント詳細・ロケット詳細モーダル ▼ */}
       {selectedEvent && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
@@ -450,7 +364,6 @@ export default function EventCalendar({ events, launches = [] }: { events: Event
                   <Calendar className="h-5 w-5 text-[#83CBEB]" />
                   <span className="font-sans">
                     {selectedEvent.date.getFullYear()}年{selectedEvent.date.getMonth() + 1}月{selectedEvent.date.getDate()}日
-                    {/* 通常イベントかつ、endDateが存在し、別日の場合 */}
                     {!('isLaunch' in selectedEvent) && selectedEvent.endDate && selectedEvent.endDate.getTime() !== selectedEvent.date.getTime() && (
                       <> ～ {selectedEvent.endDate.getFullYear()}年{selectedEvent.endDate.getMonth() + 1}月{selectedEvent.endDate.getDate()}日</>
                     )}
@@ -463,7 +376,6 @@ export default function EventCalendar({ events, launches = [] }: { events: Event
                   <span className="font-sans">{selectedEvent.location}</span>
                 </div>
 
-                {/* --- ロケット打ち上げ用の表示 --- */}
                 {'isLaunch' in selectedEvent ? (
                   <>
                     {selectedEvent.rocket && (
@@ -474,7 +386,6 @@ export default function EventCalendar({ events, launches = [] }: { events: Event
                     )}
                   </>
                 ) : (
-                /* --- 通常イベント用の表示 --- */
                   <>
                     {selectedEvent.capacity > 0 && (
                       <div className="flex items-center gap-2 text-[#EEEEFF]">
@@ -509,9 +420,10 @@ export default function EventCalendar({ events, launches = [] }: { events: Event
                 <p className="text-[#EEEEFF]/80 font-sans leading-relaxed whitespace-pre-wrap">{selectedEvent.description}</p>
               </div>
 
+              {/* ▼ TypeScriptエラー修正部分 ▼ */}
               {'link' in selectedEvent && selectedEvent.link && (
                 <Button asChild className="w-full bg-[#83CBEB] hover:bg-[#83CBEB]/80 text-[#000033] font-sans">
-                  <a href={selectedEvent.link} target="_blank" rel="noopener noreferrer" className="block w-full">
+                  <a href={selectedEvent.link as string} target="_blank" rel="noopener noreferrer" className="block w-full">
                     詳細・関連リンク
                   </a>
                 </Button>
