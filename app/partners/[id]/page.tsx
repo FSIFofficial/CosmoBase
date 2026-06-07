@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { Building2, Users, Globe, ChevronLeft, Facebook, Instagram } from "lucide-react"
+import { Building2, Users, Globe, ChevronLeft, Facebook, Instagram, Newspaper } from "lucide-react" // ◀︎ Newspaperを追加
 import Image from "next/image"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -81,7 +81,7 @@ export default async function PartnerDetailPage({ params }: Props) {
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col gap-8 sm:flex-row sm:items-start">
               
-              {/* ▼ ロゴ画像：縦長・横長対応 (縦横に余裕を持たせたコンテナ＋object-contain) ▼ */}
+              {/* ▼ ロゴ画像 ▼ */}
               <div className="flex-shrink-0 w-full sm:w-auto">
                 <div className="flex h-40 w-full sm:w-56 p-4 items-center justify-center rounded-lg bg-[#EEEEFF]/5 border border-[#83CBEB]/30">
                   {partner.logo ? (
@@ -125,7 +125,19 @@ export default async function PartnerDetailPage({ params }: Props) {
                 <h1 className="mb-3 font-serif text-3xl font-bold text-[#EEEEFF] sm:text-4xl">{partner.name}</h1>
                 <p className="mb-4 text-lg text-[#EEEEFF]/80">{partner.description}</p>
                 {partner.established && (
-                  <p className="text-sm text-[#EEEEFF]/60">設立: {partner.established}</p>
+                  <p className="text-sm text-[#EEEEFF]/60 mb-2">設立: {partner.established}</p>
+                )}
+
+                {partner.newsLink && (
+                  <div className="mt-6">
+                    <a
+                      href={partner.newsLink}
+                      className="inline-flex items-center gap-2 rounded-lg bg-[#83CBEB] px-5 py-2.5 text-sm font-bold text-[#000033] hover:bg-[#83CBEB]/90 transition-colors shadow-lg shadow-[#83CBEB]/20"
+                    >
+                      <Newspaper className="h-4 w-4" />
+                      パートナー締結のお知らせを見る
+                    </a>
+                  </div>
                 )}
               </div>
             </div>
