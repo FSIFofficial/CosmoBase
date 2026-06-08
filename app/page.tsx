@@ -20,7 +20,7 @@ interface StatsData {
 export default function Home() {
   const [stats, setStats] = useState<StatsData>({
     events: "7",         //開催イベント数
-    participants: "154",  //参加者数
+    participants: "155",  //参加者数
     collaborations: "4", //パートナー数
     media: "1",          //メディア掲載
   })
@@ -332,25 +332,23 @@ export default function Home() {
               <p className="text-lg md:text-xl text-[#EEEEFF]/80 font-sans mb-8 leading-relaxed">
                 Cosmo Baseで、新しい学びとつながりを始めましょう。
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                  
-                <AutoLink>
-                  <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium w-full sm:w-auto">
-                    今すぐ参加する
-                  </Button>
-                </AutoLink>
-                <Link href="/events">
-                  <Button variant="outline" className="border-[#EEEEFF] text-[#EEEEFF] hover:bg-[#EEEEFF]/10 text-lg px-8 py-6 font-sans bg-transparent w-full sm:w-auto">
-                    最新イベントを見る
-                  </Button>
-                </Link>
-                <Link href="/join">
-                  <Button variant="outline" className="border-[#83CBEB] text-[#83CBEB] hover:bg-[#83CBEB]/10 text-lg px-8 py-6 font-sans bg-transparent w-full sm:w-auto">
-                    コミュニティーへの参加方法
-                  </Button>
-                </Link> 
-              </div>
-              
+             <div className="flex flex-col md:flex-row flex-wrap gap-4 justify-center mb-8">
+               <AutoLink>
+                 <Button className="bg-[#83CBEB] text-[#000033] hover:bg-[#83CBEB]/90 text-lg px-8 py-6 font-sans font-medium w-full md:w-auto">
+                   今すぐ参加する
+                 </Button>
+               </AutoLink>
+               <Link href="/events">
+                 <Button variant="outline" className="border-[#EEEEFF] text-[#EEEEFF] hover:bg-[#EEEEFF]/10 text-lg px-8 py-6 font-sans bg-transparent w-full md:w-auto">
+                   最新イベントを見る
+                 </Button>
+               </Link>
+               <Link href="/join">
+                 <Button variant="outline" className="border-[#83CBEB] text-[#83CBEB] hover:bg-[#83CBEB]/10 text-lg px-8 py-6 font-sans bg-transparent w-full md:w-auto">
+                   コミュニティーへの参加方法
+                 </Button>
+               </Link> 
+             </div>
               <div className="flex flex-col items-center gap-5 mt-8 mb-8">
                 <span className="text-[#EEEEFF]/60 text-sm font-sans tracking-wider">
                   ＼ 最新情報はこちらで発信中！ ／
