@@ -353,6 +353,31 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/news/space-type-detail": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/news/[id]",
+      "dataRoute": "/news/space-type-detail.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/news": {
       "experimentalBypassFor": [
         {
@@ -1054,8 +1079,8 @@
   },
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "77f5741f6757af26fb228a9bdf3679c9",
-    "previewModeSigningKey": "26483a42be82afd7caba31ee3be545b069a39d2211718e1e1bb7c61e8d372b1d",
-    "previewModeEncryptionKey": "b8e42699991c9f6a3be02cb0da6fd1c7df549a8de641eb123628fa4494dfb391"
+    "previewModeId": "54350843c9f9f2520c21ed8cffda80c1",
+    "previewModeSigningKey": "dc10ea92c421aa90dfccce1c3b18c3e4046bcdb987b12534e862cb11a6529d5e",
+    "previewModeEncryptionKey": "dc4a109b6b965d3168648fbaf492036e95b22788d6366c197094fb54bd580d42"
   }
 }
