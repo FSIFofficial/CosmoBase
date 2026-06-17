@@ -22,7 +22,7 @@ export default function Home() {
     events: "9",         //開催イベント数
     participants: "161",  //参加者数
     collaborations: "5", //パートナー数
-    media: "1",          //メディア掲載
+    media: "0",          //メディア掲載
   })
 
   useEffect(() => {
