@@ -219,8 +219,8 @@ export default function Home() {
               {/* <div className="text-center">
                 <div className="text-5xl md:text-6xl font-serif text-[#83CBEB] mb-3">{stats.media}</div>
                 <p className="text-[#EEEEFF]/80 font-sans">メディア掲載</p>
-              </div>
-            </div> */}
+              </div>*/}
+            </div> 
           </div>
         </div>
       </section>
