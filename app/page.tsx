@@ -19,7 +19,7 @@ interface StatsData {
 
 export default function Home() {
   const [stats, setStats] = useState<StatsData>({
-    events: "9",         //開催イベント数
+    events: "10",         //開催イベント数
     participants: "162",  //参加者数
     collaborations: "6", //パートナー数
     media: "0",          //メディア掲載
@@ -200,7 +200,7 @@ export default function Home() {
               これまでの活動
             </h2>
 
-            <div className="grid md:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="text-5xl md:text-6xl font-serif text-[#83CBEB] mb-3">{stats.events}</div>
                 <p className="text-[#EEEEFF]/80 font-sans">開催イベント数</p>
