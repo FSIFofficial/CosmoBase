@@ -47,7 +47,7 @@ export default function FSIFApplicationForm() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
         <div className="max-w-3xl w-full bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center">
-          <div className="bg-green-50 text-green-700 p-6 rounded-lg font-bold">
+          <div className="bg-[#115525] text-green-700 p-6 rounded-lg font-bold">
             送信が完了しました。ご応募ありがとうございます。
           </div>
         </div>
@@ -58,7 +58,7 @@ export default function FSIFApplicationForm() {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans p-6 py-12">
       <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-100">
-        <h1 className="text-2xl font-bold text-[#3f32a8] mb-2">メンバー参加申請フォーム</h1>
+        <h1 className="text-2xl font-bold text-[#115525] mb-2">メンバー参加申請フォーム</h1>
         <p className="text-sm text-gray-600 mb-8">
           未来宇宙産業フォーラム(FSIF)の活動に興味をお持ちいただきありがとうございます。<br />
           未来宇宙産業フォーラムのメンバーになるため1度面接をさせていただきます。
@@ -159,6 +159,7 @@ export default function FSIFApplicationForm() {
               name="entry.2080060403"
               className="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:border-[#5746e3] focus:ring-1 focus:ring-[#5746e3] outline-none bg-white"
             >
+              <option className="text-gray-500">学年を選んでください。</option>
               <option value="大学1年">大学1年</option>
               <option value="大学2年">大学2年</option>
               <option value="大学3年">大学3年</option>
@@ -282,7 +283,7 @@ export default function FSIFApplicationForm() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-[#5746e3] hover:bg-[#3f32a8] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-bold py-3 px-8 rounded-full transition duration-300 shadow-md"
+              className="bg-[#115525] hover:bg-[#115525]/50 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-bold py-3 px-8 rounded-full transition duration-300 shadow-md"
             >
               {isSubmitting ? '送信中...' : '送信する'}
             </button>
