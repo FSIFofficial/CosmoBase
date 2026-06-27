@@ -269,17 +269,17 @@ export default function FSIFApplicationForm() {
           </div>
 
        {/* 参加を希望する理由 */}
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <label className="block font-semibold mb-2"></label>
             <textarea
               name="entry.1522023095"
               rows={3}
               className="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:border-[#5746e3] focus:ring-1 focus:ring-[#5746e3] outline-none"
             ></textarea>
-          </div>
+          </div>*/}
 
           {/* 送信ボタン */}
-          {/* <div className="text-center">
+           <div className="text-center">
             <button
               type="submit"
               disabled={isSubmitting}
@@ -287,7 +287,7 @@ export default function FSIFApplicationForm() {
             >
               {isSubmitting ? '送信中...' : '送信する'}
             </button>
-          </div>*/}
+          </div>
         </form>
       </div>
     </div>
