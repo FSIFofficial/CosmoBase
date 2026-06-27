@@ -36,7 +36,7 @@ export default function ValuePageContent() {
                 <div className="bg-[#83CBEB] text-[#000033] font-bold px-4 py-2 rounded-lg text-xl font-sans">Level 1</div>
                 <h2 className="text-2xl md:text-3xl font-serif text-[#EEEEFF]">習慣化・体験</h2>
               </div>
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
                     <img src="/CosmoBase/CBquiz_logo.png" alt="毎日宇宙クイズ" className="h-full w-auto object-contain" />
@@ -82,7 +82,7 @@ export default function ValuePageContent() {
                 <div className="bg-[#A6D7DB] text-[#000033] font-bold px-4 py-2 rounded-lg text-xl font-sans">Level 2</div>
                 <h2 className="text-2xl md:text-3xl font-serif text-[#EEEEFF]">対話・学習</h2>
               </div>
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-[#000033]/60 border border-[#A6D7DB]/20 rounded-xl p-6 hover:border-[#A6D7DB]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
                     <img src="/CosmoBase/CBshittoku_logo.png" alt="Cosmo Baseで宇宙知っトク" className="h-full w-auto object-contain" />
