@@ -64,6 +64,15 @@ export default function ValuePageContent() {
                     簡単な問題に回答することで自分のタイプが分かるコンテンツ。簡易版から、コミュニティー参加者が体験できる本格版まで準備しています。
                   </p>
                 </div>
+                <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
+                  <div className="flex items-center mb-4 h-12">
+                    <img src="/CosmoBase/CosmoMatch.png" alt="Cosmo Match" className="h-full w-auto object-contain" />
+                  </div>
+                  <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Cosmo Match - あなたの推し○○を探せ</h3>
+                  <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
+                    あなたの「推し」を見つけよう。いくつかの簡単な質問に直感で答えるだけで、あなたが心惹かれ、応援したくなる運命の対象をナビゲートします。
+                  </p>
+                </div>
               </div>
             </div>
 
