@@ -47,7 +47,7 @@ export default function FSIFApplicationForm() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
         <div className="max-w-3xl w-full bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center">
-          <div className="bg-[#115525] text-green-700 p-6 rounded-lg font-bold">
+          <div className="bg-[#115525]/50 text-gray-100 p-6 rounded-lg font-bold">
             送信が完了しました。ご応募ありがとうございます。
           </div>
         </div>
@@ -67,7 +67,7 @@ export default function FSIFApplicationForm() {
         <form onSubmit={handleSubmit}>
           {/* 氏名 */}
           <div className="mb-6">
-            <label className="block font-semibold mb-2">氏名</label>
+            <label className="block font-semibold mb-2">氏名 <span className="text-red-500">*</span></label>
             <p className="text-xs text-gray-500 mb-2">姓と名の間に半角のスペースを入れてください。</p>
             <input
               type="text"
@@ -119,7 +119,7 @@ export default function FSIFApplicationForm() {
 
           {/* メールアドレス */}
           <div className="mb-6">
-            <label className="block font-semibold mb-2">メールアドレス</label>
+            <label className="block font-semibold mb-2">メールアドレス <span className="text-red-500">*</span></label>
             <input
               type="email"
               name="entry.1109815842"
@@ -132,7 +132,7 @@ export default function FSIFApplicationForm() {
 
           {/* メールアドレス(確認用) */}
           <div className="mb-6">
-            <label className="block font-semibold mb-2">メールアドレス(確認用)</label>
+            <label className="block font-semibold mb-2">メールアドレス(確認用) <span className="text-red-500">*</span></label>
             <p className="text-xs text-gray-500 mb-2">コピーせず、改めてメールアドレスを記入してください。</p>
             <input
               type="email"
@@ -149,7 +149,7 @@ export default function FSIFApplicationForm() {
 
           {/* 学年 */}
           <div className="mb-6">
-            <label className="block font-semibold mb-2">学年</label>
+            <label className="block font-semibold mb-2">学年 <span className="text-red-500">*</span></label>
             <p className="text-xs text-gray-500 mb-2">
               未来宇宙産業フォーラムは大学、大学院の学生のみメンバーとして活動が可能です。<br />
               高校生以下は参加できないため是非大学に入るまでCosmo Baseで宇宙に対する興味を深めてください(^▽^)/<br />
@@ -171,16 +171,6 @@ export default function FSIFApplicationForm() {
               <option value="博士後期課程3年">博士後期課程3年</option>
               <option value="__other_option__">その他</option>
             </select>
-          </div>
-
-          {/* 参加を希望する理由 */}
-          <div className="mb-6">
-            <label className="block font-semibold mb-2">参加を希望する理由を教えてください</label>
-            <textarea
-              name="entry.1522023095"
-              rows={3}
-              className="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:border-[#5746e3] focus:ring-1 focus:ring-[#5746e3] outline-none"
-            ></textarea>
           </div>
 
           {/* 活動可能な曜日と時間帯 */}
@@ -278,8 +268,18 @@ export default function FSIFApplicationForm() {
             ></textarea>
           </div>
 
+       {/* 参加を希望する理由 */}
+          <div className="mb-6">
+            <label className="block font-semibold mb-2"></label>
+            <textarea
+              name="entry.1522023095"
+              rows={3}
+              className="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:border-[#5746e3] focus:ring-1 focus:ring-[#5746e3] outline-none"
+            ></textarea>
+          </div>
+
           {/* 送信ボタン */}
-          <div className="text-center">
+          {/* <div className="text-center">
             <button
               type="submit"
               disabled={isSubmitting}
@@ -287,7 +287,7 @@ export default function FSIFApplicationForm() {
             >
               {isSubmitting ? '送信中...' : '送信する'}
             </button>
-          </div>
+          </div>*/}
         </form>
       </div>
     </div>
