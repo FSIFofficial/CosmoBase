@@ -165,7 +165,19 @@ export default function PartnerList({ initialPartners }: { initialPartners: Part
                   )}
                   {partner.note && (
                     <div className="flex items-center gap-1 text-xs text-[#EEEEFF]/60" title="note">
-                     <Image src="/CosmoBase/note-logo.svg" alt="note" width={16} height={16} className="h-6 w-6 opacity-60"/>
+                      <span
+                        className="inline-block h-6 w-6 bg-[#EEEEFF] opacity-60" 
+                        style={{
+                          maskImage: 'url(/CosmoBase/note-logo.svg)',
+                          WebkitMaskImage: 'url(/CosmoBase/note-logo.svg)',
+                          maskSize: 'contain',
+                          WebkitMaskSize: 'contain',
+                          maskRepeat: 'no-repeat',
+                          WebkitMaskRepeat: 'no-repeat',
+                          maskPosition: 'center',
+                          WebkitMaskPosition: 'center',
+                        }}
+                        />
                     </div>
                   )}
                   {(partner.otherLink1 || partner.otherLink2 || partner.otherLink3) && (
