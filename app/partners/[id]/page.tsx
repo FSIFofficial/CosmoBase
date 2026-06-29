@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation"
+  import { notFound } from "next/navigation"
 import Link from "next/link"
 import { Building2, Users, Globe, ChevronLeft, Facebook, Instagram, Newspaper, BookOpen, Link as LinkIcon, Mail } from "lucide-react" 
 import Image from "next/image"
@@ -175,7 +175,7 @@ export default async function PartnerDetailPage({ params }: Props) {
                   <svg viewBox="0 0 24 24" fill="#83CBEB" className="h-4 w-4" aria-hidden="true">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
-                  X (Twitter)
+                  X (旧Twitter)
                 </a>
               )}
               {partner.facebook && (
@@ -207,7 +207,20 @@ export default async function PartnerDetailPage({ params }: Props) {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 rounded-lg bg-[#000033]/50 border border-[#83CBEB]/30 px-4 py-2 text-sm font-medium text-[#EEEEFF] hover:bg-[#83CBEB]/10 transition-colors"
                   >
-                  <Image src="/CosmoBase/note-logo.svg" alt="note" width={16} height={16} className="h-6 w-6"/>
+                  <span 
+                    className="inline-block h-6 w-6 bg-[#83CBEB]"
+                    style={{
+                    maskImage: 'url(/CosmoBase/note-logo.svg)',
+                    WebkitMaskImage: 'url(/CosmoBase/note-logo.svg)',
+                    maskSize: 'contain',
+                    WebkitMaskSize: 'contain',
+                    maskRepeat: 'no-repeat',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskPosition: 'center',
+                    WebkitMaskPosition: 'center',
+                  }}
+                  />
+                  note
                 </a>
               )}
               {partner.otherLink1 && (
