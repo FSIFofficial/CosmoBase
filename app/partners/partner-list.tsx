@@ -165,8 +165,7 @@ export default function PartnerList({ initialPartners }: { initialPartners: Part
                   )}
                   {partner.note && (
                     <div className="flex items-center gap-1 text-xs text-[#EEEEFF]/60" title="note">
-                     <Image src="/note-logo.svg" alt="note" width={16} height={16} className="h-4 w-4 opacity-60"/>
-                       note
+                     <Image src="/CosmoBase/note-logo.svg" alt="note" width={16} height={16} className="h-6 w-6 opacity-60"/>
                     </div>
                   )}
                   {(partner.otherLink1 || partner.otherLink2 || partner.otherLink3) && (
