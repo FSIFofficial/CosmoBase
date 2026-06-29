@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Building2, Users, Search, Globe, Facebook, Instagram } from "lucide-react"
+import { Building2, Users, Search, Globe, Facebook, Instagram, BookOpen, Link as LinkIcon } from "lucide-react"
 import Image from "next/image"
 import { Partner } from "@/lib/partners"
 
@@ -15,10 +15,12 @@ export default function PartnerList({ initialPartners }: { initialPartners: Part
   const [filterType, setFilterType] = useState<"all" | PartnerType>("all")
 
   const filteredPartners = initialPartners.filter((partner) => {
+    const searchLower = searchQuery.toLowerCase()
     const matchesSearch =
-      partner.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      partner.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      partner.category.toLowerCase().includes(searchQuery.toLowerCase())
+      partner.name.toLowerCase().includes(searchLower) ||
+      (partner.furigana && partner.furigana.toLowerCase().includes(searchLower)) ||
+      partner.description.toLowerCase().includes(searchLower) ||
+      partner.category.toLowerCase().includes(searchLower)
     const matchesType = filterType === "all" || partner.type === filterType
     return matchesSearch && matchesType
   })
@@ -33,7 +35,7 @@ export default function PartnerList({ initialPartners }: { initialPartners: Part
               <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-[#EEEEFF]/40" />
               <Input
                 type="text"
-                placeholder="企業・団体名、活動内容で検索..."
+                placeholder="企業・団体名、ふりがな、活動内容で検索..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 bg-[#000033]/50 border-[#83CBEB]/30 text-[#EEEEFF]"
@@ -111,15 +113,19 @@ export default function PartnerList({ initialPartners }: { initialPartners: Part
                   </div>
                 </div>
 
-                {/* ▼ ロゴ画像：縦長・横長対応 (h-24 で高さを固定し、幅はフルに。object-contain で見切れ防止) ▼ */}
+                {/* ロゴ画像 */}
                 <div className="mb-4 flex h-24 w-full items-center justify-center rounded-lg bg-[#EEEEFF]/5 p-3 border border-[#83CBEB]/10">
-                  <Image
-                    src={partner.logo || "/placeholder.svg"}
-                    alt={partner.name}
-                    width={300}
-                    height={300}
-                    className="h-full w-full object-contain"
-                  />
+                  {partner.logo ? (
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      width={300}
+                      height={300}
+                      className="h-full w-full object-contain"
+                    />
+                  ) : (
+                    <span className="text-3xl">🚀</span>
+                  )}
                 </div>
 
                 {/* Content */}
@@ -155,6 +161,16 @@ export default function PartnerList({ initialPartners }: { initialPartners: Part
                   {partner.instagram && (
                     <div className="flex items-center gap-1 text-xs text-[#EEEEFF]/60" title="Instagram">
                       <Instagram className="h-4 w-4" />
+                    </div>
+                  )}
+                  {partner.note && (
+                    <div className="flex items-center gap-1 text-xs text-[#EEEEFF]/60" title="note">
+                      <BookOpen className="h-4 w-4" /> note
+                    </div>
+                  )}
+                  {(partner.otherLink1 || partner.otherLink2 || partner.otherLink3) && (
+                    <div className="flex items-center gap-1 text-xs text-[#EEEEFF]/60" title="その他のリンク">
+                      <LinkIcon className="h-4 w-4" /> Link
                     </div>
                   )}
                 </div>
