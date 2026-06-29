@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { Building2, Users, Globe, ChevronLeft, Facebook, Instagram, Newspaper } from "lucide-react" // ◀︎ Newspaperを追加
+import { Building2, Users, Globe, ChevronLeft, Facebook, Instagram, Newspaper, BookOpen, Link as LinkIcon, Mail } from "lucide-react" 
 import Image from "next/image"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -39,14 +39,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-// URLを綺麗にリンク化するためのヘルパー関数
-function getSocialUrl(platform: 'twitter' | 'facebook' | 'instagram', value: string) {
+// URLを綺麗にリンク化するためのヘルパー関数に note を追加
+function getSocialUrl(platform: 'twitter' | 'facebook' | 'instagram' | 'note', value: string) {
   if (value.startsWith('http')) return value;
   const cleanValue = value.replace("@", "");
   switch (platform) {
     case 'twitter': return `https://x.com/${cleanValue}`;
     case 'facebook': return `https://facebook.com/${cleanValue}`;
     case 'instagram': return `https://instagram.com/${cleanValue}`;
+    case 'note': return `https://note.com/${cleanValue}`;
   }
 }
 
@@ -122,6 +123,11 @@ export default async function PartnerDetailPage({ params }: Props) {
                     {partner.category}
                   </div>
                 </div>
+
+                {/* ▼ 追加: ふりがなを表示 ▼ */}
+                {partner.furigana && (
+                  <p className="mb-1 text-sm font-medium text-[#EEEEFF]/70">{partner.furigana}</p>
+                )}
                 <h1 className="mb-3 font-serif text-3xl font-bold text-[#EEEEFF] sm:text-4xl">{partner.name}</h1>
                 <p className="mb-4 text-lg text-[#EEEEFF]/80">{partner.description}</p>
                 {partner.established && (
@@ -192,6 +198,62 @@ export default async function PartnerDetailPage({ params }: Props) {
                 >
                   <Instagram className="h-4 w-4 text-[#83CBEB]" />
                   Instagram
+                </a>
+              )}
+              
+              {/* ▼ 追加: note やその他のリンク ▼ */}
+              {partner.note && (
+                <a
+                  href={getSocialUrl('note', partner.note)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg bg-[#000033]/50 border border-[#83CBEB]/30 px-4 py-2 text-sm font-medium text-[#EEEEFF] hover:bg-[#83CBEB]/10 transition-colors"
+                >
+                  <BookOpen className="h-4 w-4 text-[#83CBEB]" />
+                  note
+                </a>
+              )}
+              {partner.otherLink1 && (
+                <a
+                  href={partner.otherLink1}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg bg-[#000033]/50 border border-[#83CBEB]/30 px-4 py-2 text-sm font-medium text-[#EEEEFF] hover:bg-[#83CBEB]/10 transition-colors"
+                >
+                  <LinkIcon className="h-4 w-4 text-[#83CBEB]" />
+                  関連リンク
+                </a>
+              )}
+              {partner.otherLink2 && (
+                <a
+                  href={partner.otherLink2}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg bg-[#000033]/50 border border-[#83CBEB]/30 px-4 py-2 text-sm font-medium text-[#EEEEFF] hover:bg-[#83CBEB]/10 transition-colors"
+                >
+                  <LinkIcon className="h-4 w-4 text-[#83CBEB]" />
+                  関連リンク
+                </a>
+              )}
+              {partner.otherLink3 && (
+                <a
+                  href={partner.otherLink3}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg bg-[#000033]/50 border border-[#83CBEB]/30 px-4 py-2 text-sm font-medium text-[#EEEEFF] hover:bg-[#83CBEB]/10 transition-colors"
+                >
+                  <LinkIcon className="h-4 w-4 text-[#83CBEB]" />
+                  関連リンク
+                </a>
+              )}
+              {/* ▼ 追加: 連絡用メールアドレス (公開設定にする場合) ▼ */}
+              {partner.email && (
+                <a
+                  href={`mailto:${partner.email}`}
+                  className="flex items-center gap-2 rounded-lg bg-[#000033]/50 border border-[#83CBEB]/30 px-4 py-2 text-sm font-medium text-[#EEEEFF] hover:bg-[#83CBEB]/10 transition-colors"
+                >
+                  <Mail className="h-4 w-4 text-[#83CBEB]" />
+                  お問い合わせ
                 </a>
               )}
             </div>
