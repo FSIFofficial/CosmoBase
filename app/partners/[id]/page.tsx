@@ -200,17 +200,14 @@ export default async function PartnerDetailPage({ params }: Props) {
                   Instagram
                 </a>
               )}
-              
-              {/* ▼ 追加: note やその他のリンク ▼ */}
               {partner.note && (
                 <a
                   href={getSocialUrl('note', partner.note)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 rounded-lg bg-[#000033]/50 border border-[#83CBEB]/30 px-4 py-2 text-sm font-medium text-[#EEEEFF] hover:bg-[#83CBEB]/10 transition-colors"
-                >
-                  <BookOpen className="h-4 w-4 text-[#83CBEB]" />
-                  note
+                  >
+                  <Image src="/CosmoBase/note-logo.svg" alt="note" width={16} height={16} className="h-6 w-6"/>
                 </a>
               )}
               {partner.otherLink1 && (
@@ -246,7 +243,6 @@ export default async function PartnerDetailPage({ params }: Props) {
                   関連リンク
                 </a>
               )}
-              {/* ▼ 追加: 連絡用メールアドレス (公開設定にする場合) ▼ */}
               {partner.email && (
                 <a
                   href={`mailto:${partner.email}`}
