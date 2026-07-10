@@ -20,16 +20,31 @@ export const metadata: Metadata = {
   // ▼ 1. URLの基準（重要）
   metadataBase: new URL("https://fsifofficial.github.io/CosmoBase"),
 
+  // ▼ SEO強化：titleに主要キーワードを含める
   title: {
-    template: "%s | CosmoBase",
-    default: "CosmoBase",
+    template: "%s | Cosmo Base",
+    default: "Cosmo Base | 宇宙を身近にする宇宙コミュニティ",
   },
+  
+  // ▼ SEO強化：検索結果に表示される説明文を具体化し、ビジョンとターゲットを含める
   description:
-    "宇宙を、楽しむ。CosmoBaseは宇宙に興味がある人・産業をつなぐコミュニティーです。",
+    "「宇宙を身近なものにする」「宇宙をすべての産業の選択肢にする」をビジョンに掲げる宇宙コミュニティ『Cosmo Base（コスモベース）』。初心者から宇宙産業に関心がある人まで、誰もが交流できる優しい場所です。",
+  
+  // ▼ SEO強化：関連キーワードを明示
+  keywords: [
+    "宇宙コミュニティ",
+    "宇宙コミュニティー",
+    "Cosmo Base",
+    "コスモベース",
+    "宇宙産業",
+    "宇宙ビジネス",
+    "初心者",
+    "未来宇宙産業フォーラム"
+  ],
   
   openGraph: {
-    title: "Cosmo Base",
-    description: "宇宙を、楽しむ。CosmoBaseは宇宙に興味がある人・産業をつなぐコミュニティーです。",
+    title: "Cosmo Base | 宇宙を身近にする宇宙コミュニティ",
+    description: "「宇宙を身近なものにする」「宇宙をすべての産業の選択肢にする」をビジョンに掲げる宇宙コミュニティ『Cosmo Base（コスモベース）』。初心者から宇宙産業に関心がある人まで、誰もが交流できる優しい場所です。",
     url: "https://fsifofficial.github.io/CosmoBase",
     siteName: "Cosmo Base",
     locale: "ja_JP",
@@ -44,11 +59,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cosmo Base",
-    description: "宇宙を、楽しむ。CosmoBaseは宇宙に興味がある人・産業をつなぐコミュニティーです。",
+    title: "Cosmo Base | 宇宙を身近にする宇宙コミュニティ",
+    description: "「宇宙を身近なものにする」「宇宙をすべての産業の選択肢にする」をビジョンに掲げる宇宙コミュニティ『Cosmo Base（コスモベース）』。",
   },
 
-  // ▼ 2. アイコン設定（ここを強化しました）
+  // ▼ 2. アイコン設定
   icons: {
     icon: [
       {
@@ -68,13 +83,19 @@ export const metadata: Metadata = {
   },
 }
 
-// ▼ ここに追加：サイト名をGoogleに伝えるためのデータ
+// ▼ 構造化データ（JSON-LD）を強化
+// WebSiteからOrganization（組織/コミュニティ）に変更し、運営元情報を追加
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
+  "@type": "Organization",
   "name": "Cosmo Base",
   "alternateName": ["CosmoBase", "コスモベース"],
   "url": "https://fsifofficial.github.io/CosmoBase/",
+  "description": "「宇宙を身近なものにする」「宇宙をすべての産業の選択肢にする」をビジョンに掲げる宇宙コミュニティ。",
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "未来宇宙産業フォーラム"
+  }
 }
 
 export default function RootLayout({
@@ -85,7 +106,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
-        {/* ここからアナリティクスのコードを追加 */}
+        {/* アナリティクスのコード */}
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=G-3CH0EB23BR`}
@@ -106,7 +127,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${notoSans.variable} ${notoSerif.variable} font-sans antialiased`}>
-        {/* ▼ ここに追加：JSON-LDを出力 */}
+        {/* JSON-LDを出力 */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
