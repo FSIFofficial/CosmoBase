@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Noto_Serif_JP, Noto_Sans_JP } from "next/font/google"
 import "./globals.css"
 import Script from "next/script";
@@ -51,7 +51,11 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/CosmoBase/icon.png",
+        // metadataBase (https://fsifofficial.github.io/CosmoBase) にすでに basePath が
+        // 含まれているため、ここは "/icon.png" のみでOK。
+        // "/CosmoBase/icon.png" にすると /CosmoBase/CosmoBase/icon.png という
+        // 存在しないURLになり、SNSやチャットのリンクカードで画像・アイコンが表示されない原因になる。
+        url: "/icon.png",
         width: 1200,
         height: 630,
       },
@@ -61,6 +65,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Cosmo Base | 宇宙を身近にする宇宙コミュニティ",
     description: "「宇宙を身近なものにする」「宇宙をすべての産業の選択肢にする」をビジョンに掲げる宇宙コミュニティ『Cosmo Base（コスモベース）』。",
+    images: ["/icon.png"],
   },
 
   // ▼ 2. アイコン設定
@@ -81,6 +86,14 @@ export const metadata: Metadata = {
       },
     ],
   },
+}
+
+// ▼ 常時ダークテーマなので、フォーム部品やスクロールバーなど
+//   ブラウザ標準UIもダーク配色に揃える（未指定だとOSがライトモードの端末で
+//   スクロールバー等だけ白く浮いて見える）
+export const viewport: Viewport = {
+  themeColor: "#000033",
+  colorScheme: "dark",
 }
 
 // ▼ 構造化データ（JSON-LD）を強化
