@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "MMXチームへの寄せ書きキャンペーン",
   description: DESCRIPTION,
   openGraph: {
-    title: "MMXチームへの寄せ書きキャンペーン 共催:FSIF",
+    title: "MMXチームへの寄せ書きキャンペーン",
     description: DESCRIPTION,
   },
 }
