@@ -80,7 +80,7 @@
   height: 30px;
   overflow: hidden;
   border-radius: 50%;
-  border: 1px solid var(--orange);
+  border: 0px solid var(--orange);
 }
 .brandMark img {
   width: 100%;
