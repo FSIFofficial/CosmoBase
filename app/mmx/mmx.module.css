@@ -1,0 +1,597 @@
+/*
+ * このページ専用の配色・レイアウト。サイト全体のテーマ(app/globals.css)には影響しない。
+ * CSS Modulesなのでクラス名は自動的にこのファイル内だけに閉じる。
+ * ただし素のタグ指定(html/body/main/a/button/input/textarea/h1/h2)はCSS Modulesでも
+ * スコープされず全ページに漏れるため、すべて .page 配下に限定している。
+ */
+
+.page {
+  --ink: #f4f1eb;
+  --muted-ink: #a9aaa8;
+  --line: rgba(244, 241, 235, 0.16);
+  --orange: #f26a3d;
+  --deep: #101214;
+  --cream: #e8e3da;
+
+  min-height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  background: var(--deep);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
+}
+.page * {
+  box-sizing: border-box;
+}
+.page a {
+  color: inherit;
+  text-decoration: none;
+}
+.page button,
+.page input,
+.page textarea {
+  font: inherit;
+}
+.page button {
+  cursor: pointer;
+}
+.page h1 {
+  margin: 0;
+  font-size: clamp(64px, 9vw, 142px);
+  font-weight: 300;
+  letter-spacing: -0.08em;
+  line-height: 0.92;
+}
+.page h1 em,
+.page h2 em {
+  color: var(--orange);
+  font-style: normal;
+}
+
+.nav {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px clamp(24px, 5vw, 76px);
+  color: var(--ink);
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.brand em {
+  color: var(--orange);
+  font-style: normal;
+}
+.brandMark {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--orange);
+  color: var(--orange);
+  font-size: 10px;
+}
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 3vw, 46px);
+  color: var(--muted-ink);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+.navLinks a:hover,
+.textLink:hover {
+  color: var(--ink);
+}
+.navCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+}
+.navCta svg,
+.primaryButton svg,
+.outlineButton svg,
+.textLink svg {
+  width: 15px;
+  height: 15px;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  min-height: min(820px, 100vh);
+  align-items: center;
+  padding: 150px clamp(24px, 10vw, 160px) 110px;
+  isolation: isolate;
+  background: radial-gradient(circle at 76% 48%, rgba(239, 91, 48, 0.2), transparent 23%),
+    linear-gradient(115deg, #0e1012 0%, #121619 58%, #202020 100%);
+}
+.hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: radial-gradient(ellipse at 78% 63%, rgba(241, 101, 58, 0.18), transparent 31%),
+    linear-gradient(90deg, rgba(8, 10, 12, 0.92), transparent 65%);
+  content: "";
+}
+.heroGrid {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  opacity: 0.24;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(90deg, #000, transparent 75%);
+}
+.heroCopy {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 22px;
+  color: var(--orange);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+}
+.eyebrow span {
+  width: 28px;
+  height: 1px;
+  background: var(--orange);
+}
+.heroLead {
+  margin: 30px 0 34px;
+  color: var(--muted-ink);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+}
+.primaryButton,
+.outlineButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  border: 0;
+  padding: 16px 22px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  transition: transform 0.2s, background 0.2s;
+}
+.primaryButton {
+  background: var(--orange);
+  color: #fff;
+}
+.primaryButton:hover,
+.outlineButton:hover {
+  transform: translateY(-2px);
+}
+.heroCta {
+  position: relative;
+  min-height: 116px;
+  padding: 36px 52px;
+  box-shadow: 0 0 0 2px rgba(242, 106, 61, 0.6), 0 20px 54px rgba(242, 106, 61, 0.3);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+.heroCta::before {
+  position: absolute;
+  inset: -7px;
+  border: 1px solid rgba(242, 106, 61, 0.32);
+  content: "";
+  pointer-events: none;
+}
+.heroCta:hover {
+  background: #ff7a4b;
+  box-shadow: 0 0 0 1px rgba(242, 106, 61, 0.8), 0 18px 42px rgba(242, 106, 61, 0.38);
+}
+.heroCta svg {
+  width: 28px;
+  height: 28px;
+}
+.heroDisclaimer {
+  max-width: 620px;
+  margin: 26px 0 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 11px;
+  line-height: 1.8;
+}
+.noticeBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 18px 20px;
+  border-left: 2px solid var(--orange);
+  background: rgba(242, 106, 61, 0.08);
+  color: var(--muted-ink);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.noticeBox strong {
+  color: var(--orange);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+.formNotice {
+  margin: 0 0 8px;
+  padding: 12px 14px;
+  border-left: 2px solid var(--orange);
+  background: rgba(242, 106, 61, 0.1);
+  color: #665d57;
+  font-size: 11px;
+  line-height: 1.8;
+}
+.outlineButton {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+}
+.scrollHint {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 90px;
+  color: var(--muted-ink);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+}
+.scrollHint svg {
+  width: 16px;
+  height: 16px;
+  color: var(--orange);
+}
+
+.planet {
+  position: absolute;
+  right: 9%;
+  top: 50%;
+  z-index: 1;
+  width: min(40vw, 570px);
+  aspect-ratio: 1;
+  transform: translateY(-48%);
+}
+.planetGlow {
+  position: absolute;
+  inset: -14%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(246, 105, 54, 0.32), transparent 65%);
+  filter: blur(25px);
+}
+.planetCore {
+  position: absolute;
+  inset: 8%;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: -30px -22px 58px rgba(255, 171, 113, 0.22) inset, 24px 30px 50px rgba(0, 0, 0, 0.65) inset,
+    0 0 80px rgba(226, 83, 42, 0.25);
+}
+.planetCore img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.planetCore::after {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image: radial-gradient(ellipse at 35% 45%, transparent 0 8%, rgba(56, 22, 19, 0.45) 9% 11%, transparent 12%),
+    radial-gradient(ellipse at 65% 58%, rgba(255, 185, 125, 0.18), transparent 17%),
+    radial-gradient(ellipse at 55% 25%, rgba(65, 24, 20, 0.5), transparent 23%);
+  content: "";
+}
+.orbit {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 53%;
+  height: 28%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  transform: translateY(-50%) rotate(-18deg);
+}
+.orbitTwo {
+  width: 62%;
+  transform: translateY(-50%) rotate(30deg);
+  opacity: 0.4;
+}
+.heroMeta {
+  position: absolute;
+  bottom: 32px;
+  left: clamp(24px, 5vw, 76px);
+  right: clamp(24px, 5vw, 76px);
+  display: flex;
+  justify-content: space-between;
+  color: #747978;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  line-height: 1.6;
+}
+
+.countdownSection,
+.about,
+.voices {
+  padding: clamp(78px, 10vw, 140px) clamp(24px, 10vw, 160px);
+}
+.countdownSection {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--cream);
+  color: #151515;
+}
+.countdownSection .eyebrow,
+.about .eyebrow {
+  color: var(--orange);
+}
+.countdownSection h2,
+.about h2,
+.voices h2 {
+  margin: 0;
+  font-size: clamp(32px, 4vw, 60px);
+  font-weight: 300;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+.countdown {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 2vw, 24px);
+  color: #151515;
+}
+.countdown span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 64px;
+  text-align: center;
+}
+.countdown b {
+  font-size: clamp(30px, 4vw, 58px);
+  font-weight: 300;
+  letter-spacing: -0.07em;
+}
+.countdown small {
+  color: #777;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+.countdown i {
+  color: var(--orange);
+  font-size: 26px;
+  font-style: normal;
+}
+.launchNote {
+  grid-column: 2;
+  margin: 0;
+  color: #777;
+  font-size: 10px;
+  text-align: right;
+}
+
+.about {
+  background: #16191a;
+}
+.sectionLabel {
+  margin-bottom: 70px;
+  color: var(--orange);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+.sectionLabel span {
+  margin-left: 20px;
+  color: var(--muted-ink);
+}
+.aboutContent,
+.voicesHeading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8vw;
+}
+.about h2,
+.voices h2 {
+  color: var(--ink);
+}
+.aboutText {
+  max-width: 440px;
+  color: var(--muted-ink);
+  font-size: 14px;
+  line-height: 2;
+}
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  color: var(--ink);
+  font-size: 10px;
+  letter-spacing: 0.13em;
+}
+
+.voices {
+  background: #0e1011;
+}
+.voicesHeading {
+  align-items: end;
+  margin-bottom: 70px;
+}
+.commentGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.commentCard {
+  min-height: 220px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.025);
+}
+.commentCard svg {
+  width: 18px;
+  height: 18px;
+  color: var(--orange);
+}
+.commentCard p {
+  margin: 45px 0 28px;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.9;
+}
+.commentCard span {
+  color: var(--muted-ink);
+  font-size: 11px;
+}
+
+.pageFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 35px clamp(24px, 5vw, 76px);
+  border-top: 1px solid var(--line);
+  color: var(--muted-ink);
+  font-size: 11px;
+}
+.pageFooter small {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+.modalBackdrop {
+  position: fixed;
+  z-index: 30;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.74);
+}
+.commentForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(100%, 500px);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 38px;
+  background: var(--cream);
+  color: #151515;
+}
+.commentForm h2 {
+  margin: 0 0 18px;
+  font-size: 32px;
+  font-weight: 300;
+}
+.commentForm label {
+  margin-top: 5px;
+  font-size: 11px;
+}
+.commentForm label span {
+  color: #888;
+}
+.commentForm input,
+.commentForm textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 12px;
+  background: #fff;
+  color: #151515;
+  outline: none;
+}
+.commentForm textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+.commentForm .primaryButton {
+  align-self: flex-start;
+  margin-top: 10px;
+}
+.modalClose {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  border: 0;
+  background: transparent;
+  color: #555;
+  font-size: 25px;
+  line-height: 1;
+}
+
+.toast {
+  position: fixed;
+  z-index: 40;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 20px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 12px;
+}
+.toast svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 760px) {
+  .navLinks a:not(.navCta),
+  .heroMeta span:nth-child(2) {
+    display: none;
+  }
+  .hero {
+    min-height: 750px;
+    padding-top: 150px;
+  }
+  .planet {
+    right: -25%;
+    top: 56%;
+    width: 90vw;
+    opacity: 0.75;
+  }
+  .heroCopy {
+    align-self: flex-start;
+  }
+  .scrollHint {
+    margin-top: 58px;
+  }
+  .countdownSection,
+  .aboutContent,
+  .voicesHeading {
+    grid-template-columns: 1fr;
+  }
+  .countdown {
+    justify-content: space-between;
+  }
+  .launchNote {
+    grid-column: auto;
+    text-align: left;
+  }
+  .commentGrid {
+    grid-template-columns: 1fr;
+  }
+  .pageFooter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
