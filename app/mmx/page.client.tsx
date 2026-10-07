@@ -346,35 +346,69 @@ export default function MMXPageContent() {
               ×
             </button>
             <p className={styles.eyebrow}>LEAVE YOUR MARK</p>
-            <h2>応援コメントを送る</h2>
+            <h2>MMXチームへの寄せ書きキャンペーン</h2>
             <p className={styles.formNotice}>
-              この企画はMMX公式のプロジェクトではありません。個人情報は入力せず、公開されてもよい内容のみ入力してください。コメントが必ず届けられることを保証するものではありません。
+              10月20日打ち上げ予定の火星衛星探査計画「MMX」探査機の旅路を応援しよう！
+              <br />
+              参加方法
+              <br />
+              ・応援メッセージ
+              <br />
+              ・応援イラスト(アナログ、デジタル問わず)
+              <br />
+              頂いた寄せ書きは、まとめてMMXチームの皆様へお届けする予定です。共催:Cosmo Base,FSIF
             </p>
 
             <label htmlFor="mmx-nickname">
-              お名前 <span>必須・ニックネーム推奨</span>
+              ニックネーム <span>*</span>
             </label>
+            <p style={{ fontSize: 11, color: "#888" }}>
+              頂いたメッセージと合わせて記載されるお名前です。匿名を希望される場合、「匿名希望」とお書きください。
+            </p>
             <input
               id="mmx-nickname"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
               required
               maxLength={40}
-              placeholder="ニックネームでもOK"
+              placeholder="宇宙 太郎"
             />
 
-            <label htmlFor="mmx-message">メッセージ</label>
+            <label htmlFor="mmx-message">応援メッセージ</label>
+            <p style={{ fontSize: 11, color: "#888" }}>
+              MMXチームの皆様への応援メッセージをご自由にお寄せください！
+              <br />
+              例:MMXの新しい発見に期待しています！
+              <br />
+              ※個人情報、誹謗中傷が含まれる記載はおやめください。
+            </p>
             <textarea
               id="mmx-message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               maxLength={240}
-              placeholder="MMXへの応援や、宇宙への想いをどうぞ"
+              placeholder="例:MMXの新しい発見に期待しています！"
             />
 
-            <label htmlFor="mmx-illustration">
-              応援イラスト <span>任意・正方形1000px以上推奨</span>
-            </label>
+            <label htmlFor="mmx-illustration">応援イラスト</label>
+            <p style={{ fontSize: 11, color: "#888", lineHeight: 1.8 }}>
+              【デジタルの場合】
+              <br />
+              正方形の画像で1000×1000px以上を目安にメッセージやイラストをお描きください。
+              <br />
+              <br />
+              【アナログの場合】
+              <br />
+              正方形の中にメッセージやイラストを描いた後に、スマートフォン等で真上から撮影するか、コンビニ等でスキャンしてください。注意:サイズを合わせるために画像を縮小する可能性がありますので、細かすぎないよう留意していただきますようお願いします。
+              <br />
+              <br />
+              撮影する際は、できるだけ明るい場所で、影が入らないようにしてください。
+              <br />
+              多少の傾きや明るさの違いなどは、こちらで調整しますのでご安心ください。
+              <br />
+              <br />
+              ※個人情報、誹謗中傷を含むものや、公序良俗に反するものはおやめください。
+            </p>
             <input id="mmx-illustration" ref={fileInputRef} type="file" accept="image/*" onChange={handleFileChange} />
             {file && !fileError && <p style={{ fontSize: 11, color: "#555" }}>選択中: {file.name}</p>}
             {fileError && <p style={{ fontSize: 11, color: "#c0392b" }}>{fileError}</p>}
@@ -382,7 +416,7 @@ export default function MMXPageContent() {
             {submitError && <p style={{ fontSize: 12, color: "#c0392b" }}>{submitError}</p>}
 
             <button className={styles.primaryButton} type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "送信中..." : "コメントを届ける"} <Send aria-hidden="true" />
+              {isSubmitting ? "送信中..." : "送信する"} <Send aria-hidden="true" />
             </button>
           </form>
         </div>
@@ -390,7 +424,7 @@ export default function MMXPageContent() {
 
       {sent && (
         <div className={styles.toast} role="status">
-          <Check aria-hidden="true" /> コメントを受け付けました。ありがとうございます。
+          <Check aria-hidden="true" /> ご協力ありがとうございます！寄せ書きを受け付けました。まとめてMMXチームの皆様へお届けします。
         </div>
       )}
     </main>
