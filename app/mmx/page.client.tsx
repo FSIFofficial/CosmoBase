@@ -217,10 +217,12 @@ export default function MMXPageContent() {
           </h1>
           <p className={styles.heroLead}>MMXの挑戦を、みんなの声で応援しよう。</p>
           <button className={`${styles.primaryButton} ${styles.heroCta}`} onClick={() => setShowForm(true)}>
-            応援コメントを打ち込む <ArrowUpRight aria-hidden="true" />
-          <p className={styles.heroDisclaimer}>
-            この企画は、個人(FSIFメンバー)とCosmo Baseによる応援企画です。MMX公式のプロジェクトではありません。
-          </p>
+            <span className={styles.heroCtaLabel}>
+              応援コメントを打ち込む <ArrowUpRight aria-hidden="true" />
+            </span>
+            <span className={styles.heroDisclaimer}>
+              この企画は、個人(FSIFメンバー)とCosmo Baseによる応援企画です。MMX公式のプロジェクトではありません。
+            </span>
           </button>
           <div className={styles.scrollHint}>
             <ArrowDown aria-hidden="true" /> SCROLL TO EXPLORE
