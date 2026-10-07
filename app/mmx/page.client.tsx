@@ -229,6 +229,7 @@ export default function MMXPageContent() {
             </span>
             <span className={styles.heroDisclaimer}>
               この企画は、個人(FSIFメンバー)とCosmo Baseによる応援企画です。MMX公式のプロジェクトではありません。
+            <br />期限は<strong>10/16</strong>を予定しています。
             </span>
           </button>
           <div className={styles.scrollHint}>
@@ -280,6 +281,9 @@ export default function MMXPageContent() {
             </p>
             <p>
               本企画は、個人(FSIFメンバー)とCosmo Baseが共催する、MMXへの応援プロジェクトです。MMX公式と共同で実施するものではありません。
+            </p>
+             <p>
+              フォームの送信等不具合があった場合、ファイルのアップロードに失敗する場合は<span>fsif.official@gmail.com</span>までご連絡ください。
             </p>
             <div className={styles.noticeBox}>
               <strong>ご参加の前に</strong>
