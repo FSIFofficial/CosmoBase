@@ -16,6 +16,8 @@ const GOOGLE_FORM_ACTION =
 const ENTRY_NICKNAME = "entry.86454892" // ニックネーム
 const ENTRY_MESSAGE = "entry.630086220" // 応援メッセージ
 const ENTRY_ILLUSTRATION_URL = "entry.18610883" // 応援イラスト(アップロード画像のURLを記載)
+const ENTRY_AGREEMENT = "entry.917446095" // 寄せ書きの内容公開への同意(チェックボックス)
+const AGREEMENT_VALUE = "同意する"
 
 const ILLUSTRATION_BUCKET = "MMX"
 const MAX_FILE_SIZE_MB = 10
@@ -80,6 +82,7 @@ export default function MMXPageContent() {
   const [message, setMessage] = useState("")
   const [file, setFile] = useState<File | null>(null)
   const [fileError, setFileError] = useState("")
+  const [agreed, setAgreed] = useState(false)
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState("")
@@ -151,6 +154,7 @@ export default function MMXPageContent() {
     setFile(null)
     setFileError("")
     setSubmitError("")
+    setAgreed(false)
     if (fileInputRef.current) fileInputRef.current.value = ""
   }
 
@@ -166,6 +170,7 @@ export default function MMXPageContent() {
       formData.append(ENTRY_NICKNAME, nickname)
       formData.append(ENTRY_MESSAGE, message)
       formData.append(ENTRY_ILLUSTRATION_URL, illustrationUrl)
+      formData.append(ENTRY_AGREEMENT, AGREEMENT_VALUE)
 
       await fetch(GOOGLE_FORM_ACTION, {
         method: "POST",
@@ -416,6 +421,18 @@ export default function MMXPageContent() {
             <input id="mmx-illustration" ref={fileInputRef} type="file" accept="image/*" onChange={handleFileChange} />
             {file && !fileError && <p style={{ fontSize: 11, color: "#555" }}>選択中: {file.name}</p>}
             {fileError && <p style={{ fontSize: 11, color: "#c0392b" }}>{fileError}</p>}
+
+            <label htmlFor="mmx-agreement" style={{ display: "flex", alignItems: "flex-start", gap: 8, fontWeight: 400, fontSize: 13 }}>
+              <input
+                id="mmx-agreement"
+                type="checkbox"
+                checked={agreed}
+                onChange={(e) => setAgreed(e.target.checked)}
+                required
+                style={{ width: "auto", marginTop: 3 }}
+              />
+              寄せ書きの内容公開に同意いただける場合はチェックをお願いします。<span>*</span>
+            </label>
 
             {submitError && <p style={{ fontSize: 12, color: "#c0392b" }}>{submitError}</p>}
 
