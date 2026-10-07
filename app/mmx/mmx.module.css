@@ -185,7 +185,7 @@
   min-height: 116px;
   padding: 36px 52px;
   box-shadow: 0 0 0 2px rgba(242, 106, 61, 0.6), 0 20px 54px rgba(242, 106, 61, 0.3);
-  font-size: 24px;
+  font-size: 36px;
   font-weight: 700;
   letter-spacing: 0.14em;
 }
@@ -208,7 +208,7 @@
   max-width: 620px;
   margin: 26px 0 0;
   color: rgba(255, 255, 255, 0.62);
-  font-size: 11px;
+  font-size: 24px;
   line-height: 1.8;
 }
 .noticeBox {
