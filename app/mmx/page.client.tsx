@@ -15,7 +15,7 @@ const ENTRY_NICKNAME = "entry.86454892" // ニックネーム
 const ENTRY_MESSAGE = "entry.630086220" // 応援メッセージ
 const ENTRY_ILLUSTRATION_URL = "entry.18610883" // 応援イラスト(アップロード画像のURLを記載)
 
-const ILLUSTRATION_BUCKET = "mmx-illustrations"
+const ILLUSTRATION_BUCKET = "mmx"
 const MAX_FILE_SIZE_MB = 10
 
 export default function MMXPageContent() {
@@ -128,7 +128,7 @@ export default function MMXPageContent() {
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 mb-6">
                 <Rocket className="h-5 w-5 text-[#83CBEB]" />
-                <span className="text-[#83CBEB] text-sm font-sans tracking-widest">共催:FSIF</span>
+                <span className="text-[#83CBEB] text-sm font-sans tracking-widest">共催:Cosmo Base,FSIF</span>
               </div>
               <h1 className="text-3xl md:text-5xl font-serif text-[#EEEEFF] mb-6 text-balance">
                 MMXチームへの寄せ書きキャンペーン
@@ -179,7 +179,10 @@ export default function MMXPageContent() {
                     <label className="block text-[#EEEEFF] font-sans text-sm mb-2">応援メッセージ</label>
                     <p className="text-[#EEEEFF]/50 text-xs mb-2">
                       MMXチームの皆様への応援メッセージをご自由にお寄せください！
-                      個人情報、誹謗中傷が含まれる記載はおやめください。
+                      <br />
+                      例:MMXの新しい発見に期待しています！
+                      <br />
+                      ※個人情報、誹謗中傷が含まれる記載はおやめください。
                     </p>
                     <textarea
                       rows={4}
@@ -193,8 +196,22 @@ export default function MMXPageContent() {
                   <div>
                     <label className="block text-[#EEEEFF] font-sans text-sm mb-2">応援イラスト</label>
                     <p className="text-[#EEEEFF]/50 text-xs mb-3">
-                      正方形の画像で1000×1000px以上を目安にアップロードしてください（アナログの場合は撮影・スキャンした画像でOKです）。
-                      個人情報、誹謗中傷を含むものや、公序良俗に反するものはおやめください。
+                      【デジタルの場合】
+                      <br />
+                      正方形の画像で1000×1000px以上を目安にメッセージやイラストをお描きください。
+                      <br />
+                      <br />
+                      【アナログの場合】
+                      <br />
+                      正方形の中にメッセージやイラストを描いた後に、スマートフォン等で真上から撮影するか、コンビニ等でスキャンしてください。注意:サイズを合わせるために画像を縮小する可能性がありますので、細かすぎないよう留意していただきますようお願いします。
+                      <br />
+                      <br />
+                      撮影する際は、できるだけ明るい場所で、影が入らないようにしてください。
+                      <br />
+                      多少の傾きや明るさの違いなどは、こちらで調整しますのでご安心ください。
+                      <br />
+                      <br />
+                      ※個人情報、誹謗中傷を含むものや、公序良俗に反するものはおやめください。
                     </p>
 
                     {previewUrl ? (
