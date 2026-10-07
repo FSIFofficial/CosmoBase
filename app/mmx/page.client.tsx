@@ -422,17 +422,18 @@ export default function MMXPageContent() {
             {file && !fileError && <p style={{ fontSize: 11, color: "#555" }}>選択中: {file.name}</p>}
             {fileError && <p style={{ fontSize: 11, color: "#c0392b" }}>{fileError}</p>}
 
-            <label htmlFor="mmx-agreement" style={{ display: "flex", alignItems: "flex-start", gap: 8, fontWeight: 400, fontSize: 13 }}>
+            <div className={styles.agreementBox}>
               <input
                 id="mmx-agreement"
                 type="checkbox"
                 checked={agreed}
                 onChange={(e) => setAgreed(e.target.checked)}
                 required
-                style={{ width: "auto", marginTop: 3 }}
               />
-              寄せ書きの内容公開に同意いただける場合はチェックをお願いします。<span>*</span>
-            </label>
+              <label htmlFor="mmx-agreement">
+                寄せ書きの内容公開に同意いただける場合はチェックをお願いします。<span>*</span>
+              </label>
+            </div>
 
             {submitError && <p style={{ fontSize: 12, color: "#c0392b" }}>{submitError}</p>}
 

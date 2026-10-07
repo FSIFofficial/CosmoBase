@@ -546,6 +546,37 @@
   align-self: flex-start;
   margin-top: 10px;
 }
+.agreementBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 16px 18px;
+  border: 1.5px solid var(--orange);
+  background: rgba(242, 106, 61, 0.1);
+}
+.agreementBox input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  accent-color: var(--orange);
+  cursor: pointer;
+}
+.agreementBox label {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #151515;
+  line-height: 1.6;
+  cursor: pointer;
+}
+.agreementBox label span {
+  margin-left: 2px;
+  color: var(--orange);
+  font-size: 15px;
+  font-weight: 700;
+}
 .modalClose {
   position: absolute;
   top: 16px;
