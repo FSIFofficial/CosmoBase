@@ -46,7 +46,7 @@ function Countdown() {
   return (
     <div className={styles.countdown} aria-label="打ち上げまでのカウントダウン">
       <span>
-        <b>{format(days, 3)}</b>
+        <b>{format(days, 2)}</b>
         <small>DAYS</small>
       </span>
       <i>:</i>
@@ -196,7 +196,7 @@ export default function MMXPageContent() {
         <div className={styles.navLinks}>
           <a href="#about">MMXについて</a>
           <a href={MMX_SITE_URL} target="_blank" rel="noreferrer" className={styles.navCta}>
-            PROJECT INFO <ArrowUpRight aria-hidden="true" />
+            MMXの詳細はこちら <ArrowUpRight aria-hidden="true" />
           </a>
         </div>
       </nav>
@@ -218,10 +218,10 @@ export default function MMXPageContent() {
           <p className={styles.heroLead}>MMXの挑戦を、みんなの声で応援しよう。</p>
           <button className={`${styles.primaryButton} ${styles.heroCta}`} onClick={() => setShowForm(true)}>
             応援コメントを打ち込む <ArrowUpRight aria-hidden="true" />
-          </button>
           <p className={styles.heroDisclaimer}>
             この企画は、個人(FSIFメンバー)とCosmo Baseによる応援企画です。MMX公式のプロジェクトではありません。
           </p>
+          </button>
           <div className={styles.scrollHint}>
             <ArrowDown aria-hidden="true" /> SCROLL TO EXPLORE
           </div>
@@ -237,11 +237,9 @@ export default function MMXPageContent() {
         <div className={styles.heroMeta}>
           <span>FSIF presents</span>
           <span>
-            PHOBOS SAMPLE RETURN
-            <br />
-            MISSION
+            Martian Moons eXploration
           </span>
-          <span>01 / 03</span>
+          <span>@NASA</span>
         </div>
       </section>
 
@@ -269,7 +267,7 @@ export default function MMXPageContent() {
           </div>
           <div className={styles.aboutText}>
             <p>
-              MMX(Martian Moons eXploration)は、JAXAが進める火星衛星探査計画です。火星の衛星フォボスからサンプルを持ち帰り、火星圏の謎と太陽系の成り立ちに迫ります。
+              MMX(Martian Moons eXploration)は、JAXAを中心に進める火星衛星探査計画です。火星の衛星フォボスからサンプルを持ち帰り、火星圏の謎と太陽系の成り立ちに迫ります。
             </p>
             <p>
               本企画は、個人(FSIFメンバー)とCosmo Baseが共催する、MMXへの応援プロジェクトです。MMX公式と共同で実施するものではありません。
@@ -281,7 +279,7 @@ export default function MMXPageContent() {
               </span>
             </div>
             <a href={MMX_SITE_URL} target="_blank" rel="noreferrer" className={styles.textLink}>
-              MMX PROJECT SITE <ArrowUpRight aria-hidden="true" />
+              MMXの詳細はこちら <ArrowUpRight aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -319,7 +317,6 @@ export default function MMXPageContent() {
 
       <footer className={styles.pageFooter}>
         <div className={styles.brand}>
-          <span className={styles.brandMark}>FS</span>
           <span>
             FSIF <em>×</em> MMX
           </span>
