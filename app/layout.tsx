@@ -18,7 +18,7 @@ const notoSans = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   // ▼ 1. URLの基準（重要）
-  metadataBase: new URL("https://fsifofficial.github.io/CosmoBase"),
+  metadataBase: new URL("https://cosmobase.fsif.jp"),
 
   // ▼ SEO強化：titleに主要キーワードを含める
   title: {
@@ -45,16 +45,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Cosmo Base | 宇宙を身近にする宇宙コミュニティ",
     description: "「宇宙を身近なものにする」「宇宙をすべての産業の選択肢にする」をビジョンに掲げる宇宙コミュニティ『Cosmo Base（コスモベース）』。初心者から宇宙産業に関心がある人まで、誰もが交流できる優しい場所です。",
-    url: "https://fsifofficial.github.io/CosmoBase",
+    url: "https://cosmobase.fsif.jp",
     siteName: "Cosmo Base",
     locale: "ja_JP",
     type: "website",
     images: [
       {
-        // metadataBase (https://fsifofficial.github.io/CosmoBase) にすでに basePath が
-        // 含まれているため、ここは "/icon.png" のみでOK。
-        // "/CosmoBase/icon.png" にすると /CosmoBase/CosmoBase/icon.png という
-        // 存在しないURLになり、SNSやチャットのリンクカードで画像・アイコンが表示されない原因になる。
         url: "/icon.png",
         width: 1200,
         height: 630,
@@ -72,7 +68,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "https://fsifofficial.github.io/CosmoBase/icon.png",
+        url: "https://cosmobase.fsif.jp/icon.png",
         sizes: "192x192",
         type: "image/png",
       },
@@ -80,7 +76,7 @@ export const metadata: Metadata = {
     // iPhone等のホーム画面用
     apple: [
       {
-        url: "/CosmoBase/icon.png",
+        url: "/icon.png",
         sizes: "180x180",
         type: "image/png",
       },
@@ -103,7 +99,7 @@ const jsonLd = {
   "@type": "Organization",
   "name": "Cosmo Base",
   "alternateName": ["CosmoBase", "コスモベース"],
-  "url": "https://fsifofficial.github.io/CosmoBase/",
+  "url": "https://cosmobase.fsif.jp/",
   "description": "「宇宙を身近なものにする」「宇宙をすべての産業の選択肢にする」をビジョンに掲げる宇宙コミュニティ。",
   "parentOrganization": {
     "@type": "Organization",

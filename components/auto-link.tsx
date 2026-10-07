@@ -11,7 +11,7 @@ interface AutoLinkProps {
 
 export function AutoLink({
   children,
-  comingSoonUrl = "https://fsifofficial.github.io/CosmoBase/coming-soon",
+  comingSoonUrl = "https://cosmobase.fsif.jp/coming-soon",
   openUrl = "https://discord.gg/spv3TBRpFU", // 🔥 あなたのDiscord本番URL
 }: AutoLinkProps) {
   // 初期状態はとりあえず「Coming Soon」にしておく

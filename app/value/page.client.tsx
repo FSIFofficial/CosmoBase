@@ -39,7 +39,7 @@ export default function ValuePageContent() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
-                    <img src="/CosmoBase/CBquiz_logo.png" alt="毎日宇宙クイズ" className="h-full w-auto object-contain" />
+                    <img src="/CBquiz_logo.png" alt="毎日宇宙クイズ" className="h-full w-auto object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">毎日宇宙クイズ</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -48,7 +48,7 @@ export default function ValuePageContent() {
                 </div>
                 <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
-                    <img src="/CosmoBase/CBnews_logo.png" alt="週刊宇宙ニュース" className="h-full w-auto object-contain" />
+                    <img src="/CBnews_logo.png" alt="週刊宇宙ニュース" className="h-full w-auto object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">週刊宇宙ニュース</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -57,7 +57,7 @@ export default function ValuePageContent() {
                 </div>
                 <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
-                    <img src="/CosmoBase/CBtype_logo.png" alt="宇宙診断" className="h-full w-auto object-contain" />
+                    <img src="/CBtype_logo.png" alt="宇宙診断" className="h-full w-auto object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙タイプ診断</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -66,7 +66,7 @@ export default function ValuePageContent() {
                 </div>
                 <div className="bg-[#000033]/60 border border-[#83CBEB]/20 rounded-xl p-6 hover:border-[#83CBEB]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
-                    <img src="/CosmoBase/CosmoMatch.png" alt="Cosmo Match" className="h-full w-auto object-contain" />
+                    <img src="/CosmoMatch.png" alt="Cosmo Match" className="h-full w-auto object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Cosmo Match - あなたの推し○○を探せ</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -85,7 +85,7 @@ export default function ValuePageContent() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-[#000033]/60 border border-[#A6D7DB]/20 rounded-xl p-6 hover:border-[#A6D7DB]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
-                    <img src="/CosmoBase/CBshittoku_logo.png" alt="Cosmo Baseで宇宙知っトク" className="h-full w-auto object-contain" />
+                    <img src="/CBshittoku_logo.png" alt="Cosmo Baseで宇宙知っトク" className="h-full w-auto object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Cosmo Baseで宇宙知っトク</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -94,7 +94,7 @@ export default function ValuePageContent() {
                 </div>
                 <div className="bg-[#000033]/60 border border-[#A6D7DB]/20 rounded-xl p-6 hover:border-[#A6D7DB]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
-                    <img src="/CosmoBase/CBoshiete_logo.png" alt="Cosmo Baseで宇宙教えて" className="h-full w-auto object-contain" />
+                    <img src="/CBoshiete_logo.png" alt="Cosmo Baseで宇宙教えて" className="h-full w-auto object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Cosmo Baseで宇宙教えて</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -103,7 +103,7 @@ export default function ValuePageContent() {
                 </div>
                 <div className="bg-[#000033]/60 border border-[#A6D7DB]/20 rounded-xl p-6 hover:border-[#A6D7DB]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
-                    <img src="/CosmoBase/CBMD_logo.png" alt="Cosmo Base Museum Database" className="h-full w-auto object-contain" />
+                    <img src="/CBMD_logo.png" alt="Cosmo Base Museum Database" className="h-full w-auto object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Cosmo Base Museum Database</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -112,7 +112,7 @@ export default function ValuePageContent() {
                 </div>
                 <div className="bg-[#000033]/60 border border-[#A6D7DB]/20 rounded-xl p-6 hover:border-[#A6D7DB]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
-                    <img src="/CosmoBase/CBittoide_logo.png" alt="宇宙に行っといで" className="h-full w-auto object-contain" />
+                    <img src="/CBittoide_logo.png" alt="宇宙に行っといで" className="h-full w-auto object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙に行っといで</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -131,7 +131,7 @@ export default function ValuePageContent() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-[#000033]/60 border border-[#C9E3CC]/20 rounded-xl p-6 hover:border-[#C9E3CC]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
-                    <img src="/CosmoBase/CBED_logo.png" alt="Cosmo Base Event Database" className="h-full w-auto object-contain" />
+                    <img src="/CBED_logo.png" alt="Cosmo Base Event Database" className="h-full w-auto object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Cosmo Base Event Database</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -140,7 +140,7 @@ export default function ValuePageContent() {
                 </div>
                 <div className="bg-[#000033]/60 border border-[#C9E3CC]/20 rounded-xl p-6 hover:border-[#C9E3CC]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
-                    <img src="/CosmoBase/CBittekita_logo.png" alt="宇宙のイベント行ってきた" className="h-full w-auto object-contain" />
+                    <img src="/CBittekita_logo.png" alt="宇宙のイベント行ってきた" className="h-full w-auto object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">宇宙のイベント行ってきた</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -159,7 +159,7 @@ export default function ValuePageContent() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-[#000033]/60 border border-[#EEEEBB]/20 rounded-xl p-6 hover:border-[#EEEEBB]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
-                    <img src="/CosmoBase/CBL_logo.png" alt="Cosmo Base Library" className="h-full w-auto object-contain" />
+                    <img src="/CBL_logo.png" alt="Cosmo Base Library" className="h-full w-auto object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Cosmo Base Library</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">
@@ -168,7 +168,7 @@ export default function ValuePageContent() {
                 </div>
                 <div className="bg-[#000033]/60 border border-[#EEEEBB]/20 rounded-xl p-6 hover:border-[#EEEEBB]/50 transition-all hover:-translate-y-1">
                   <div className="flex items-center mb-4 h-12">
-                    <img src="/CosmoBase/CBvoyager_logo.png" alt="Space Voyager 検定" className="h-full w-auto object-contain" />
+                    <img src="/CBvoyager_logo.png" alt="Space Voyager 検定" className="h-full w-auto object-contain" />
                   </div>
                   <h3 className="text-xl font-serif text-[#EEEEFF] mb-3">Space Voyager 検定</h3>
                   <p className="text-[#EEEEFF]/70 font-sans text-sm leading-relaxed">

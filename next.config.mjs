@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/CosmoBase', 
-
+  // カスタムドメイン(cosmobase.fsif.jp)のルートで配信するため、
+  // GitHub Pagesのプロジェクトページ用basePath('/CosmoBase')は不要。
   typescript: {
     ignoreBuildErrors: true,
   },
