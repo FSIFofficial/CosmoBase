@@ -24,7 +24,7 @@ export default function Header() {
           {/* ロゴ */}
           <Link href="/" className="flex items-center gap-4 shrink-0" onClick={closeMenu}>
             <Image
-              src="/CosmoBase/CosmoBase.png"
+              src="/CosmoBase.png"
               alt="Cosmo Base Logo"
               width={300}
               height={100}

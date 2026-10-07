@@ -175,7 +175,7 @@ export default function Home() {
       <section className="py-20 bg-[#000033]/50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto flex flex-col items-center">
-            <img src="/CosmoBase/CB_type.png" alt="宇宙タイプ診断" className="w-48 md:w-64 h-auto object-contain mb-2"/>
+            <img src="/CB_type.png" alt="宇宙タイプ診断" className="w-48 md:w-64 h-auto object-contain mb-2"/>
             <h2 className="text-3xl md:text-5xl font-serif text-[#EEEEFF] mb-6 text-center text-balance">
               あなたの宇宙タイプは？
             </h2>
@@ -368,12 +368,12 @@ export default function Home() {
     
                   {/* note */}
                   <a href="https://note.com/cosmobase" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 transition-all hover:scale-110 flex items-center">
-                    <img src="/CosmoBase/note-logo.svg" alt="note" className="h-8 w-auto" />
+                    <img src="/note-logo.svg" alt="note" className="h-8 w-auto" />
                   </a>
 
                   {/* YouTube */}
                   <a href="https://www.youtube.com/channel/UC3bcWCM6ccvsyQyiXLIwhkQ" target="_blank" rel="nooper noreferrer" className="opacity-80 hover:opacity-100 transition-all hover:scale-110 flex items-center">
-                    <img src="/CosmoBase/youtube.png" alt="YouTube" className="h-8 w-auto" />
+                    <img src="/youtube.png" alt="YouTube" className="h-8 w-auto" />
                   </a>
                 </div>
               </div>

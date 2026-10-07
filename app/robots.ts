@@ -2,7 +2,7 @@ export const dynamic = 'force-static'
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://fsifofficial.github.io/CosmoBase'
+  const baseUrl = 'https://cosmobase.fsif.jp'
 
   return {
     rules: {

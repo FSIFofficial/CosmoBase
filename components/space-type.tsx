@@ -104,14 +104,14 @@ function ResultScreen({ answers }: { answers: number[] }) {
 
   // SNSシェア関数をX用とInstagram用に分割・高機能化
   const handleXShare = () => {
-    const shareUrl = `https://fsifofficial.github.io/CosmoBase/space-type/result/${resultType}`;
+    const shareUrl = `https://cosmobase.fsif.jp/space-type/result/${resultType}`;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(data.shareText)}&url=${encodeURIComponent(shareUrl)}`;
     window.open(twitterUrl, '_blank');
   };
 
   const handleInstagramShare = async () => {
     const shareText = data.shareText;
-    const imageUrl = `/CosmoBase/${data.img_share}`;
+    const imageUrl = `/${data.img_share}`;
     const fileName = `cosmobase_${resultType}.png`;
 
     try {
@@ -186,7 +186,7 @@ function ResultScreen({ answers }: { answers: number[] }) {
             <p className="font-bold text-sm tracking-widest mb-2 text-[#000033]/70">あなたの宇宙タイプは...</p>
             <h1 className="text-2xl md:text-3xl font-serif font-extrabold leading-tight mb-4 text-[#000033]">{data.title}</h1>
             <div className="w-full flex items-center justify-center rounded-xl">
-              <img src={`/CosmoBase/${data.img}`} alt={data.title} className="w-full max-w-[450px] h-auto object-contain rounded-xl filter" />
+              <img src={`/${data.img}`} alt={data.title} className="w-full max-w-[450px] h-auto object-contain rounded-xl filter" />
             </div>
           </div>
 
@@ -237,7 +237,7 @@ function ResultScreen({ answers }: { answers: number[] }) {
         <p className="text-sm text-gray-400 mb-2">同じタイプの人が集まる場所はこちら</p>
         <AutoLink> 
           <button className="group relative inline-flex items-center gap-3 rounded-full px-6 py-4 w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 text-white font-bold  text-lg shadow-lg transform transition hover:scale-105 mb-6">
-            <img src="/CosmoBase/CB_icon.png" className="h-8 w-8" />
+            <img src="/CB_icon.png" className="h-8 w-8" />
             無料でCosmo Baseに参加する
           </button>
         </AutoLink>
@@ -247,11 +247,11 @@ function ResultScreen({ answers }: { answers: number[] }) {
           <p className="text-sm text-gray-400 mb-4">あなたの結果をシェアして仲間を見つけよう</p>
           <div className="flex flex-col gap-3">
             <button onClick={handleXShare} className="flex items-center justify-center w-full gap-2 bg-black border border-gray-600 hover:bg-gray-900 text-white font-bold py-3 rounded-full text-sm transition">
-              <img src={`/CosmoBase/X.png`} alt={`X icon`} className="w-4 h-4 " aria-hidden="true" />
+              <img src={`/X.png`} alt={`X icon`} className="w-4 h-4 " aria-hidden="true" />
               X (Twitter) で結果をシェア
             </button>
             <button onClick={handleInstagramShare} className="flex items-center justify-center w-full gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 hover:opacity-90 text-white font-bold py-3 rounded-full text-sm transition shadow-md">
-              <img src={`/CosmoBase/Instagram.png`} alt={`Instagram icon`} className="w-5 h-5" aria-hidden="true" />
+              <img src={`/Instagram.png`} alt={`Instagram icon`} className="w-5 h-5" aria-hidden="true" />
               Instagram で結果をシェア
             </button>
           </div>

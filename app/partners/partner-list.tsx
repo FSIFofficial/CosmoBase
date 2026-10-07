@@ -168,8 +168,8 @@ export default function PartnerList({ initialPartners }: { initialPartners: Part
                       <span
                         className="inline-block h-6 w-6 bg-[#EEEEFF] opacity-60" 
                         style={{
-                          maskImage: 'url(/CosmoBase/note-logo.svg)',
-                          WebkitMaskImage: 'url(/CosmoBase/note-logo.svg)',
+                          maskImage: 'url(/note-logo.svg)',
+                          WebkitMaskImage: 'url(/note-logo.svg)',
                           maskSize: 'contain',
                           WebkitMaskSize: 'contain',
                           maskRepeat: 'no-repeat',

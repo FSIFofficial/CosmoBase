@@ -26,7 +26,7 @@ async function getIdsFromCsv(fileName: string): Promise<string[]> {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://fsifofficial.github.io/CosmoBase'
+  const baseUrl = 'https://cosmobase.fsif.jp'
 
   // ▼ 1. 固定ページのリスト
   const staticRoutes = [

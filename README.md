@@ -1,4 +1,4 @@
 # Cosmo Base website
 
-[CosmoBase](https://fsifofficial.github.io/CosmoBase/)
+[CosmoBase](https://cosmobase.fsif.jp/)
 
