@@ -188,7 +188,9 @@ export default function MMXPageContent() {
     <main className={styles.page}>
       <nav className={styles.nav}>
         <a href="#top" className={styles.brand}>
-          <span className={styles.brandMark}>CB</span>
+          <span className={styles.brandMark}>
+            <img src="/CB_icon.png" alt="Cosmo Base" />
+          </span> 
           <span>
             Cosmo Base <em>×</em> MMX SUPPORT
           </span>
@@ -318,7 +320,10 @@ export default function MMXPageContent() {
       )}
 
       <footer className={styles.pageFooter}>
-        <div className={styles.brand}>
+        <div className={styles.brand}>          
+          <span className={styles.brandMark}>
+            <img src="/FSIF.png" alt="FSIF" />
+          </span> 
           <span>
             FSIF <em>×</em> MMX
           </span>
