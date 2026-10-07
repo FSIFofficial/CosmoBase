@@ -361,7 +361,7 @@ export default function MMXPageContent() {
             <label htmlFor="mmx-nickname">
               ニックネーム <span>*</span>
             </label>
-            <p style={{ fontSize: 11, color: "#888" }}>
+            <p style={{ fontSize: 13, color: "#888" }}>
               頂いたメッセージと合わせて記載されるお名前です。匿名を希望される場合、「匿名希望」とお書きください。
             </p>
             <input
@@ -374,7 +374,7 @@ export default function MMXPageContent() {
             />
 
             <label htmlFor="mmx-message">応援メッセージ</label>
-            <p style={{ fontSize: 11, color: "#888" }}>
+            <p style={{ fontSize: 13, color: "#888" }}>
               MMXチームの皆様への応援メッセージをご自由にお寄せください！
               <br />
               例:MMXの新しい発見に期待しています！
@@ -390,7 +390,7 @@ export default function MMXPageContent() {
             />
 
             <label htmlFor="mmx-illustration">応援イラスト</label>
-            <p style={{ fontSize: 11, color: "#888", lineHeight: 1.8 }}>
+            <p style={{ fontSize: 13, color: "#888", lineHeight: 1.8 }}>
               【デジタルの場合】
               <br />
               正方形の画像で1000×1000px以上を目安にメッセージやイラストをお描きください。
