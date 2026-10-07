@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import ContactPageContent from "./page.client"
+import MMXPageContent from "./page.client"
 
 export const metadata: Metadata = {
   title: "MMXチームへの寄せ書きキャンペーン",
@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 }
 
 export default function MMXPage() {
-  return <MMXContent />
+  return <MMXPageContent />
 }
