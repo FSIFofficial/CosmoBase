@@ -15,7 +15,7 @@ const ENTRY_NICKNAME = "entry.86454892" // ニックネーム
 const ENTRY_MESSAGE = "entry.630086220" // 応援メッセージ
 const ENTRY_ILLUSTRATION_URL = "entry.18610883" // 応援イラスト(アップロード画像のURLを記載)
 
-const ILLUSTRATION_BUCKET = "mmx-illustrations"
+const ILLUSTRATION_BUCKET = "mmx"
 const MAX_FILE_SIZE_MB = 10
 
 export default function MMXPageContent() {
