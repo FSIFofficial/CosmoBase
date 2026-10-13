@@ -79,7 +79,7 @@ export default function ResourcesPageContent() {
                 </Card>
               </Link>
 
-              <Link href="https://cbl.fsif.jp">
+              <Link href="https://www.fsif.jp/activities/event/">
                 <Card className="bg-[#000033] border-[#83CBEB]/30 hover:border-[#83CBEB]/50 transition-colors cursor-pointer h-full">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
