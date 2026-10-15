@@ -66,9 +66,12 @@ function MarsMoonsFigure() {
         フォボス
       </text>
       <text x="436" y={py + 76} fontSize="17" fill="currentColor" fillOpacity="0.75">
-        火星から約9,400 km
+        火星の中心から
       </text>
       <text x="436" y={py + 98} fontSize="17" fill="currentColor" fillOpacity="0.75">
+        約9,400 km
+      </text>
+      <text x="436" y={py + 120} fontSize="17" fill="currentColor" fillOpacity="0.75">
         約7時間半で1周
       </text>
       <path d={`M${dx + 8} ${dy - 4}L${430} ${dy - 30}`} stroke="currentColor" strokeOpacity="0.45" fill="none" />
@@ -76,9 +79,12 @@ function MarsMoonsFigure() {
         ダイモス
       </text>
       <text x="436" y={dy - 8} fontSize="17" fill="currentColor" fillOpacity="0.75">
-        約23,500 km
+        火星の中心から
       </text>
       <text x="436" y={dy + 14} fontSize="17" fill="currentColor" fillOpacity="0.75">
+        約23,500 km
+      </text>
+      <text x="436" y={dy + 36} fontSize="17" fill="currentColor" fillOpacity="0.75">
         約30時間で1周
       </text>
     </svg>
@@ -359,9 +365,9 @@ export default function MMXDetailPage() {
         <article className={styles.highlight}>
           <span className={styles.highlightNo}>1</span>
           <div>
-            <h3>重力が地球の1800分の1の世界を走るローバー</h3>
+            <h3>重力が地球の1700分の1の世界を走るローバー</h3>
             <p>
-              本体が着陸する前に、ドイツとフランスが作ったローバー「IDEFIX（イデフィックス）」を降ろします。重さは約25 kgありますが、フォボスの重力は地球の約1800分の1しかないため、地面にかかる重さはわずか15 gほどです。こんなに弱い重力の中を車輪で走るのは、世界で初めてです。
+              本体が着陸する前に、ドイツとフランスが作ったローバー「IDEFIX（イデフィックス）」を降ろします。重さは約25 kgありますが、フォボスの重力は地球の約1700分の1しかないため、地面にかかる重さはわずか15 gほどです。こんなに弱い重力の中を車輪で走るのは、世界で初めてです。
             </p>
             <p>
               秒速1 mmほどのゆっくりした速さで、100日以上かけて走りながら表面の砂の性質を調べます。そのデータは、あとで本体が安全に着陸するための大事な手がかりになります。投下は2028年の終わりから2029年の初めになる見込みです。
