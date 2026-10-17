@@ -221,6 +221,7 @@ export default function MMXPageContent() {
         </a>
         <div className={styles.navLinks}>
           <a href="#about">MMXについて</a>
+          <a href="/mmx/detail">打上げ直前ガイド</a>
           <a href={MMX_SITE_URL} target="_blank" rel="noreferrer" className={styles.navCta}>
             MMXの詳細はこちら <ArrowUpRight aria-hidden="true" />
           </a>
@@ -310,9 +311,14 @@ export default function MMXPageContent() {
                 いただいたコメントが必ずMMX関係者へ届けられることを保証するものではありません。個人情報は入力せず、公開されてもよい内容のみお寄せください。
               </span>
             </div>
-            <a href={MMX_SITE_URL} target="_blank" rel="noreferrer" className={styles.textLink}>
-              MMXの詳細はこちら <ArrowUpRight aria-hidden="true" />
-            </a>
+            <div className={styles.aboutLinks}>
+              <a href={MMX_SITE_URL} target="_blank" rel="noreferrer" className={styles.textLink}>
+                MMXの詳細はこちら <ArrowUpRight aria-hidden="true" />
+              </a>
+              <a href="/mmx/detail" className={styles.textLink}>
+                打上げ直前ガイドを読む <ArrowUpRight aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </div>
       </section>

@@ -442,6 +442,15 @@
   font-size: 10px;
   letter-spacing: 0.13em;
 }
+.aboutLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 18px;
+}
+.aboutLinks .textLink {
+  margin-top: 0;
+}
 
 .voices {
   background: #0e1011;
