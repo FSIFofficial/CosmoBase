@@ -442,6 +442,15 @@
   font-size: 10px;
   letter-spacing: 0.13em;
 }
+.aboutLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 18px;
+}
+.aboutLinks .textLink {
+  margin-top: 0;
+}
 
 .voices {
   background: #0e1011;
@@ -450,29 +459,61 @@
   align-items: end;
   margin-bottom: 70px;
 }
-.commentGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+.voicesMarquee {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
 }
-.commentCard {
+.voicesTrack {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  animation: voicesScroll 46s linear infinite;
+}
+.voicesTrack:hover {
+  animation-play-state: paused;
+}
+@keyframes voicesScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.voiceCard {
+  flex: 0 0 auto;
+  width: 260px;
   min-height: 220px;
   padding: 26px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.025);
+  display: flex;
+  flex-direction: column;
 }
-.commentCard svg {
+.voiceCard svg {
   width: 18px;
   height: 18px;
   color: var(--orange);
 }
-.commentCard p {
+.voiceCard img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+.voiceCard p {
+  flex: 1;
   margin: 45px 0 28px;
   color: var(--ink);
   font-size: 15px;
   line-height: 1.9;
 }
-.commentCard span {
+.voiceCard img + p {
+  margin-top: 0;
+}
+.voiceCard span {
   color: var(--muted-ink);
   font-size: 11px;
 }
@@ -639,8 +680,8 @@
     grid-column: auto;
     text-align: left;
   }
-  .commentGrid {
-    grid-template-columns: 1fr;
+  .voiceCard {
+    width: 220px;
   }
   .pageFooter {
     flex-direction: column;

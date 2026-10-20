@@ -22,9 +22,27 @@ const AGREEMENT_VALUE = "同意する"
 const ILLUSTRATION_BUCKET = "MMX"
 const MAX_FILE_SIZE_MB = 10
 
-// 「応援コメント」一覧の公開表示は、まだ実データを集計する仕組みがないため、
-// 機能(送信フォーム本体)は残したまま表示だけ一旦オフにしている。
-const SHOW_VOICES = false
+// 「応援コメント」一覧の公開表示。表示したい寄せ書きが増えたら
+// 下の VOICES 配列に直接追加してください(image は任意、省略するとテキストのみ表示)。
+const SHOW_VOICES = true
+
+type Voice = {
+  name: string
+  message?: string
+  image?: string // public配下の画像パス。例: "/mmx-voices/01.jpg"
+}
+
+const VOICES: Voice[] = [
+]
+
+function shuffle<T>(items: T[]): T[] {
+  const result = [...items]
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[result[i], result[j]] = [result[j], result[i]]
+  }
+  return result
+}
 
 function Countdown() {
   // サーバー側レンダリングと初回描画を一致させるため、実際の値はマウント後に計算する
@@ -88,13 +106,11 @@ export default function MMXPageContent() {
   const [submitError, setSubmitError] = useState("")
   const [sent, setSent] = useState(false)
 
-  // 「応援コメント」の公開一覧(VOICES)用。実際の投稿データを集計する仕組みがまだないため
-  // SHOW_VOICES=false の間は表示しない。ダミーの初期値のみ保持。
-  const [comments] = useState([
-    { name: "Sora", message: "MMXの挑戦が、火星への新しい扉を開きますように。応援しています。" },
-    { name: "K. Tanaka", message: "日本の宇宙探査の次の一歩。打ち上げの日を楽しみにしています！" },
-    { name: "Cosmo Base", message: "すべてのチームの皆さまへ、地球から熱いエールを送ります。" },
-  ])
+  // サーバー側レンダリングと初回描画を一致させるため、並び替えはマウント後に行う
+  const [voiceOrder, setVoiceOrder] = useState(VOICES)
+  useEffect(() => {
+    setVoiceOrder(shuffle(VOICES))
+  }, [])
 
   useEffect(() => {
     if (!sent) return
@@ -202,6 +218,7 @@ export default function MMXPageContent() {
         </a>
         <div className={styles.navLinks}>
           <a href="#about">MMXについて</a>
+          <a href="/mmx/detail">打上げ直前ガイド</a>
           <a href={MMX_SITE_URL} target="_blank" rel="noreferrer" className={styles.navCta}>
             MMXの詳細はこちら <ArrowUpRight aria-hidden="true" />
           </a>
@@ -291,9 +308,14 @@ export default function MMXPageContent() {
                 いただいたコメントが必ずMMX関係者へ届けられることを保証するものではありません。個人情報は入力せず、公開されてもよい内容のみお寄せください。
               </span>
             </div>
-            <a href={MMX_SITE_URL} target="_blank" rel="noreferrer" className={styles.textLink}>
-              MMXの詳細はこちら <ArrowUpRight aria-hidden="true" />
-            </a>
+            <div className={styles.aboutLinks}>
+              <a href={MMX_SITE_URL} target="_blank" rel="noreferrer" className={styles.textLink}>
+                MMXの詳細はこちら <ArrowUpRight aria-hidden="true" />
+              </a>
+              <a href="/mmx/detail" className={styles.textLink}>
+                打上げ直前ガイドを読む <ArrowUpRight aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -316,14 +338,20 @@ export default function MMXPageContent() {
               コメントを送る <Send aria-hidden="true" />
             </button>
           </div>
-          <div className={styles.commentGrid}>
-            {comments.map((comment, index) => (
-              <article className={styles.commentCard} key={`${comment.name}-${index}`}>
-                <Send aria-hidden="true" />
-                <p>「{comment.message}」</p>
-                <span>— {comment.name}</span>
-              </article>
-            ))}
+          <div className={styles.voicesMarquee}>
+            <div className={styles.voicesTrack}>
+              {[...voiceOrder, ...voiceOrder].map((voice, index) => (
+                <article className={styles.voiceCard} key={`${voice.name}-${index}`}>
+                  {voice.image ? (
+                    <img src={voice.image} alt={`${voice.name}さんからの応援イラスト`} />
+                  ) : (
+                    <Send aria-hidden="true" />
+                  )}
+                  {voice.message && <p>「{voice.message}」</p>}
+                  <span>— {voice.name}</span>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
       )}
