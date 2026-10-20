@@ -646,3 +646,32 @@
   gap: 8px;
   margin-top: 12px;
 }
+.journeyZoom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 12px;
+}
+.journeyZoom button {
+  min-height: 34px;
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted-ink);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.journeyZoom button[aria-pressed="true"] {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.journeyPhase {
+  max-width: 600px;
+  min-height: 3.6em;
+  margin: 12px 0 0;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.8;
+}

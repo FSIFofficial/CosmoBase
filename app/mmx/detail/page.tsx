@@ -235,6 +235,8 @@ const SOURCES = [
   { label: "JAXA 打上げ計画書（2026年8月20日）", href: "https://www.jaxa.jp/press/2026/08/files/jaxa20260820-1_01.pdf" },
   { label: "MMX公式サイト", href: MMX_SITE_URL },
   { label: "NASA/JPL Horizons（MMXの計画軌道）", href: "https://ssd.jpl.nasa.gov/horizons/" },
+  { label: "尾崎ほか (2018)「火星衛星探査計画MMXの軌道設計」（第62回宇宙科学技術連合講演会）", href: "https://jxiv.jst.go.jp/index.php/jxiv/preprint/download/770/2268" },
+  { label: "Pushparaj, Baresi & Kawakatsu「Phobos proximity orbital transfer analysis with applications to MMX mission」（JAXA）", href: "https://jaxa.repo.nii.ac.jp/record/48302/files/SA6000167011.pdf" },
   { label: "MMX公式サイト（よくある質問）", href: "https://www.mmx.jaxa.jp/faq/" },
   { label: "MMX公式サイト（サイエンス）", href: "https://www.mmx.jaxa.jp/science/" },
   { label: "ISAS MMX", href: "https://www.isas.jaxa.jp/missions/spacecraft/developing/mmx.html" },
@@ -347,7 +349,7 @@ export default function MMXDetailPage() {
         <figure className={styles.figure}>
           <MarsJourney />
           <figcaption>
-            太陽のまわりを北側から見た図です。オレンジの実線がこれまでの道のり、点線がこれからの道のりです。下のつまみを動かすか「再生」を押すと、打ち上げから火星到着までの好きな日の位置を見られます。「地球の近く」「火星の近く」では、その日の地球や火星のまわりを拡大します。MMXの位置は、JAXAが打ち上げ前に計画した軌道（NASA/JPL Horizonsで公開）から計算した目安で、実際の位置とは少しずれることがあります。地球と火星の位置は、公開されている軌道の数値から計算しています。計画では、2027年8月下旬に火星に到着します。
+            「行き」は太陽のまわりを北側から見た図で、オレンジの実線がこれまでの道のり、点線がこれからの道のりです。MMXの位置は、JAXAが打ち上げ前に計画した軌道（NASA/JPL Horizonsで公開）を、なめらかな曲線でつないで計算した目安です。地球と火星の位置は、公開されている軌道の数値から計算しています。「火星到着」は火星を中心に北極の側から見た図です。火星に最も近づくまではJAXAの計画軌道から計算し、そのあとの3回の噴射（MOI-1〜3）は、JAXAの軌道設計の論文（Ozaki et al. 2018）の方式と数値で計算した目安です。「フォボスのまわり」は、フォボスから見たQSOの大きさと周期を、論文（Pushparaj et al.）の値で描いています。どのQSOにいつ入るかは、まだ公開されていません。
           </figcaption>
         </figure>
       </section>
