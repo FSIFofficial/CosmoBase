@@ -1,12 +1,12 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { ArrowUpRight } from "lucide-react"
-import LaunchCountdown from "./countdown"
+import MarsJourney from "./trajectory"
 import styles from "./detail.module.css"
 
-const TITLE = "打上げ直前ガイド：MMXが火星の月へ"
+const TITLE = "MMXが火星の月へ出発：はじめてのMMXガイド"
 const DESCRIPTION =
-  "2026年10月20日に打ち上げ予定の火星衛星探査計画「MMX」。火星の月フォボスから砂を持ち帰る5年の旅を、打上げ情報・見どころ・はやぶさ2との違いとあわせて、はじめての人にもわかるように紹介します。"
+  "2026年10月20日に打ち上げられた火星衛星探査計画「MMX」。火星の月フォボスから砂を持ち帰る5年の旅を、打ち上げの結果・見どころ・はやぶさ2との違いとあわせて、はじめての人にもわかるように紹介します。"
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -26,9 +26,12 @@ export const metadata: Metadata = {
   },
 }
 
-const LIVE_URL = "https://fanfun.jaxa.jp/countdown/mmx_h3f10/live-public_viewing.html"
 const SPECIAL_SITE_URL = "https://fanfun.jaxa.jp/countdown/mmx_h3f10/index.html"
 const MMX_SITE_URL = "https://www.mmx.jaxa.jp/"
+// 打ち上げ10秒前（57分34秒）から再生する
+const LAUNCH_VIDEO_URL = "https://www.youtube.com/watch?v=sZGyK9jfoy4&t=3454s"
+const PRESS_VIDEO_URL = "https://www.youtube.com/live/f-3olrShISs"
+const GAME_URL = "https://edu.jaxa.jp/contents/mmxgame/index.html"
 
 function ExternalLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
@@ -124,11 +127,11 @@ function SizeFigure() {
 }
 
 const LAUNCH_FACTS = [
-  { label: "日時", value: "2026年10月20日（火）午前4時41分03秒（日本時間）" },
-  { label: "ロケット", value: "H3ロケット10号機（固体ロケットブースタを4本付けた、H3でいちばん強力な形）" },
+  { label: "日時", value: "2026年10月20日（火）午前4時41分03秒（日本時間）に打ち上げ" },
+  { label: "ロケット", value: "H3ロケット10号機（補助ロケットを4本付けた、いちばんパワーのある形）" },
   { label: "場所", value: "種子島宇宙センター（鹿児島県）" },
-  { label: "予備期間", value: "10月21日〜11月7日（天候などで延期になった場合）" },
-  { label: "分離", value: "打上げから約1時間11分後に、探査機がロケットから切り離される予定" },
+  { label: "分離", value: "打ち上げから約1時間11分13秒後に、探査機がロケットから正常に切り離され、火星へ向かう軌道に入りました" },
+  { label: "探査機の状態", value: "分離のあと、国内の3つのアンテナで探査機の電波を受信。太陽電池パネルが開いて発電し、向きや温度も安定しています" },
 ]
 
 const ORIGINS = [
@@ -147,15 +150,42 @@ const ORIGINS = [
 ]
 
 const JOURNEY = [
-  { when: "2026年10月", title: "打上げ", body: "種子島からH3ロケットで出発します。" },
+  { when: "2026年10月20日", title: "打ち上げ成功", body: "種子島からH3ロケットで出発しました。" },
   { when: "約1年", title: "火星へ向かう", body: "2027年度に火星のまわりに到着します。" },
   {
     when: "約3年",
-    title: "火星圏で観測と着陸",
+    title: "火星のまわりで観測と着陸",
     body: "フォボスのまわりを回りながら全体を調べ、着陸地点を選びます。ローバーを降ろしたあと、本体が2回着陸して砂を採ります。最後にもう1つの月ダイモスのそばを何度も通って観測します。",
   },
-  { when: "2030年度", title: "火星圏を出発", body: "約1年かけて地球へ戻ります。" },
+  { when: "2030年度", title: "火星のまわりを出発", body: "約1年かけて地球へ戻ります。" },
   { when: "2031年度", title: "地球に帰還", body: "砂の入ったカプセルが南オーストラリア州に着陸し、回収されます。" },
+]
+
+const TRIVIA = [
+  {
+    title: "探査機は、なぜ金色？",
+    body: "金色に見えるのは、探査機を包む断熱材の色です。何層にも重なったシートで、外からの熱をさえぎります。断熱材には銀色や黒色のものもありますが、MMXは金色のものを使っています。",
+  },
+  {
+    title: "写真も、カプセルで持ち帰る",
+    body: "火星のそばから地球へ送れるデータの量には限りがあります。送りきれなかった画像や観測データは、カプセルの中のメモリに保存して、砂と一緒に地球へ持ち帰ります。",
+  },
+  {
+    title: "名前に隠れた、日本のことば",
+    body: "観測機器の名前には日本語が隠れています。遠くを見る望遠カメラのTENGOOは鼻の長い「天狗」、8台のカメラを束ねたOROCHIは頭が8つの「八岐大蛇」、フォボスの成分を見るMEGANEは「眼鏡」です。",
+  },
+  {
+    title: "フォボスでは、体重60 kgの人が約35 g",
+    body: "フォボスの重力は地球の約1700分の1です。体重60 kgの人がフォボスに立つと、重さは約35 g、卵1個よりも軽くなります。ジャンプすると、ゆっくりと高く飛び上がってしまうほどです。",
+  },
+  {
+    title: "フォボスには、火星のかけらが積もっている",
+    body: "火星に隕石がぶつかると、火星の砂や岩のかけらが宇宙に飛び散ります。火星のすぐ近くを回るフォボスには、もう1つの月ダイモスの100倍以上も、そのかけらが降り積もっていると考えられています。",
+  },
+  {
+    title: "着陸する足の裏は、しま模様",
+    body: "着陸脚の先の丸いパッドには、しま模様があります。飾りではなく、熱くなりすぎないように熱の伝わり方を調整するためと、降り立ったときに探査機とフォボスの電気の状態をそろえるための工夫です。",
+  },
 ]
 
 const COMPARISON = [
@@ -164,18 +194,18 @@ const COMPARISON = [
   { item: "砂の採り方", hayabusa2: "一瞬だけ触れて採る（タッチ・アンド・ゴー）", mmx: "脚で降り立ち、表面に約2時間半とどまって採る" },
   { item: "持ち帰る量", hayabusa2: "目標0.1 g（実際は約5.4 g）", mmx: "目標10 g以上" },
   { item: "旅の期間", hayabusa2: "約6年（2014年〜2020年）", mmx: "約5年（2026年〜2031年度）" },
-  { item: "ローバー", hayabusa2: "MINERVA-II、MASCOT（独仏）など", mmx: "IDEFIX（独仏）" },
+  { item: "ローバー", hayabusa2: "小型ローバー4台（うち1台は独仏製）", mmx: "IDEFIX（独仏）" },
 ]
 
 const TIMELINE = [
   { when: "2015年6月", what: "JAXAがMMX計画を発表" },
   { when: "2020年2月", what: "正式なプロジェクトになる" },
-  { when: "2023年12月", what: "H3ロケット試験機1号機の失敗を受け、打上げを2026年度に延期" },
+  { when: "2023年12月", what: "H3ロケット試験機1号機の失敗を受け、打ち上げを2026年度に延期" },
   { when: "2026年4月", what: "探査機を種子島宇宙センターへ運び込む" },
-  { when: "2026年10月20日", what: "打上げ（予定）", highlight: true },
+  { when: "2026年10月20日", what: "打ち上げ成功", highlight: true },
   { when: "2027年度", what: "火星のまわりに到着" },
   { when: "2028年終わり〜2029年初め", what: "ローバーをフォボスへ投下（見込み）" },
-  { when: "2030年度", what: "火星圏を出発" },
+  { when: "2030年度", what: "火星のまわりを出発" },
   { when: "2031年度", what: "地球に帰還し、カプセルを回収" },
 ]
 
@@ -184,20 +214,28 @@ const GLOSSARY = [
   { term: "フォボス・ダイモス", body: "火星の2つの月。どちらもいびつな形の小さな天体で、フォボスのほうが大きく、火星に近いところを回っています。" },
   { term: "レゴリス", body: "天体の表面をおおう、砂や小石の層。MMXが持ち帰るのは、このレゴリスです。" },
   { term: "ローバー", body: "天体の表面を移動しながら調べる探査車。" },
+  { term: "年度", body: "国や学校などで使う、4月から翌年3月までの1年の区切り。たとえば2031年度は、2031年4月から2032年3月までです。" },
   { term: "フライバイ", body: "天体に着陸したり、まわりを回ったりせず、そばを通り過ぎながら観測すること。" },
 ]
 
 const SOURCES = [
   { label: "JAXA H3ロケット10号機によるMMX打上げ特設サイト", href: SPECIAL_SITE_URL },
-  { label: "JAXA ライブ中継・パブリックビューイング", href: LIVE_URL },
+  { label: "JAXA「火星衛星探査機(MMX)/H3ロケット10号機打上げライブ中継」（YouTube）", href: LAUNCH_VIDEO_URL },
+  { label: "JAXA「火星衛星探査機(MMX)/H3ロケット10号機打上げ経過記者会見」（YouTube）", href: PRESS_VIDEO_URL },
+  { label: "JAXA「フォボス・トラベラーズ・ガイド」第2回（YouTube）", href: "https://www.youtube.com/live/S65VZwuWdw0" },
+  { label: "NHK「火星衛星探査機『MMX』 火星へ向かう軌道に 打ち上げ成功」", href: "https://news.web.nhk/newsweb/na/nd-20261019de61814" },
+  { label: "SPACE CONNECT「H3ロケット10号機、MMXの打ち上げに成功」", href: "https://space-connect.jp/mmx-h3f10-launch/" },
   { label: "JAXA MMXプレスキット（2026年9月）", href: "https://fanfun.jaxa.jp/countdown/mmx_h3f10/files/mmx_press-kit_ja_20260918.pdf" },
   { label: "JAXA 打上げ計画書（2026年8月20日）", href: "https://www.jaxa.jp/press/2026/08/files/jaxa20260820-1_01.pdf" },
   { label: "MMX公式サイト", href: MMX_SITE_URL },
+  { label: "NASA/JPL Horizons（MMXの計画軌道）", href: "https://ssd.jpl.nasa.gov/horizons/" },
+  { label: "MMX公式サイト（よくある質問）", href: "https://www.mmx.jaxa.jp/faq/" },
+  { label: "MMX公式サイト（サイエンス）", href: "https://www.mmx.jaxa.jp/science/" },
   { label: "ISAS MMX", href: "https://www.isas.jaxa.jp/missions/spacecraft/developing/mmx.html" },
   { label: "DLR MMX（ローバーIDEFIX）", href: "https://www.dlr.de/en/research-and-transfer/projects-and-missions/mmx" },
   { label: "CNES MMX", href: "https://cnes.fr/en/projects/mmx" },
   { label: "Kuramoto et al. (2022) Earth, Planets and Space", href: "https://doi.org/10.1186/s40623-021-01545-7" },
-  { label: "Kameda et al. (2021) Earth, Planets and Space（OROCHIの写真）", href: "https://doi.org/10.1186/s40623-021-01462-9" },
+  { label: "Kameda et al. (2021) Earth, Planets and Space（OROCHI）", href: "https://doi.org/10.1186/s40623-021-01462-9" },
   { label: "Ernst et al. (2023) Earth, Planets and Space（フォボスの形状モデル）", href: "https://doi.org/10.1186/s40623-023-01814-7" },
   { label: "Kegerreis et al. (2024) Icarus（部分的な破壊捕獲説）", href: "https://doi.org/10.1016/j.icarus.2024.116337" },
 ]
@@ -222,7 +260,7 @@ export default function MMXDetailPage() {
       <header className={styles.hero}>
         <p className={styles.eyebrow}>
           <span />
-          LAUNCH GUIDE
+          MMX GUIDE
         </p>
         <h1>
           10月20日、
@@ -230,9 +268,9 @@ export default function MMXDetailPage() {
           <em>火星の月</em>へ。
         </h1>
         <p className={styles.lead}>
-          日本の探査機MMXが、火星の衛星フォボスの砂を持ち帰る5年の旅に出発します。打上げを見る前に知っておきたいことを、ひとつのページにまとめました。
+          日本の探査機MMXが、火星の衛星フォボスの砂を持ち帰る5年の旅に出発しました。これから何が起きるのか、知っておきたいことをひとつのページにまとめました。
         </p>
-        <p className={styles.asOf}>2026年10月14日時点の情報です</p>
+        <p className={styles.asOf}>2026年10月20日時点の情報です</p>
       </header>
 
       <section className={styles.section} aria-labelledby="quick">
@@ -246,7 +284,7 @@ export default function MMXDetailPage() {
         <div className={styles.stats}>
           <div>
             <b>約5年</b>
-            <span>打上げから帰還まで。そのうち約3年を火星のまわりで過ごす</span>
+            <span>打ち上げから帰還まで。そのうち約3年を火星のまわりで過ごす</span>
           </div>
           <div>
             <b>10 g以上</b>
@@ -261,10 +299,12 @@ export default function MMXDetailPage() {
 
       <section className={`${styles.section} ${styles.light}`} aria-labelledby="launch">
         <p className={styles.sectionLabel}>
-          02 <span>打上げ情報</span>
+          02 <span>打ち上げ結果</span>
         </p>
-        <h2 id="launch">打上げまで、あと</h2>
-        <LaunchCountdown />
+        <h2 id="launch">打ち上げ、成功！</h2>
+        <p className={styles.body}>
+          MMXを載せたH3ロケット10号機は、予定どおりの時刻に打ち上げられました。H3ロケットが探査機を火星へ向かう軌道に送ったのは、今回が初めてです。
+        </p>
         <dl className={styles.facts}>
           {LAUNCH_FACTS.map((fact) => (
             <div key={fact.label}>
@@ -273,23 +313,42 @@ export default function MMXDetailPage() {
             </div>
           ))}
         </dl>
-        <div className={styles.callout}>
-          <strong>ライブ中継で見る</strong>
-          <p>
-            JAXAが打上げの55分前ごろから75分後ごろまでライブ中継します。YouTubeのJAXAチャンネル（配信URLは近日公開予定）と、ニコニコ生放送で見られます。
-          </p>
-          <ExternalLink href={LIVE_URL}>中継とパブリックビューイングの案内（JAXA）</ExternalLink>
-        </div>
-        <p className={styles.note}>
-          日時は天候や準備の状況で変わることがあります。当日はJAXAの
-          <ExternalLink href={SPECIAL_SITE_URL}>打上げ特設サイト</ExternalLink>
-          で最新の情報を確認してください。
+        <p className={styles.body} style={{ marginTop: 24 }}>
+          打ち上げの瞬間は、JAXAのライブ中継の録画で見られます（打ち上げ10秒前から再生されます）。
+          <br />
+          <ExternalLink href={LAUNCH_VIDEO_URL}>打ち上げライブ中継（JAXA公式YouTube）</ExternalLink>
         </p>
+        <p className={styles.body}>
+          ロケットは八丈島と小笠原諸島のあいだの上空を通ったため、夜明け前の空で太陽に照らされたロケットが、関東など本州からも見えました。
+        </p>
+        <div className={styles.callout}>
+          <strong>次の節目</strong>
+          <p>
+            約1年かけて火星へ向かい、2027年度に火星のまわりに到着する予定です。到着のときは、エンジンを噴いてスピードを秒速約1 km落とし、火星の重力に捕まえてもらいます。決まった時刻にしかできない、旅の最初の大きな山場です。
+          </p>
+          <ExternalLink href={MMX_SITE_URL}>探査機の最新の状況（MMX公式サイト）</ExternalLink>
+        </div>
+      </section>
+
+      <section className={`${styles.section} ${styles.dark}`} aria-labelledby="route">
+        <p className={styles.sectionLabel}>
+          03 <span>火星への道のり</span>
+        </p>
+        <h2 id="route">MMXは、今ここ</h2>
+        <p className={styles.body}>
+          MMXは、太陽のまわりを大きく回りながら、約10か月かけて火星に追いつきます。地球からまっすぐ火星に向かうのではなく、地球と火星の動きに合わせて、燃料が少なくて済む道を通ります。
+        </p>
+        <figure className={styles.figure}>
+          <MarsJourney />
+          <figcaption>
+            太陽のまわりを北側から見た図です。オレンジの実線がこれまでの道のり、点線がこれからの道のりです。MMXの位置は、JAXAが打ち上げ前に計画した軌道（NASA/JPL Horizonsで公開）から計算した目安で、実際の位置とは少しずれることがあります。地球と火星の位置は、公開されている軌道の数値から計算しています。計画では、2027年8月下旬に火星に到着します。
+          </figcaption>
+        </figure>
       </section>
 
       <section className={styles.section} aria-labelledby="why">
         <p className={styles.sectionLabel}>
-          03 <span>なぜフォボスなのか</span>
+          04 <span>なぜフォボスなのか</span>
         </p>
         <h2 id="why">火星の月は、どこから来たのか</h2>
         <p className={styles.body}>
@@ -315,7 +374,7 @@ export default function MMXDetailPage() {
           ))}
         </div>
         <p className={styles.body}>
-          「見た目は捕まった小惑星っぽいのに、軌道は衝突でできたっぽい」という、手がかりどうしが食い違う状態が続いています。2024年には、火星に近づいた小惑星が潮の力で壊れ、その破片の一部が捕まったという新しい説も出されました。
+          「見た目は捕まった小惑星っぽいのに、軌道は衝突でできたっぽい」という、手がかりどうしが食い違う状態が続いています。2024年には、火星に近づいた小惑星が火星の強い重力で引きちぎられ、その破片の一部が捕まったという新しい説も出されました。
         </p>
         <p className={styles.body}>
           答えを出す決め手が、実際の砂です。捕まった小惑星なら、水や有機物を含む隕石に似た成分が見つかるはずです。衝突でできたなら、高温でできた火山岩のような成分が出てくるはずです。地球に持ち帰れば、遠くから眺めるだけではわからない成分や年代まで調べられます。
@@ -339,7 +398,7 @@ export default function MMXDetailPage() {
 
       <section className={`${styles.section} ${styles.dark}`} aria-labelledby="journey">
         <p className={styles.sectionLabel}>
-          04 <span>5年の旅</span>
+          05 <span>5年の旅</span>
         </p>
         <h2 id="journey">行って、降りて、帰ってくる</h2>
         <ol className={styles.journey}>
@@ -352,13 +411,13 @@ export default function MMXDetailPage() {
           ))}
         </ol>
         <p className={styles.body}>
-          探査機は、行きの部分・フォボスで活動する部分・帰りの部分の3つが組み合わさった形をしています。使い終わった部分から切り離していく「三段式」で、打上げのときの重さは約4.5トンです。
+          探査機は、行きの部分・フォボスで活動する部分・帰りの部分の3つが組み合わさった形をしています。使い終わった部分から切り離していく「三段式」で、打ち上げのときの重さは約4.5トンです。
         </p>
       </section>
 
       <section className={styles.section} aria-labelledby="highlights">
         <p className={styles.sectionLabel}>
-          05 <span>見どころ</span>
+          06 <span>見どころ</span>
         </p>
         <h2 id="highlights">ここに注目</h2>
 
@@ -397,19 +456,11 @@ export default function MMXDetailPage() {
             </p>
           </div>
         </article>
-        <figure className={`${styles.figure} ${styles.figureSmall}`}>
-          <img src="/mmx/detail/orochi.jpg" alt="OROCHIの外観図。周りに7つ、中央に1つ、合わせて8つの窓が並んでいる" loading="lazy" />
-          <figcaption>
-            OROCHIの外観図。周りの7つが色ごとの広角カメラ、中央が着陸用の白黒カメラ。出典：
-            <ExternalLink href="https://doi.org/10.1186/s40623-021-01462-9">Kameda et al. (2021) Fig. 4</ExternalLink>
-            （CC BY 4.0）
-          </figcaption>
-        </figure>
 
         <article className={styles.highlight}>
           <span className={styles.highlightNo}>4</span>
           <div>
-            <h3>世界初の「火星圏からの持ち帰り」</h3>
+            <h3>世界初の「火星のまわりからの持ち帰り」</h3>
             <p>
               火星のまわりから物を持ち帰った探査は、まだありません。中国の「天問3号」も、火星そのものから砂を持ち帰る計画で2031年ごろの帰還をめざしています。MMXは、日本が国際協力のもとで挑む、はやぶさ・はやぶさ2に続く3回目のサンプルリターンです。
             </p>
@@ -417,9 +468,29 @@ export default function MMXDetailPage() {
         </article>
       </section>
 
+      <section className={`${styles.section} ${styles.dark}`} aria-labelledby="trivia">
+        <p className={styles.sectionLabel}>
+          07 <span>小ネタ</span>
+        </p>
+        <h2 id="trivia">知ると、もっと楽しい</h2>
+        <div className={styles.trivia}>
+          {TRIVIA.map((item) => (
+            <article key={item.title} className={styles.card}>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+        <div className={styles.callout}>
+          <strong>遊んでみよう</strong>
+          <p>JAXAの公式オンラインゲームでは、MMXの探査機を組み立てて、ミッションに挑戦できます。無料で、登録もいりません。</p>
+          <ExternalLink href={GAME_URL}>MMX公式オンラインゲーム（JAXA）</ExternalLink>
+        </div>
+      </section>
+
       <section className={`${styles.section} ${styles.light}`} aria-labelledby="compare">
         <p className={styles.sectionLabel}>
-          06 <span>はやぶさ2とくらべると</span>
+          08 <span>はやぶさ2とくらべると</span>
         </p>
         <h2 id="compare">行き先も、採り方も、量もちがう</h2>
         <figure className={styles.figure}>
@@ -450,7 +521,7 @@ export default function MMXDetailPage() {
 
       <section className={styles.section} aria-labelledby="schedule">
         <p className={styles.sectionLabel}>
-          07 <span>これからの予定</span>
+          09 <span>これからの予定</span>
         </p>
         <h2 id="schedule">発表から帰還まで、16年</h2>
         <ol className={styles.timeline}>
@@ -461,12 +532,12 @@ export default function MMXDetailPage() {
             </li>
           ))}
         </ol>
-        <p className={styles.note}>2027年度以降は現在の計画です。打上げの日や運用の状況によって変わることがあります。</p>
+        <p className={styles.note}>2027年度以降は現在の計画です。運用の状況によって変わることがあります。</p>
       </section>
 
       <section className={`${styles.section} ${styles.dark}`} aria-labelledby="glossary">
         <p className={styles.sectionLabel}>
-          08 <span>ことばの解説</span>
+          10 <span>ことばの解説</span>
         </p>
         <h2 id="glossary">このページに出てきたことば</h2>
         <dl className={styles.glossary}>
@@ -477,6 +548,16 @@ export default function MMXDetailPage() {
             </div>
           ))}
         </dl>
+      </section>
+
+      <section className={`${styles.section} ${styles.light}`} aria-labelledby="join">
+        <h2 id="join">MMXの旅を、一緒に見守ろう</h2>
+        <p className={styles.body}>
+          火星に着くまで約1年、帰ってくるまで約5年。宇宙コミュニティのCosmo Base（コスモベース）では、MMXのニュースや「これってどういうこと？」という疑問を、気軽に話せます。
+        </p>
+        <a href="/join" className={styles.ctaButton}>
+          Cosmo Baseに参加する
+        </a>
       </section>
 
       <section className={styles.section} aria-labelledby="sources">

@@ -236,33 +236,6 @@
 }
 
 /* 打上げ情報 */
-.countdown {
-  display: flex;
-  gap: clamp(12px, 3vw, 32px);
-  margin: 0 0 36px;
-}
-.countdown span {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 56px;
-}
-.countdown b {
-  font-size: clamp(40px, 6vw, 68px);
-  font-weight: 300;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.04em;
-  line-height: 1;
-}
-.countdown small {
-  color: var(--cream-muted);
-  font-size: 12px;
-}
-.countdownDone {
-  margin: 0 0 36px;
-  font-size: 16px;
-  line-height: 1.9;
-}
 .facts {
   margin: 0;
   border-top: 1px solid rgba(27, 27, 27, 0.16);
@@ -302,9 +275,6 @@
 /* 図 */
 .figure {
   margin: 36px 0;
-}
-.figureSmall {
-  max-width: 360px !important;
 }
 .figureSvg {
   display: block;
@@ -526,9 +496,6 @@
     grid-template-columns: 32px 1fr;
     gap: 12px;
   }
-  .countdown span {
-    min-width: 0;
-  }
   .footer {
     flex-direction: column;
     align-items: flex-start;
@@ -545,5 +512,70 @@
   }
   .table tbody th {
     width: 5.6em;
+  }
+}
+
+/* 参加への入口 */
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: #fff !important;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.ctaButton:hover {
+  opacity: 0.88;
+}
+
+/* 小ネタ */
+.trivia {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.dark .callout strong {
+  color: var(--orange);
+}
+@media (max-width: 760px) {
+  .trivia {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 火星への道のり */
+.journeyStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-bottom: 24px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+.journeyStats div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 16px;
+  background: #0e1011;
+}
+.journeyStats span {
+  color: var(--muted-ink);
+  font-size: 13px;
+}
+.journeyStats b {
+  color: var(--orange);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 760px) {
+  .journeyStats {
+    grid-template-columns: 1fr;
   }
 }
