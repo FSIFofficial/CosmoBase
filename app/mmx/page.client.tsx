@@ -33,9 +33,6 @@ type Voice = {
 }
 
 const VOICES: Voice[] = [
-  { name: "Sora", message: "MMXの挑戦が、火星への新しい扉を開きますように。応援しています。" },
-  { name: "K. Tanaka", message: "日本の宇宙探査の次の一歩。打ち上げの日を楽しみにしています！" },
-  { name: "Cosmo Base", message: "すべてのチームの皆さまへ、地球から熱いエールを送ります。" },
 ]
 
 function shuffle<T>(items: T[]): T[] {
