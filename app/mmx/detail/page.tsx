@@ -131,7 +131,7 @@ const LAUNCH_FACTS = [
   { label: "ロケット", value: "H3ロケット10号機（補助ロケットを4本付けた、いちばんパワーのある形）" },
   { label: "場所", value: "種子島宇宙センター（鹿児島県）" },
   { label: "分離", value: "打ち上げから約1時間11分13秒後に、探査機がロケットから正常に切り離され、火星へ向かう軌道に入りました" },
-  { label: "探査機の状態", value: "分離のあと、国内の3つのアンテナで探査機の電波を受信。太陽電池パネルが開いて発電し、向きや温度も安定しています" },
+  { label: "探査機の状態", value: "分離のあと、国内の3つのアンテナで探査機の電波を受信。10月21日に、太陽電池パネルの展開やアンテナの固定の解除など、打ち上げ直後の大事な作業がすべて正常に終わりました。いまは搭載機器を一つずつ点検しています" },
 ]
 
 const ORIGINS = [
@@ -224,6 +224,7 @@ const GLOSSARY = [
 
 const SOURCES = [
   { label: "JAXA H3ロケット10号機によるMMX打上げ特設サイト", href: SPECIAL_SITE_URL },
+  { label: "JAXA プレスリリース（2026年10月21日、初期クリティカル運用フェーズの終了）", href: "https://www.jaxa.jp/press/2026/10/20261021-1_j.html" },
   { label: "JAXA「火星衛星探査機(MMX)/H3ロケット10号機打上げライブ中継」（YouTube）", href: LAUNCH_VIDEO_URL },
   { label: "JAXA「火星衛星探査機(MMX)/H3ロケット10号機打上げ前ブリーフィング」（YouTube）", href: "https://www.youtube.com/live/bKxY9gIwpRs" },
   { label: "JAXA「火星衛星探査機(MMX)/H3ロケット10号機打上げ経過記者会見」（YouTube）", href: PRESS_VIDEO_URL },
@@ -278,7 +279,7 @@ export default function MMXDetailPage() {
         <p className={styles.lead}>
           日本の探査機MMXが、火星の衛星フォボスの砂を持ち帰る5年の旅に出発しました。これから何が起きるのか、知っておきたいことをひとつのページにまとめました。
         </p>
-        <p className={styles.asOf}>2026年10月20日時点の情報です</p>
+        <p className={styles.asOf}>2026年10月23日時点の情報です</p>
       </header>
 
       <section className={styles.section} aria-labelledby="quick">
