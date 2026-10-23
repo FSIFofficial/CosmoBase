@@ -79,7 +79,7 @@ function Countdown() {
   const [remaining, setRemaining] = useState<number | null>(null)
 
   useEffect(() => {
-    const update = () => setRemaining(Math.max(0, LAUNCH_DATE.getTime() - Date.now()))
+    const update = () => setRemaining(Math.max(0, Date.now() - LAUNCH_DATE.getTime()))
     update()
     const timer = window.setInterval(update, 1000)
     return () => window.clearInterval(timer)
@@ -94,7 +94,7 @@ function Countdown() {
     value === null ? "—".repeat(digits) : String(value).padStart(digits, "0")
 
   return (
-    <div className={styles.countdown} aria-label="打ち上げまでのカウントダウン">
+    <div className={styles.countdown} aria-label="打ち上げ成功からの経過時間">
       <span>
         <b>{format(days, 2)}</b>
         <small>DAYS</small>
@@ -248,7 +248,7 @@ export default function MMXPageContent() {
         </a>
         <div className={styles.navLinks}>
           <a href="#about">MMXについて</a>
-          <a href="/mmx/detail">打上げ直前ガイド</a>
+          <a href="/mmx/detail">打上げガイド</a>
           <a href={MMX_SITE_URL} target="_blank" rel="noreferrer" className={styles.navCta}>
             MMXの詳細はこちら <ArrowUpRight aria-hidden="true" />
           </a>
@@ -314,11 +314,11 @@ export default function MMXPageContent() {
 
       <section className={styles.countdownSection}>
         <div>
-          <p className={styles.eyebrow}>NEXT MILESTONE</p>
-          <h2>打ち上げまで、あと</h2>
+          <p className={styles.eyebrow}>LAUNCH SUCCESS</p>
+          <h2>打ち上げ成功から、</h2>
         </div>
         <Countdown />
-        <p className={styles.launchNote}>※ 打ち上げ予定:2026年10月20日(日本時間)</p>
+        <p className={styles.launchNote}>※ 打ち上げ日時:2026年10月20日(日本時間)</p>
       </section>
 
       <section id="about" className={styles.about}>
@@ -355,7 +355,7 @@ export default function MMXPageContent() {
                 MMXの詳細はこちら <ArrowUpRight aria-hidden="true" />
               </a>
               <a href="/mmx/detail" className={styles.textLink}>
-                打上げ直前ガイドを読む <ArrowUpRight aria-hidden="true" />
+                打上げガイドを読む <ArrowUpRight aria-hidden="true" />
               </a>
             </div>
           </div>
