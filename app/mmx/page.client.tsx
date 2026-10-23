@@ -282,7 +282,7 @@ export default function MMXPageContent() {
             </span>
             <span className={styles.heroDisclaimer}>
               {FORM_CLOSED ? (
-                "たくさんの応援メッセージをいただき、ありがとうございました。頂いた寄せ書きは、まとめてMMXチームの皆様へお届けします。"
+                "たくさんの応援メッセージをいただき、ありがとうございました。"
               ) : (
                 <>
                   この企画は、個人(FSIFメンバー)とCosmo Baseによる応援企画です。MMX公式のプロジェクトではありません。
