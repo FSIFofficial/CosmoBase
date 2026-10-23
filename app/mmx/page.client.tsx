@@ -248,7 +248,7 @@ export default function MMXPageContent() {
         </a>
         <div className={styles.navLinks}>
           <a href="#about">MMXについて</a>
-          <a href="/mmx/detail">打上げガイド</a>
+          <a href="/mmx/detail">MMXガイド</a>
           <a href={MMX_SITE_URL} target="_blank" rel="noreferrer" className={styles.navCta}>
             MMXの詳細はこちら <ArrowUpRight aria-hidden="true" />
           </a>
@@ -355,7 +355,7 @@ export default function MMXPageContent() {
                 MMXの詳細はこちら <ArrowUpRight aria-hidden="true" />
               </a>
               <a href="/mmx/detail" className={styles.textLink}>
-                打上げガイドを読む <ArrowUpRight aria-hidden="true" />
+                MMXガイドを読む <ArrowUpRight aria-hidden="true" />
               </a>
             </div>
           </div>
