@@ -480,6 +480,7 @@
 }
 .voicesTrack {
   display: flex;
+  align-items: flex-start;
   gap: 18px;
   width: max-content;
   animation: voicesScroll 46s linear infinite;
@@ -498,7 +499,6 @@
 .voiceCard {
   flex: 0 0 auto;
   width: 260px;
-  min-height: 220px;
   padding: 26px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.025);
@@ -517,7 +517,10 @@
   margin-bottom: 20px;
 }
 .voiceCard p {
-  flex: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  overflow: hidden;
   margin: 45px 0 28px;
   color: var(--ink);
   font-size: 15px;
