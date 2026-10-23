@@ -26,6 +26,10 @@ const MAX_FILE_SIZE_MB = 10
 // 下の VOICES 配列に直接追加してください(image は任意、省略するとテキストのみ表示)。
 const SHOW_VOICES = true
 
+// 寄せ書きフォームの受付終了フラグ。true の間はボタンを無効化し、
+// 「受付は終了しました」という案内に差し替える。
+const FORM_CLOSED = true
+
 type Voice = {
   name: string
   message?: string
@@ -33,6 +37,32 @@ type Voice = {
 }
 
 const VOICES: Voice[] = [
+  { name: "タテモノ", message: "フォボスの地質から宇宙における謎を解明するべく生まれたMMX、まだ構想案の時から見ていました！\nついに打ち上げの時が来るんだな…と感慨深い思いでいっぱいです！\n頑張れ💪💪💪💪" },
+  { name: "よちりん", message: "無事に帰還できることを願っています！世界初偉業に向けて、頑張ってください！" },
+  { name: "匿名希望", message: "いろんな発見楽しみにしてます" },
+  { name: "EVANEKO", message: "小学生の頃から待ってたMMXがついに打ち上げ…\n行ってらっしゃい！！" },
+  { name: "ピヨチキ", message: "打ち上げ•探査成功をお祈りしています。\nMMXチームの皆様頑張ってください。" },
+  { name: "マヌ〜ル", message: "Let's go MMX！！地球↔︎火星圏を目指せ！！\n科学的発見、工学的偉業を楽しみにしています。MMXに関わる全ての人を応援しています！" },
+  { name: "iruka", message: "目指せ！世界初！\n日本は世界に誇れる！！！" },
+  { name: "にと", message: "また5年後無事に会えますように\n頑張れ！MMX！" },
+  { name: "TA", message: "応援してます！" },
+  { name: "ミロク", message: "無事に帰っておいでー" },
+  { name: "理系は日本の救世主", message: "天文学はロマンがあり、胸が躍ります。" },
+  { name: "宮尾悠夢", message: "達成することを期待しています" },
+  { name: "KI", message: "早大学院の学院祭で理科部の講演を聞いて知りました。応援してます" },
+  { name: "匿名希望", message: "頑張ってください" },
+  { name: "三日月シウ", message: "MMXの旅路に幸あれ！" },
+  { name: "よるる", message: "今、5歳の息子と一緒にMMXを応援しています。帰還の頃には10歳。沢山の楽しみが待つ未来をくれることに感謝します。\n我が子に掛ける言葉と同じですが、楽しんでいってらっしゃいね。\nご武運がありますように。" },
+  { name: "つくね", message: "火星圏には、なにがあるんだろう？ワクワクドキドキですね！MMX、そして携わる全ての皆様！応援していますo(^-^o三o^-^)o♪" },
+  { name: "H.M@nagasaki", message: "MMXが無事打ちあがり、フォボスにたどり着き、サンプル採取に再考して戻ってくることをお祈りしています。頑張ってください。" },
+  { name: "えねるふ", message: "MMXのミッションが成功すること、そして素晴らしい科学的成果が得られることを願っています！", image: "/mmx/1791895005747-2342bc8b-4faa-449f-93ab-9b563baf3e44.png" },
+  { name: "みかん（３３−４）", message: "自分が昔はやぶさを見て宇宙を好きになったようにMMXも誰かのきっかけになったらいいなと思っています…がんばれ！MMX！！" },
+  { name: "やまごん", message: "MMXの探査を心待ちにしていました！MMX探査機が見せてくれる火星と火星衛星の新たな景色を楽しみにしています。これからも応援しています！", image: "/mmx/1792099931994-c91b1100-8ee2-4b69-8131-23177e2b6b00.png" },
+  { name: "蒼空", message: "MMXへ\n日本初のフォボスサンプルリターン!\nみんなの技術と期待を背負って頑張ってね! サンプルが帰ってくるのを5年後の地球で待っているよ\n安全にいってらっしゃい(*˙︶˙*)ﾉ\"" },
+  { name: "くんちゃん", message: "いよいよですね！人類の叡智の結晶、ミッション成功の報を楽しみに待ってます。５年間の長旅、無事を祈ります。頑張れ、頑張れ！はや２を超えろ！" },
+  { name: "あかね", message: "MMXを知ってから、宇宙探査に興味を持ち、楽しみが増えました。遠い火星圏を目指すこのミッションが、どんな景色や発見を私たちに届けてくれるのか、今からとても楽しみです。夢のある挑戦を続けるチームの皆様を、これからも応援しています！", image: "/mmx/1792162967789-eccac0b3-c56a-40a0-8ca1-fd07d00faf78.png" },
+  { name: "航天", message: "打上げから火星圏への旅路、そして地球への帰還まで。MMXの長い旅路がすべて順調に進み、関係者の方々やファンの想いとともに、無事に地球へ帰ってこられますように！\n火星の衛星フォボスからサンプルを持ち帰るという、宇宙探査に新たな一歩を刻む歴史的な挑戦。その先に待つ世界初の成果を、今からとても楽しみにしています！\n\n数々の困難を乗り越え、たくさんの発見と夢を乗せて、どうか無事に帰還してください。\nグッドラック、MMX！地球から応援しています！" },
+  { name: "そらQ君💫", message: "約四半世紀ぶりの火星圏探査機、めちゃくちゃ楽しみにしてます！！\n関係者の皆さん頑張ってください！！！" },
 ]
 
 function shuffle<T>(items: T[]): T[] {
@@ -240,13 +270,25 @@ export default function MMXPageContent() {
             <em>火星</em>へ。
           </h1>
           <p className={styles.heroLead}>MMXの挑戦を、みんなの声で応援しよう。</p>
-          <button className={`${styles.primaryButton} ${styles.heroCta}`} onClick={() => setShowForm(true)}>
+          <button
+            className={`${styles.primaryButton} ${styles.heroCta}`}
+            onClick={() => setShowForm(true)}
+            disabled={FORM_CLOSED}
+          >
             <span className={styles.heroCtaLabel}>
-              応援コメントを打ち込む <ArrowUpRight aria-hidden="true" />
+              {FORM_CLOSED ? "受付は終了しました" : (
+                <>応援コメントを打ち込む <ArrowUpRight aria-hidden="true" /></>
+              )}
             </span>
             <span className={styles.heroDisclaimer}>
-              この企画は、個人(FSIFメンバー)とCosmo Baseによる応援企画です。MMX公式のプロジェクトではありません。
-            <br />期限は<strong>10/16</strong>を予定しています。
+              {FORM_CLOSED ? (
+                "たくさんの応援メッセージをいただき、ありがとうございました。"
+              ) : (
+                <>
+                  この企画は、個人(FSIFメンバー)とCosmo Baseによる応援企画です。MMX公式のプロジェクトではありません。
+                  <br />期限は<strong>10/16</strong>を予定しています。
+                </>
+              )}
             </span>
           </button>
           <div className={styles.scrollHint}>
@@ -334,8 +376,8 @@ export default function MMXPageContent() {
                 <em>火星へ届けよう。</em>
               </h2>
             </div>
-            <button className={styles.outlineButton} onClick={() => setShowForm(true)}>
-              コメントを送る <Send aria-hidden="true" />
+            <button className={styles.outlineButton} onClick={() => setShowForm(true)} disabled={FORM_CLOSED}>
+              {FORM_CLOSED ? "受付は終了しました" : (<>コメントを送る <Send aria-hidden="true" /></>)}
             </button>
           </div>
           <div className={styles.voicesMarquee}>
@@ -369,7 +411,7 @@ export default function MMXPageContent() {
         <small>© 2026 Cosmo Base / FSIF — MMX SUPPORT PROJECT</small>
       </footer>
 
-      {showForm && (
+      {showForm && !FORM_CLOSED && (
         <div
           className={styles.modalBackdrop}
           role="presentation"

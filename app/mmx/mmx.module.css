@@ -185,6 +185,15 @@
 .outlineButton:hover {
   transform: translateY(-2px);
 }
+.primaryButton:disabled,
+.outlineButton:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+.primaryButton:disabled:hover,
+.outlineButton:disabled:hover {
+  transform: none;
+}
 .heroCta {
   position: relative;
   flex-direction: column;
@@ -213,6 +222,10 @@
 .heroCta:hover {
   background: #ff7a4b;
   box-shadow: 0 0 0 1px rgba(242, 106, 61, 0.8), 0 18px 42px rgba(242, 106, 61, 0.38);
+}
+.heroCta:disabled:hover {
+  background: var(--orange);
+  box-shadow: 0 0 0 2px rgba(242, 106, 61, 0.6), 0 20px 54px rgba(242, 106, 61, 0.3);
 }
 .heroCta svg {
   width: 28px;
@@ -509,6 +522,7 @@
   color: var(--ink);
   font-size: 15px;
   line-height: 1.9;
+  white-space: pre-line;
 }
 .voiceCard img + p {
   margin-top: 0;
