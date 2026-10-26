@@ -41,7 +41,7 @@ export default function Footer() {
         <div className="border-t border-[#83CBEB]/10 pt-6 text-center">
           <p className="text-[#EEEEFF]/50 font-sans text-sm mb-2">運営団体</p>
           <a
-            href="https://fsifofficial.wixsite.com/future-space-industr"
+            href="https://www.fsif.jp/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#83CBEB] hover:text-[#83CBEB]/80 font-sans text-base font-medium transition-colors"
