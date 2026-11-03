@@ -182,7 +182,7 @@ export default function ValuePageContent() {
             <div className="mt-16 p-8 bg-gradient-to-r from-[#83CBEB]/10 via-[#C9E3CC]/10 to-[#EEEEBB]/10 border border-[#83CBEB]/30 rounded-2xl text-center">
               <h3 className="text-2xl font-serif text-[#EEEEFF] mb-4">増え続けるコンテンツ</h3>
               <p className="text-[#EEEEFF]/80 font-sans leading-relaxed max-w-3xl mx-auto mb-8">
-                Cosmo Baseでは様々な接点を生むことを目的に、毎月1つ以上の新しいコンテンツをリリースし、継続した接点を創出し続けます。
+                Cosmo Baseでは様々な接点を生むことを目的に、新しいコンテンツをリリースし、継続した接点を創出し続けます。
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 p-6 mt-8">
