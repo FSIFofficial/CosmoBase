@@ -24,6 +24,13 @@ export interface Partner {
   newsLink?: string;
 }
 
+// スプレッドシートに残っている旧GitHub Pages時代のbasePath(/CosmoBase)付きパスを
+// カスタムドメイン移行後のルート相対パスに正規化する(外部URLはそのまま)
+function normalizeLogoPath(path: string): string {
+  if (!path) return path;
+  return path.replace(/^\/?CosmoBase(\/|$)/, "/");
+}
+
 // 説明文などに含まれる「改行」や「カンマ」を安全に処理するCSVパーサー
 function parseCSV(text: string): string[][] {
   const result: string[][] = [];
@@ -121,7 +128,7 @@ export async function getPartners(): Promise<Partner[]> {
         name: safeGet(idxName),
         furigana: safeGet(idxFurigana) || undefined, // ◀︎ 追加
         type: (safeGet(idxType).includes("企業") || safeGet(idxType) === "company" ? "company" : "organization") as PartnerType,
-        logo: safeGet(idxLogo),
+        logo: normalizeLogoPath(safeGet(idxLogo)),
         description: safeGet(idxDescription),
         detailedDescription: safeGet(idxDetailedDescription),
         website: safeGet(idxWebsite) || undefined,
